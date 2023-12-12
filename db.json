@@ -1,0 +1,185 @@
+{
+  "posts": [
+    {
+      "id": "1",
+      "image": "https://images.unsplash.com/photo-1682686580433-2af05ee670ad?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "title": "Test Title 1",
+      "body": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti consequuntur ab delectus porro illum! Nostrum perspiciatis vitae voluptate tenetur odio officiis et fuga dolor, voluptatum, maiores expedita explicabo ad praesentium impedit quo deleniti hic consectetur beatae fugit qui ratione neque rem debitis. Tempore quo incidunt laboriosam! Quia aliquam vitae quisquam incidunt exercitationem ipsa, maxime consequatur quasi voluptate nobis illum cum? Nemo repudiandae quam sit magnam distinctio, alias hic et atque repellat rerum asperiores reiciendis! Hic fuga assumenda facilis asperiores debitis quod impedit? Fugit non, harum nemo corporis obcaecati magni porro possimus molestiae rerum? Doloremque commodi cupiditate ullam eligendi. Obcaecati, ullam.",
+      "date": "16.11.2023",
+      "comments": [
+        {
+          "id": "11",
+          "userImage": "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8dXNlcnxlbnwwfHwwfHx8MA%3D%3D",
+          "username": "Test User",
+          "comment": "Test Comment",
+          "date": "16.11.2023"
+        }
+      ]
+    },
+    {
+      "id": "2",
+      "image": "https://images.unsplash.com/photo-1682686580433-2af05ee670ad?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "title": "Test Title 222",
+      "body": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti consequuntur ab delectus porro illum! Nostrum perspiciatis vitae voluptate tenetur odio officiis et fuga dolor, voluptatum, maiores expedita explicabo ad praesentium impedit quo deleniti hic consectetur beatae fugit qui ratione neque rem debitis. Tempore quo incidunt laboriosam! Quia aliquam vitae quisquam incidunt exercitationem ipsa, maxime consequatur quasi voluptate nobis illum cum? Nemo repudiandae quam sit magnam distinctio, alias hic et atque repellat rerum asperiores reiciendis! Hic fuga assumenda facilis asperiores debitis quod impedit? Fugit non, harum nemo corporis obcaecati magni porro possimus molestiae rerum? Doloremque commodi cupiditate ullam eligendi. Obcaecati, ullam.",
+      "date": "16.11.2023",
+      "comments": [
+        {
+          "id": "11",
+          "userImage": "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8dXNlcnxlbnwwfHwwfHx8MA%3D%3D",
+          "username": "Test User",
+          "comment": "Test Comment",
+          "date": "16.11.2023"
+        },
+        {
+          "id": "1700475010148",
+          "userImage": "https://images.unsplash.com/photo-1639149888905-fb39731f2e6c?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTl8fHVzZXJ8ZW58MHx8MHx8fDA%3D",
+          "username": "Max",
+          "comment": "dsfsdfsdf\r\n",
+          "date": "20.11.2023"
+        },
+        {
+          "id": "1700733127353",
+          "userImage": "https://images.unsplash.com/photo-1639149888905-fb39731f2e6c?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTl8fHVzZXJ8ZW58MHx8MHx8fDA%3D",
+          "username": "Max",
+          "comment": "http://localhost:3000/posts/2\r\n",
+          "date": "23.11.2023"
+        },
+        {
+          "id": "1700735892905",
+          "userImage": "https://images.unsplash.com/photo-1639149888905-fb39731f2e6c?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTl8fHVzZXJ8ZW58MHx8MHx8fDA%3D",
+          "username": "Max",
+          "comment": "123123123",
+          "date": "23.11.2023"
+        }
+      ]
+    },
+    {
+      "id": "1700385324807",
+      "image": "https://utfs.io/f/0bfeadd8-ca0a-47ad-9fb7-25e2297bcb99-nm33wo.png",
+      "title": "New Post",
+      "body": "bla-bla-bla-bla-bla-bla-bla-bla-bla-bla-bla-bla-bla-bla-bla-bla-bla-bla",
+      "date": "19.11.2023",
+      "comments": [
+        {
+          "id": "1700385517887",
+          "userImage": "https://images.unsplash.com/photo-1639149888905-fb39731f2e6c?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTl8fHVzZXJ8ZW58MHx8MHx8fDA%3D",
+          "username": "Max",
+          "comment": "first comment",
+          "date": "19.11.2023"
+        }
+      ]
+    },
+    {
+      "id": "1700475056782",
+      "image": "https://utfs.io/f/226b640f-1a2d-4ddb-8786-397fdfca1c94-2p8xu0.avif",
+      "title": "NEweweqweqwe",
+      "body": "123123123123",
+      "date": "20.11.2023",
+      "comments": [
+        {
+          "id": "1700475152846",
+          "userImage": "https://avatars.githubusercontent.com/u/102809824?v=4",
+          "username": "4iLeRmax",
+          "comment": "saadasd",
+          "date": "20.11.2023"
+        },
+        {
+          "id": "1700648916207",
+          "userImage": "https://images.unsplash.com/photo-1639149888905-fb39731f2e6c?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTl8fHVzZXJ8ZW58MHx8MHx8fDA%3D",
+          "username": "Max",
+          "comment": "nice view\r\n",
+          "date": "22.11.2023"
+        },
+        {
+          "id": "1700663530510",
+          "userImage": "https://images.unsplash.com/photo-1639149888905-fb39731f2e6c?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTl8fHVzZXJ8ZW58MHx8MHx8fDA%3D",
+          "username": "Max",
+          "comment": "sd fusdfsd",
+          "date": "22.11.2023"
+        }
+      ]
+    },
+    {
+      "id": "1700848130145",
+      "image": "https://utfs.io/f/4213466f-da80-4667-9397-f7181b48b876-g4xqi9.avif",
+      "title": "My summer holidays !!!",
+      "body": "During my summer holidays, I did many fun things. First, I went to the beach with my family. We built sandcastles and played in the water. I also learned how to swim better. After that, we went camping in the mountains. I helped set up the tent and gather sticks for the campfire. At night, we roasted marshmallows and told spooky stories.\r\n\r\nI visited my grandparents too. We went to the park and had a picnic. My grandma made delicious cookies, and we ate them together. One day, we went to the zoo. I saw lions, elephants, and even a funny monkey. It was so exciting!\r\n\r\nI also had a birthday party during the holidays. My friends came over, and we played games and ate cake.\r\n\r\nI liked everything about my summer holidays, but my favorite part was when we went to an amusement park. I went on a big roller coaster, and it was really fast.\r\n\r\nI will always remember my summer holidays and all the amazing things I did.",
+      "date": "24.11.2023",
+      "comments": [
+        {
+          "id": "1701680841662",
+          "userImage": "https://images.unsplash.com/photo-1639149888905-fb39731f2e6c?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTl8fHVzZXJ8ZW58MHx8MHx8fDA%3D",
+          "username": "Max",
+          "comment": "nice post",
+          "date": "4.12.2023"
+        }
+      ]
+    },
+    {
+      "id": "1701768093074",
+      "image": "",
+      "title": "sdf",
+      "body": "sdfsfdfsdf",
+      "date": "5.12.2023",
+      "comments": []
+    },
+    {
+      "id": "1701768145687",
+      "image": "https://utfs.io/f/917d9b95-c0df-4c45-920d-71024a4910cc-g4xqi9.avif",
+      "title": "test post  dsfsdf",
+      "body": "b) <b>Bold</b> <br/>\r\na) <a href='#'>Link</a> <br/>\r\nu) <u>Under Line</u> <br/>\r\ni) <i>Cursive</i> <br/>\r\n\r\none\r\ntwo\r\nthree\r\nfourfxcv",
+      "date": "5.12.2023",
+      "comments": [
+        {
+          "id": "1701786270544",
+          "userImage": "https://images.unsplash.com/photo-1639149888905-fb39731f2e6c?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTl8fHVzZXJ8ZW58MHx8MHx8fDA%3D",
+          "username": "Max",
+          "comment": "dfgdfgdfg",
+          "date": "5.12.2023"
+        },
+        {
+          "id": "1701787820896",
+          "userImage": "https://avatars.githubusercontent.com/u/102809824?v=4",
+          "username": "4iLeRmax",
+          "comment": "nice view\r\n",
+          "date": "5.12.2023"
+        }
+      ]
+    },
+    {
+      "id": "1701768519770",
+      "image": "",
+      "title": "sdfsdfsdf",
+      "body": "",
+      "date": "5.12.2023",
+      "comments": []
+    }
+  ],
+  "users": [
+    {
+      "id": "1",
+      "email": "max@example.com",
+      "name": "Max",
+      "image": "https://images.unsplash.com/photo-1639149888905-fb39731f2e6c?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTl8fHVzZXJ8ZW58MHx8MHx8fDA%3D",
+      "password": "123",
+      "role": "admin"
+    },
+    {
+      "id": "1",
+      "email": "test@example.com",
+      "name": "My name",
+      "image": "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8dXNlcnxlbnwwfHwwfHx8MA%3D%3D",
+      "password": "123",
+      "role": "user"
+    }
+  ],
+  "githubUsers": [
+    {
+      "id": "102809824",
+      "email": "max.zlatin@gmail.com",
+      "name": "4iLeRmax",
+      "image": "https://avatars.githubusercontent.com/u/102809824?v=4",
+      "role": "user"
+    }
+  ]
+}
