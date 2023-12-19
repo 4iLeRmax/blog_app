@@ -25,7 +25,7 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang='en'>
-      <body className={clsx(inter.className, 'bg-black/30')}>
+      <body className={clsx(inter.className, 'bg-[#343541]')}>
         <Header />
         <div className={clsx('w-full pt-[72px] px-[3%]', 'sm:px-[5%]', 'lg:px-[15%]')}>
           {children}

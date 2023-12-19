@@ -45,3 +45,8 @@ type Comm = {
 type BrcsLinks = { value: string; link: string }[];
 
 type Status = 'success' | 'pending' | 'error' | 'warning' | '';
+
+type SelectedText = {
+  text: string;
+  seIndexes: [number, number];
+};
