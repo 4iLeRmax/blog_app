@@ -25,7 +25,7 @@ export default async function EditPost({ params: { id } }: any) {
             <Image src={post.image} alt='' fill className='object-cover' />
           </div>
         ) : null}
-        <UpdatePostForm post={post} />
+        {post ? <UpdatePostForm post={post} /> : null}
       </div>
     </>
   );

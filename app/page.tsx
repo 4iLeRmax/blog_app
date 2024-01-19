@@ -1,6 +1,5 @@
+import TE from '@/components/1/TE';
 import BreadCrumbs from '@/components/BreadCrumbs';
-import TextEditor from '@/components/TextEditor';
-import { getPost } from '@/lib/getPost';
 import React from 'react';
 
 const breadCrumbsLinks = [
@@ -10,15 +9,12 @@ const breadCrumbsLinks = [
   },
 ];
 
-export default async function Home() {
-  const post = await getPost('1701768145687');
+export default function Home() {
   return (
     <>
       <div>
         <BreadCrumbs links={breadCrumbsLinks} />
-        <div>
-          <TextEditor post={post}/>
-        </div>
+        <TE />
       </div>
     </>
   );

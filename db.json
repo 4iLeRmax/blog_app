@@ -132,8 +132,8 @@
     {
       "id": "1701768145687",
       "image": "https://utfs.io/f/917d9b95-c0df-4c45-920d-71024a4910cc-g4xqi9.avif",
-      "title": "test post  dsfsdf",
-      "body": "text is <b>bold</b> and like this text is <b>bold</b>.",
+      "title": "TEST post body",
+      "body": "text is <b>bold</b> and <b>like </b>this text is <b>bold</b>.",
       "date": "5.12.2023",
       "comments": [
         {
@@ -149,6 +149,27 @@
           "username": "4iLeRmax",
           "comment": "nice view\r\n",
           "date": "5.12.2023"
+        },
+        {
+          "id": "1704805619363",
+          "userImage": "https://images.unsplash.com/photo-1639149888905-fb39731f2e6c?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTl8fHVzZXJ8ZW58MHx8MHx8fDA%3D",
+          "username": "Max",
+          "comment": "fcdvdfd",
+          "date": "9.1.2024"
+        },
+        {
+          "id": "1704805619725",
+          "userImage": "https://images.unsplash.com/photo-1639149888905-fb39731f2e6c?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTl8fHVzZXJ8ZW58MHx8MHx8fDA%3D",
+          "username": "Max",
+          "comment": "fcdvdfd",
+          "date": "9.1.2024"
+        },
+        {
+          "id": "1705414997090",
+          "userImage": "https://images.unsplash.com/photo-1639149888905-fb39731f2e6c?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTl8fHVzZXJ8ZW58MHx8MHx8fDA%3D",
+          "username": "Max",
+          "comment": "good day",
+          "date": "16.1.2024"
         }
       ]
     }
