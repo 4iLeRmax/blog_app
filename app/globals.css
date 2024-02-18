@@ -10,6 +10,20 @@
     -webkit-text-stroke: 4px black;
   }
   .glassEffect {
-    @apply border-2 shadow-md text-black/40 border-gray-100/30 bg-blue-100/30 rounded-3xl backdrop-blur-sm;
+    @apply border-2 shadow-md text-black/40 border-gray-100/30 bg-blue-100/30 rounded-xl backdrop-blur-sm sm:rounded-3xl;
   }
+  .moreInfoButton {
+    @apply shadow-[inset_3px_3px_6px_#e5e7eb,inset_-3px_-3px_6px_#ffffff] bg-white;
+  }
+  .moreInfoButtonActive {
+    background: linear-gradient(145deg, #ffffff, #e6e6e6);
+    /* box-shadow: 3px 3px 6px #d9d9d9, -3px -3px 6px #ffffff; */
+  }
+}
+
+.customUploadThingButton > *[data-ut-element='button'] {
+  @apply w-full;
+}
+body.dark {
+  @apply bg-[#282828];
 }

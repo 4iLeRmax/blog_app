@@ -46,7 +46,7 @@ export default function Search({ posts }: SearchProps) {
 
   return (
     <>
-      <div className='relative' onKeyDown={handlePress}>
+      <div className='relative w-full sm:w-[50vw] md:w-full' onKeyDown={handlePress}>
         <SearchInput />
         <SearchModal filteredPosts={filteredPosts} selectedPost={selectedPost} />
       </div>

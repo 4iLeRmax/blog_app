@@ -39,11 +39,13 @@ export default async function PostLayout({ children, params: { id } }: PostLayou
     <>
       <div>
         <BreadCrumbs links={breadcrumbsLinks} />
-        <div className='flex items-start w-full gap-5'>
+        {/* <div className='flex items-start w-full gap-5'> */}
+        <div className='flex flex-col items-start w-full gap-5 md:flex-row sm:gap-2 lg:gap-5'>
           {children}
 
-          <div>
-            <div className='p-3 glassEffect w-[380px]'>
+          <div className='w-full md:w-auto'>
+            {/* <div className='p-3 glassEffect w-[380px]'> */}
+            <div className='flex md:w-[320px] xl:w-[400px] w-full p-3 glassEffect'>
               <Comments post={post} />
             </div>
           </div>

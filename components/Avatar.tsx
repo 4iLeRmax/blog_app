@@ -31,7 +31,7 @@ export default function Avatar({ user }: AvatarProps) {
                 ?
               </div>
             )}
-            <h1>{user.name}</h1>
+            <h1 className='hidden sm:flex'>{user.name}</h1>
           </div>
           <AnimatePresence>
             {isOpen ? <UserInfoModal email={user.email as string} setIsOpen={setIsOpen} /> : null}

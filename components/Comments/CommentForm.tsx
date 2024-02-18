@@ -1,36 +1,61 @@
-import Button from '@/UI/Button';
-import { authOptions } from '@/app/api/auth/[...nextauth]/options';
-import { createComment } from '@/lib/actions';
-import { getServerSession } from 'next-auth';
-import React from 'react';
+'use client';
+
+import { createComment, createReply } from '@/lib/actions';
+import React, { useRef, useState } from 'react';
 import { IoMdSend } from 'react-icons/io';
-import { CiLogin } from 'react-icons/ci';
 
 type CommentFormProps = {
   post: Post;
 };
 
-export default async function CommentForm({ post }: CommentFormProps) {
-  const session = await getServerSession(authOptions);
+export default function CommentForm({ post }: CommentFormProps) {
+  const formRef = useRef<HTMLFormElement>(null);
+  const [inputValue, setInputValue] = useState('');
+  const CHAR_LIMIT = 200;
+
+  const onSubmit = async (formData: FormData) => {
+    if (inputValue !== '') {
+      const actionData = localStorage.getItem('action');
+      // createComment(post, formData);
+
+      if (actionData) {
+        const data = JSON.parse(actionData);
+        createReply(data.createReply, formData);
+        localStorage.removeItem('action');
+      } else if (!actionData) {
+        createComment(post, formData);
+      }
+      if (formRef.current) formRef.current.reset();
+      setInputValue('');
+    }
+  };
+
+  const handleChange: React.ChangeEventHandler<HTMLTextAreaElement> = (e) => {
+    if (e.target.value.length <= CHAR_LIMIT) {
+      setInputValue(e.target.value);
+    }
+  };
+
   return (
     <>
-      {session?.user ? (
-        <form className='relative h-32' action={createComment.bind(null, post)}>
-          <textarea
-            name='comment'
-            placeholder='Comment this post ...'
-            className='w-full h-full p-2 text-black bg-blue-100 outline-none resize-none rounded-xl'
-          />
+      <form className='flex flex-col' ref={formRef} action={onSubmit}>
+        <textarea
+          name='comment'
+          placeholder='Add a comment...'
+          className='w-full h-32 p-2 text-black bg-blue-100 outline-none resize-none rounded-ss-xl rounded-se-xl'
+          value={inputValue}
+          onChange={handleChange}
+        />
 
-          <button className='absolute flex items-center justify-center w-8 h-8 text-white bg-blue-500 rounded-full bottom-2 right-2'>
+        <div className='flex items-end justify-end gap-2 p-2 bg-blue-100 rounded-es-xl rounded-ee-xl'>
+          <div className='text-sm'>
+            {inputValue.length}/{CHAR_LIMIT}
+          </div>
+          <button className='flex items-center justify-center w-8 h-8 text-white bg-blue-500 rounded-full '>
             <IoMdSend />
           </button>
-        </form>
-      ) : (
-        <div className='flex items-center justify-center w-full h-32 bg-blue-100 select-none rounded-xl'>
-          Sign in first to leave a comment
         </div>
-      )}
+      </form>
     </>
   );
 }

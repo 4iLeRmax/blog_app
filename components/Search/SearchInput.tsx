@@ -119,10 +119,17 @@ export default function SearchInput() {
         <input
           ref={inputRef}
           type='text'
+          // className={clsx(
+          //   'w-[25vw] py-1 text-black outline-none rounded-xl px-10 bg-blue-100/60 transition-all duration-300',
+          //   {
+          //     'rounded-es-none rounded-ee-none w-[30vw] bg-white':
+          //       (searchParams?.get('search') || '').length > 0,
+          //   },
+          // )}
           className={clsx(
-            'w-[25vw] py-1 text-black outline-none rounded-xl px-10 bg-blue-100/60 transition-all duration-300',
+            'w-full py-1 text-black outline-none rounded-xl px-10 bg-blue-100/60 transition-all duration-300',
             {
-              'rounded-es-none rounded-ee-none w-[30vw] bg-white':
+              'rounded-es-none rounded-ee-none bg-white ':
                 (searchParams?.get('search') || '').length > 0,
             },
           )}
@@ -133,9 +140,9 @@ export default function SearchInput() {
         <AnimatePresence>
           {searchParams?.get('search') ? (
             <motion.button
-              initial={{ scale: 0, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0, opacity: 0 }}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
               onClick={clearSearch}
               className='absolute top-0 right-0 flex items-center justify-center w-10 h-8'
             >

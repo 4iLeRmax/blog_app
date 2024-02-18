@@ -3,43 +3,57 @@
 import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import clsx from 'clsx';
+import ModalsPortal from '@/layouts/ModalsPortal';
 
 type StatusModalProps = {
   children: React.ReactNode;
   status: Status;
-  modalDelay: number;
+  modalDuration: number;
 };
 
-export default function StatusModal({ children, status, modalDelay }: StatusModalProps) {
+export default function StatusModal({ children, status, modalDuration }: StatusModalProps) {
+  console.log('1');
+
   return (
-    <>
+    <ModalsPortal>
       <motion.div
+        key={status}
         initial={{ y: 200 }}
         animate={{ y: 0 }}
         exit={{ y: 200 }}
-        className={clsx('fixed z-40 bottom-0 right-0 pt-3 px-3 pb-1 rounded-ss-xl rounded-se-xl w-80', {
-          'bg-[#669822]': status === 'success',
-          'bg-[#f0b9ae]': status === 'error',
-          'bg-[#facf74]': status === 'warning',
-        })}
+        className={clsx(
+          'fixed z-40 bottom-0 right-0 pt-3 px-3 pb-1 rounded-ss-xl rounded-se-xl w-80',
+          {
+            'bg-[#669822]': status === 'success',
+            'bg-[#f0b9ae]': status === 'error',
+            'bg-[#facf74]': status === 'warning',
+          },
+        )}
       >
         <h1 className='pb-1 text-white'>{children}</h1>
-        <CountdownLine time={modalDelay} status={status} />
+        <CountdownLine duration={modalDuration} status={status} />
       </motion.div>
-    </>
+    </ModalsPortal>
   );
 }
 
-const CountdownLine = ({ time, status }: { time: number; status: Status }) => {
+type CountdownLineProps = {
+  duration: number;
+  status: Status;
+};
+
+const CountdownLine = ({ duration, status }: CountdownLineProps) => {
+  console.log('2');
+
   const [percentage, setPercentage] = useState(100);
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setPercentage((prevPercentage) => Math.max(prevPercentage - 100 / (time / 100), 0));
+      setPercentage((prevPercentage) => Math.max(prevPercentage - 100 / (duration / 100), 0));
     }, 100);
 
     return () => clearInterval(interval);
-  }, [time]);
+  }, [duration, status]);
 
   return (
     <div className='w-full h-2 overflow-hidden bg-gray-200'>
