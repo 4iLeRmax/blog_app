@@ -31,6 +31,7 @@ type Post = {
   image?: string;
   title: string;
   body: string;
+  likes: { email: string; name: string }[];
   comments: Comm[];
   date: number;
 };
@@ -65,11 +66,26 @@ type ReportComment = {
   id: string;
   postId: string;
   commentId: string;
-  reports: number;
-  reporters: [
-    {
-      name: string;
-      email: string;
-    },
-  ];
+  replyId: string;
+  reporters: {
+    name: string;
+    email: string;
+  }[];
+};
+
+type RepCommUI = {
+  id: string;
+  pathId: {
+    postId: string;
+    commentId: string;
+    replyId: string | null;
+  };
+  userImage: string;
+  username: string;
+  comment: string;
+  reporters: {
+    name: string;
+    email: string;
+  }[];
+  date: number;
 };

@@ -15,10 +15,9 @@ export default function UsersList({ commonUsers }: UsersListProps) {
     user.name.toLowerCase().includes(searchValue.toLowerCase()),
   );
   return (
-    <div className='mt-5'>
-      <h1>Users:</h1>
+    <div>
       {/* <div className='flex w-full gap-5 pt-3'> */}
-      <div className='flex flex-col-reverse w-full gap-5 pt-3 md:flex-row'>
+      <div className='flex flex-col-reverse w-full gap-5 p-2 mt-3 md:flex-row glassEffect'>
         <div className='w-full'>
           {filteredUsers.length > 0 ? (
             <>
@@ -33,19 +32,6 @@ export default function UsersList({ commonUsers }: UsersListProps) {
           )}
         </div>
         <UserSearch searchValue={searchValue} setSearchValue={setSearchValue} />
-
-        {/* <div>
-          <h1>Github Users:</h1>
-          {githubUsers.length > 0 ? (
-            <div className='grid grid-cols-2 gap-3 pt-3'>
-              {githubUsers.map((user) => (
-                <UserItem user={user} key={user.id} />
-              ))}
-            </div>
-          ) : (
-            <div>No Users</div>
-          )}
-        </div> */}
       </div>
     </div>
   );

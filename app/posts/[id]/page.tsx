@@ -1,7 +1,5 @@
 import Post from '@/components/Post';
-import { getPost } from '@/lib/getPost';
 import { getPosts } from '@/lib/getPosts';
-import { userIsAdmin } from '@/lib/userIsAdmin';
 
 type Params = {
   params: {
@@ -9,15 +7,11 @@ type Params = {
   };
 };
 
-export default async function PostPage({ params: { id } }: Params) {
-  const post: Post = await getPost(id);
-
-  const isAdmin = await userIsAdmin();
-
+export default function PostPage({ params: { id } }: Params) {
   return (
-    <>
-      <Post postId={id} isAdmin={isAdmin} post={post} />
-    </>
+    <div className='flex flex-col gap-5'>
+      <Post postId={id} />
+    </div>
   );
 }
 

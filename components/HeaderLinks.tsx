@@ -14,6 +14,7 @@ import { BsFileEarmarkPost } from 'react-icons/bs';
 import { LuLayoutDashboard } from 'react-icons/lu';
 import { useRouter } from 'next/navigation';
 import ThemeSwitcher from '@/UI/ThemeSwitcher';
+import { CiUser } from 'react-icons/ci';
 
 type HeaderLinksProps = {
   sessionUser: SessionUser | undefined;
@@ -33,6 +34,8 @@ export default function HeaderLinks({ sessionUser }: HeaderLinksProps) {
       <div className='items-center hidden gap-3 md:flex'>
         <Link href={'/'}>Home</Link>
         <Link href={'/posts'}>Posts</Link>
+
+        {sessionUser ? <Link href={'/profile'}>Profile</Link> : null}
         {sessionUser?.role === 'admin' ? <Link href={'/dashboard'}>Dashboard</Link> : null}
       </div>
       <AnimatePresence>
@@ -83,10 +86,6 @@ export default function HeaderLinks({ sessionUser }: HeaderLinksProps) {
                   </div>
                 )}
 
-                {/* <div>
-                  <ThemeSwitcher />
-                </div> */}
-
                 <div className='flex flex-col gap-3 px-5 pt-8'>
                   <button onClick={() => handleClick('/')} className='flex items-center gap-1'>
                     <IoHomeOutline /> Home
@@ -94,6 +93,16 @@ export default function HeaderLinks({ sessionUser }: HeaderLinksProps) {
                   <button onClick={() => handleClick('/posts')} className='flex items-center gap-1'>
                     <BsFileEarmarkPost /> Posts
                   </button>
+
+                  {sessionUser ? (
+                    <button
+                      onClick={() => handleClick('/profile')}
+                      className='flex items-center gap-1'
+                    >
+                      <CiUser /> Profile
+                    </button>
+                  ) : null}
+
                   {sessionUser?.role === 'admin' ? (
                     <button
                       onClick={() => handleClick('/dashboard')}

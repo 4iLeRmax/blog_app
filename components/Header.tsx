@@ -21,12 +21,11 @@ export default async function Header() {
         className={clsx(
           'fixed z-20 top-0 left-0 w-full py-3 px-[3%]',
           'sm:px-[5%]',
-          'lg:px-[10%] xl:px-[15%]',
+          'lg:px-[10%]',
+          'xl:px-[15%]',
         )}
-        // className={clsx('fixed z-20 top-0 left-0 w-full py-0 px-0', 'sm:px-[5%]', 'lg:px-[15%]')}
       >
         <div className='relative flex items-center justify-between w-full gap-3 px-4 py-2 font-semibold md:px-8 md:py-3 glassEffect'>
-          {/* {session ? <HeaderLinks sessionUser={session.user} /> : null} */}
           <HeaderLinks sessionUser={session?.user} />
 
           <div className='flex items-center justify-center w-full gap-3 sm:gap-5 sm:w-auto '>
@@ -39,7 +38,7 @@ export default async function Header() {
             ) : (
               <Button sign='SignIn'>
                 <CiLogin />
-                <div>Sign in</div>
+                <div className='w-14'>Sign in</div>
               </Button>
             )}
           </div>

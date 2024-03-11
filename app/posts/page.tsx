@@ -1,11 +1,15 @@
-import { PostsListSkeleton } from '@/UI/seletons';
+import { PostsListSkeleton } from '@/UI/skeletons';
 import BreadCrumbs from '@/components/BreadCrumbs';
-import { getPosts } from '@/lib/getPosts';
+import { Metadata } from 'next';
 import dynamic from 'next/dynamic';
 
 const PostsList = dynamic(() => import('@/components/PostsList'), {
   loading: () => <PostsListSkeleton />,
 });
+
+export const metadata: Metadata = {
+  title: 'All Posts',
+};
 
 const breadcrumbsLinks: BrcsLinks = [
   {
@@ -18,26 +22,12 @@ const breadcrumbsLinks: BrcsLinks = [
   },
 ];
 
-export default async function PostsPage() {
-  const posts = await getPosts();
-  const bla = (str: string) =>
-    new Date([str.split('.')[2], str.split('.')[1], str.split('.')[0]].join('-')).getTime();
-
-  console.log(
-    posts.map((post) => ({
-      ...post,
-      comments: post.comments.map((comment) => ({ ...comment, date: bla(comment.date) })),
-    }))[0].comments,
-  );
-
+export default function PostsPage() {
   return (
     <>
       <div>
         <BreadCrumbs links={breadcrumbsLinks} />
-        <div>
-          <h1 className='text-2xl font-semibold'>All posts ({posts.length}) </h1>
-          <PostsList />
-        </div>
+        <PostsList />
       </div>
     </>
   );

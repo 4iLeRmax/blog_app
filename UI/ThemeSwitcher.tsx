@@ -8,11 +8,18 @@ export default function ThemeSwitcher() {
   const [isDark, setIsDark] = useState(false);
 
   useEffect(() => {
-    if (localStorage.getItem('theme'))
-      localStorage.getItem('theme') === 'dark' ? setIsDark(true) : setIsDark(false);
-    else {
-      localStorage.setItem('theme', 'light');
-      setIsDark(false);
+    if (localStorage.getItem('theme')) {
+      if (localStorage.getItem('theme') === 'dark') {
+        setIsDark(true);
+        document.body.classList.add('dark');
+      } else {
+        setIsDark(false);
+        document.body.classList.add('light');
+      }
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+      localStorage.setItem('theme', 'dark');
+      setIsDark(true);
+      document.body.classList.add('dark');
     }
   }, []);
 
@@ -26,7 +33,13 @@ export default function ThemeSwitcher() {
   // useEffect(())
 
   useEffect(() => {
+    // if (isDark) {
+    //   document.body.classList.add('light');
+    // } else  {
+    //   document.body.classList.add('dark');
+    // }
     document.body.classList.toggle('dark', isDark);
+    document.body.classList.toggle('light', !isDark);
   }, [isDark]);
 
   return (
@@ -38,8 +51,8 @@ export default function ThemeSwitcher() {
           animate={isDark ? { background: '#9a9a9a' } : { background: '#dbeafe' }}
         >
           <motion.div
-            className={clsx('absolute w-5 h-5 rounded-full')}
-            // initial={{ x: 2, y: 2 }}
+            style={{ width: 20, height: 20 }}
+            className='absolute rounded-full top-0.5'
             animate={
               isDark ? { x: 26, y: 2, background: '#4e4e4e' } : { x: 4, y: 2, background: '#fff' }
             }

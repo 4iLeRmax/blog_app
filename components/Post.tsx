@@ -4,14 +4,20 @@ import MoreInfo from './MoreInfo';
 import PostMoreInfoModal from './Modals/PostMoreInfoModal';
 import { formatTimeAgo } from '@/lib/formatTimeAgo';
 import { getCurrentDate } from '@/lib/getCurrentDate';
+import { getPost } from '@/lib/getPost';
+import { userIsAdmin } from '@/lib/userIsAdmin';
+import Likes from './Likes';
+import PostImage from './PostImage';
 
 type PostProps = {
   postId: string;
-  post: Post;
-  isAdmin: boolean;
 };
 
-export default function Post({ postId, post, isAdmin }: PostProps) {
+export default async function Post({ postId }: PostProps) {
+  const post = await getPost(postId);
+  const isAdmin = await userIsAdmin();
+
+  // await new Promise((res) => setTimeout(res, 5000));
   return (
     <>
       <div className='relative w-full p-3 glassEffect'>
@@ -20,15 +26,14 @@ export default function Post({ postId, post, isAdmin }: PostProps) {
             <PostMoreInfoModal isAdmin={isAdmin} postId={postId} />
           </MoreInfo>
         </div>
-        {post.image ? (
-          <div className='relative w-full overflow-hidden rounded-xl'>
-            <Image src={post.image} alt='' width={3000} height={1000} className='object-cover' />
-          </div>
-        ) : null}
+        <PostImage image={post.image} />
         <div>
-          <h1 className='pt-1 pb-2 text-3xl' dangerouslySetInnerHTML={{ __html: post.title }} />
+          <h1 className='pt-1 pb-2 pr-12 text-3xl break-words'>{post.title}</h1>
           <p dangerouslySetInnerHTML={{ __html: post.body }} />
-          <h1 title={getCurrentDate(post.date)} className='flex justify-end pt-5'>{formatTimeAgo(post.date)}</h1>
+          <div className='flex justify-between pt-5'>
+            <Likes postId={post.id} likes={post.likes} />
+            <h1 title={getCurrentDate(post.date)}>{formatTimeAgo(post.date)}</h1>
+          </div>
         </div>
       </div>
     </>

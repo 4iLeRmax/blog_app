@@ -86,6 +86,7 @@
 // }
 'use client';
 
+import { formatTimeAgo } from '@/lib/formatTimeAgo';
 import clsx from 'clsx';
 import Link from 'next/link';
 import { useRouter, useSearchParams } from 'next/navigation';
@@ -124,7 +125,7 @@ export default function SearchModal({ filteredPosts, selectedPost }: SearchModal
                 )}
               >
                 <h1>{post.title}</h1>
-                <div>{post.date}</div>
+                <div>{formatTimeAgo(post.date)}</div>
               </Link>
             ))
           ) : (

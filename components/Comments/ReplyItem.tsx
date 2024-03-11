@@ -13,6 +13,7 @@ type ReplyItemProps = {
   reply: Reply;
   isAdmin: boolean;
   sessionUsername: string | null | undefined;
+  reportedCommentsFromCurrentSessionUser:ReportComment[]
 };
 
 export default function ReplyItem({
@@ -21,6 +22,7 @@ export default function ReplyItem({
   reply,
   isAdmin,
   sessionUsername,
+  reportedCommentsFromCurrentSessionUser
 }: ReplyItemProps) {
   return (
     <>
@@ -31,30 +33,34 @@ export default function ReplyItem({
           </div>
         </div>
 
-        <div className='w-full'>
-          <div className='w-full '>
-            <div className='flex items-center justify-between'>
-              <div className='flex items-center gap-1 pl-10 '>
-                <div className='font-bold'>{reply.username}</div>
-                to
-                <div className='font-bold'>@{reply.replyToUser}</div>
-              </div>
-              <MoreInfo>
-                <ReplyMoreInfoModal
-                  postId={postId}
-                  commentId={commentId}
-                  reply={reply}
-                  isAdmin={isAdmin}
-                  sessionUsername={sessionUsername}
-                />
-              </MoreInfo>
+        <div className='w-full '>
+          <div className='flex items-center justify-between'>
+            <div className='flex items-center gap-1 pl-10 '>
+              <div className='font-bold'>{reply.username}</div>
+              to
+              <div className='font-bold'>@{reply.replyToUser}</div>
             </div>
-
-            <div className='w-full pl-10 break-words'>{reply.reply}</div>
+            <MoreInfo>
+              <ReplyMoreInfoModal
+                postId={postId}
+                commentId={commentId}
+                reply={reply}
+                isAdmin={isAdmin}
+                sessionUsername={sessionUsername}
+                reportedCommentsFromCurrentSessionUser={reportedCommentsFromCurrentSessionUser}
+              />
+            </MoreInfo>
           </div>
 
-          <h1 title={getCurrentDate(reply.date)}>{formatTimeAgo(reply.date)}</h1>
-          {/* <button onClick={() => setConfirmationModalOpen(true)}>Delete</button> */}
+          <div className='relative w-full pl-10 break-words'>
+            <h1
+              className='absolute w-8 flex items-center justify-center top-0 left-0'
+              title={getCurrentDate(reply.date)}
+            >
+              {formatTimeAgo(reply.date)}
+            </h1>
+            {reply.reply}
+          </div>
         </div>
       </div>
     </>

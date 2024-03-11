@@ -9,10 +9,10 @@ type UserItemProps = {
 export default function UserItem({ user }: UserItemProps) {
   return (
     <>
-      <div className='flex items-center justify-between w-full px-3 glassEffect'>
+      <div className='flex items-center justify-between w-full pr-3 bg-white rounded-xl'>
         <div className='flex items-center gap-2'>
           {user.image ? (
-            <div className='relative w-10 h-10 overflow-hidden shadow-md rounded-xl'>
+            <div className='relative w-12 h-12 overflow-hidden shadow-md rounded-xl'>
               <Image src={user.image} alt='' fill className='object-cover' />
             </div>
           ) : (

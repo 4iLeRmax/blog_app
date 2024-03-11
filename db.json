@@ -6,14 +6,23 @@
       "title": "Test Title 1",
       "body": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti consequuntur ab delectus porro illum! Nostrum perspiciatis vitae voluptate tenetur odio officiis et fuga dolor, voluptatum, maiores expedita explicabo ad praesentium impedit quo deleniti hic consectetur beatae fugit qui ratione neque rem debitis. Tempore quo incidunt laboriosam! Quia aliquam vitae quisquam incidunt exercitationem ipsa, maxime consequatur quasi voluptate nobis illum cum? Nemo repudiandae quam sit magnam distinctio, alias hic et atque repellat rerum asperiores reiciendis! Hic fuga assumenda facilis asperiores debitis quod impedit? Fugit non, harum nemo corporis obcaecati magni porro possimus molestiae rerum? Doloremque commodi cupiditate ullam eligendi. Obcaecati, ullam.",
       "date": 1700092800000,
+      "likes": [],
       "comments": [
         {
-          "id": "11",
-          "userImage": "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8dXNlcnxlbnwwfHwwfHx8MA%3D%3D",
-          "username": "Test User",
-          "comment": "Test Comment",
+          "id": "1709217408859",
+          "userImage": "https://avatars.githubusercontent.com/u/102809824?v=4",
+          "username": "4iLeRmax",
+          "comment": "444444444444",
           "replies": [],
-          "date": "16.11.2023"
+          "date": 1709217408859
+        },
+        {
+          "id": "1709217187370",
+          "userImage": "https://avatars.githubusercontent.com/u/102809824?v=4",
+          "username": "4iLeRmax",
+          "comment": "1111111111111111111111111111111111111111111111111111111111111111111111111111111111",
+          "replies": [],
+          "date": 1709217187370
         }
       ]
     },
@@ -23,23 +32,40 @@
       "title": "Test Title 222",
       "body": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti consequuntur ab delectus porro illum! Nostrum perspiciatis vitae voluptate tenetur odio officiis et fuga dolor, voluptatum, maiores expedita explicabo ad praesentium impedit quo deleniti hic consectetur beatae fugit qui ratione neque rem debitis. Tempore quo incidunt laboriosam! Quia aliquam vitae quisquam incidunt exercitationem ipsa, maxime consequatur quasi voluptate nobis illum cum? Nemo repudiandae quam sit magnam distinctio, alias hic et atque repellat rerum asperiores reiciendis! Hic fuga assumenda facilis asperiores debitis quod impedit? Fugit non, harum nemo corporis obcaecati magni porro possimus molestiae rerum? Doloremque commodi cupiditate ullam eligendi. Obcaecati, ullam.",
       "date": 1700092800000,
+      "likes": [],
       "comments": [
         {
-          "id": "11",
+          "id": "1709220236662",
           "userImage": "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8dXNlcnxlbnwwfHwwfHx8MA%3D%3D",
-          "username": "Test User",
-          "comment": "Test Comment",
+          "username": "My name",
+          "comment": "33333",
           "replies": [
             {
-              "id": "1708019665191",
-              "userImage": "https://images.unsplash.com/photo-1639149888905-fb39731f2e6c?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTl8fHVzZXJ8ZW58MHx8MHx8fDA%3D",
-              "username": "Max",
-              "replyToUser": "Test User",
-              "reply": "ok ",
-              "date": "15.02.2024"
+              "id": "1709220242138",
+              "userImage": "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8dXNlcnxlbnwwfHwwfHx8MA%3D%3D",
+              "username": "My name",
+              "replyToUser": "My name",
+              "reply": "44444",
+              "date": 1709220242138
             }
           ],
-          "date": "16.11.2023"
+          "date": 1709220236662
+        },
+        {
+          "id": "1709220234543",
+          "userImage": "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8dXNlcnxlbnwwfHwwfHx8MA%3D%3D",
+          "username": "My name",
+          "comment": "22222",
+          "replies": [],
+          "date": 1709220234543
+        },
+        {
+          "id": "1709220232138",
+          "userImage": "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8dXNlcnxlbnwwfHwwfHx8MA%3D%3D",
+          "username": "My name",
+          "comment": "11111",
+          "replies": [],
+          "date": 1709220232138
         },
         {
           "id": "1700475010148",
@@ -47,7 +73,7 @@
           "username": "Max",
           "comment": "dsfsdfsdf\r\n",
           "replies": [],
-          "date": "20.11.2023"
+          "date": 1700438400000
         },
         {
           "id": "1700733127353",
@@ -55,15 +81,7 @@
           "username": "Max",
           "comment": "http://localhost:3000/posts/2\r\n",
           "replies": [],
-          "date": "23.11.2023"
-        },
-        {
-          "id": "1700735892905",
-          "userImage": "https://images.unsplash.com/photo-1639149888905-fb39731f2e6c?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTl8fHVzZXJ8ZW58MHx8MHx8fDA%3D",
-          "username": "Max",
-          "comment": "123123123",
-          "replies": [],
-          "date": "23.11.2023"
+          "date": 1700697600000
         },
         {
           "id": "1702888517157",
@@ -71,7 +89,7 @@
           "username": "Max",
           "comment": "nice",
           "replies": [],
-          "date": "18.12.2023"
+          "date": 1702857600000
         }
       ]
     },
@@ -81,6 +99,7 @@
       "title": "New Post",
       "body": "bla-bla-bla-bla-bla-bla-bla-bla-bla-bla-bla-bla-bla-bla-bla-bla-bla-bla",
       "date": 1700352000000,
+      "likes": [],
       "comments": [
         {
           "id": "1700385517887",
@@ -88,48 +107,7 @@
           "username": "Max",
           "comment": "first comment",
           "replies": [],
-          "date": "19.11.2023"
-        }
-      ]
-    },
-    {
-      "id": "1700475056782",
-      "image": "https://utfs.io/f/226b640f-1a2d-4ddb-8786-397fdfca1c94-2p8xu0.avif",
-      "title": "NEweweqweqwe",
-      "body": "123123123123",
-      "date": 1700438400000,
-      "comments": [
-        {
-          "id": "1700475152846",
-          "userImage": "https://avatars.githubusercontent.com/u/102809824?v=4",
-          "username": "4iLeRmax",
-          "comment": "saadasd",
-          "replies": [],
-          "date": "20.11.2023"
-        },
-        {
-          "id": "1700648916207",
-          "userImage": "https://images.unsplash.com/photo-1639149888905-fb39731f2e6c?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTl8fHVzZXJ8ZW58MHx8MHx8fDA%3D",
-          "username": "Max",
-          "comment": "nice view\r\n",
-          "replies": [],
-          "date": "22.11.2023"
-        },
-        {
-          "id": "1700663530510",
-          "userImage": "https://images.unsplash.com/photo-1639149888905-fb39731f2e6c?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTl8fHVzZXJ8ZW58MHx8MHx8fDA%3D",
-          "username": "Max",
-          "comment": "sd fusdfsd",
-          "replies": [],
-          "date": "22.11.2023"
-        },
-        {
-          "id": "1703089949484",
-          "userImage": "https://images.unsplash.com/photo-1639149888905-fb39731f2e6c?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTl8fHVzZXJ8ZW58MHx8MHx8fDA%3D",
-          "username": "Max",
-          "comment": "scibidi-dop-dop-dop ",
-          "replies": [],
-          "date": "20.12.2023"
+          "date": 1700352000000
         }
       ]
     },
@@ -139,6 +117,7 @@
       "title": "My summer holidays !!!",
       "body": "During my summer holidays, I did many fun things. First, I went to the beach with my family. We built sandcastles and played in the water. I also learned how to swim better. After that, we went camping in the mountains. I helped set up the tent and gather sticks for the campfire. At night, we roasted marshmallows and told spooky stories.\r\n\r\nI visited my grandparents too. We went to the park and had a picnic. My grandma made delicious cookies, and we ate them together. One day, we went to the zoo. I saw lions, elephants, and even a funny monkey. It was so exciting!\r\n\r\nI also had a birthday party during the holidays. My friends came over, and we played games and ate cake.\r\n\r\nI liked everything about my summer holidays, but my favorite part was when we went to an amusement park. I went on a big roller coaster, and it was really fast.\r\n\r\nI will always remember my summer holidays and all the amazing things I did.",
       "date": 1700784000000,
+      "likes": [],
       "comments": [
         {
           "id": "1701680841662",
@@ -146,24 +125,56 @@
           "username": "Max",
           "comment": "nice post",
           "replies": [],
-          "date": "4.12.2023"
+          "date": 1701640800000
         }
       ]
     },
     {
       "id": "1701768145687",
       "image": "https://utfs.io/f/917d9b95-c0df-4c45-920d-71024a4910cc-g4xqi9.avif",
-      "title": "TEST post body ",
-      "body": "<u>Lorem</u> <b>ips<i>um</b> sit <u>amet</i> consectetur</u> <i>bla</i> - <u>bla </u><b>bla </b>fdfgdfg",
+      "title": "TEST post title",
+      "body": "sdfsdf sdfsdf sdfsdf s gdfgdf dfgdfg dfgdfg dfgdfg dfgffffffffffff dfgdf dfgdfgd dfgdfg dfg",
       "date": 1701727200000,
+      "likes": [
+        {
+          "email": "max@example.com",
+          "name": "Max"
+        }
+      ],
       "comments": [
+        {
+          "id": "1709715371968",
+          "userImage": "https://images.unsplash.com/photo-1639149888905-fb39731f2e6c?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTl8fHVzZXJ8ZW58MHx8MHx8fDA%3D",
+          "username": "Max",
+          "comment": "11111",
+          "replies": [
+            {
+              "id": "1709721927245",
+              "userImage": "https://images.unsplash.com/photo-1639149888905-fb39731f2e6c?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTl8fHVzZXJ8ZW58MHx8MHx8fDA%3D",
+              "username": "Max",
+              "replyToUser": "Max",
+              "reply": "222222",
+              "date": 1709721927245
+            }
+          ],
+          "date": 1709715371968
+        },
         {
           "id": "1708077231924",
           "userImage": "https://images.unsplash.com/photo-1639149888905-fb39731f2e6c?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTl8fHVzZXJ8ZW58MHx8MHx8fDA%3D",
           "username": "Max",
           "comment": "123123123123",
-          "replies": [],
-          "date": "16.02.2024"
+          "replies": [
+            {
+              "id": "1708331572179",
+              "userImage": "https://images.unsplash.com/photo-1639149888905-fb39731f2e6c?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTl8fHVzZXJ8ZW58MHx8MHx8fDA%3D",
+              "username": "Max",
+              "replyToUser": "Max",
+              "reply": "wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww",
+              "date": 1708331572179
+            }
+          ],
+          "date": 1708041600000
         },
         {
           "id": "1708076850051",
@@ -177,27 +188,18 @@
               "username": "Max",
               "replyToUser": "Max",
               "reply": "22222222222222222",
-              "date": "16.02.2024"
+              "date": 1708041600000
             }
           ],
-          "date": "16.02.2024"
+          "date": 1708041600000
         },
         {
           "id": "1708008377427",
           "userImage": "https://images.unsplash.com/photo-1639149888905-fb39731f2e6c?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTl8fHVzZXJ8ZW58MHx8MHx8fDA%3D",
           "username": "Max",
           "comment": "22222222222222222",
-          "replies": [
-            {
-              "id": "1708076032605",
-              "userImage": "https://avatars.githubusercontent.com/u/102809824?v=4",
-              "username": "4iLeRmax",
-              "replyToUser": "Max",
-              "reply": "22222222222222222222",
-              "date": "16.02.2024"
-            }
-          ],
-          "date": "15.02.2024"
+          "replies": [],
+          "date": 1707955200000
         },
         {
           "id": "1708007856281",
@@ -211,59 +213,10 @@
               "username": "Max",
               "replyToUser": "Max",
               "reply": "555555",
-              "date": "15.02.2024"
+              "date": 1707955200000
             }
           ],
-          "date": "15.02.2024"
-        }
-      ]
-    },
-    {
-      "id": "1705938654488",
-      "image": "https://utfs.io/f/2c301ef1-d6ec-406b-8b0d-6da1ca3d9673-ibclwm.jpg",
-      "title": "Mercedes-Benz ",
-      "body": "<b>CLK </b>1997-2002",
-      "date": 1705874400000,
-      "comments": [
-        {
-          "id": "1705938683373",
-          "userImage": "https://images.unsplash.com/photo-1639149888905-fb39731f2e6c?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTl8fHVzZXJ8ZW58MHx8MHx8fDA%3D",
-          "username": "Max",
-          "comment": "nice mercedes ",
-          "replies": [],
-          "date": "22.1.2024"
-        },
-        {
-          "id": "1706174324349",
-          "userImage": "https://avatars.githubusercontent.com/u/102809824?v=4",
-          "username": "4iLeRmax",
-          "comment": "hi",
-          "replies": [],
-          "date": "25.1.2024"
-        },
-        {
-          "id": "1706174360549",
-          "userImage": "https://avatars.githubusercontent.com/u/102809824?v=4",
-          "username": "4iLeRmax",
-          "comment": "1111\r\n",
-          "replies": [],
-          "date": "25.1.2024"
-        },
-        {
-          "id": "1706174363626",
-          "userImage": "https://avatars.githubusercontent.com/u/102809824?v=4",
-          "username": "4iLeRmax",
-          "comment": "22222\r\n",
-          "replies": [],
-          "date": "25.1.2024"
-        },
-        {
-          "id": "1706174367372",
-          "userImage": "https://avatars.githubusercontent.com/u/102809824?v=4",
-          "username": "4iLeRmax",
-          "comment": "3333",
-          "replies": [],
-          "date": "25.1.2024"
+          "date": 1707955200000
         }
       ]
     },
@@ -271,8 +224,14 @@
       "id": "1706275500848",
       "image": "https://utfs.io/f/5a39aaa2-db4f-4b6a-a3f8-099613a68e60-ibclvr.jpg",
       "title": "FERRARI !!!",
-      "body": "Ferrari <b>Testarosa</b>",
+      "body": "<b>Fer<i>rari <u>Test</i>arosa</b>",
       "date": 1706220000000,
+      "likes": [
+        {
+          "email": "max@example.com",
+          "name": "Max"
+        }
+      ],
       "comments": [
         {
           "id": "1706367563530",
@@ -280,7 +239,7 @@
           "username": "Max",
           "comment": "http://localhost:3000/posts/17062755008481706275500848170627550084817062755008481706275500848170627550084817062755008481706275500848",
           "replies": [],
-          "date": "27.1.2024"
+          "date": 1706306400000
         },
         {
           "id": "1706283566929",
@@ -288,7 +247,7 @@
           "username": "Max",
           "comment": "sdfsd http://localhost:3000/posts/1706275500848 sdddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd",
           "replies": [],
-          "date": "26.1.2024"
+          "date": 1706220000000
         },
         {
           "id": "1706279925365",
@@ -296,7 +255,7 @@
           "username": "Max",
           "comment": "https://www.youtube.com/",
           "replies": [],
-          "date": "26.1.2024"
+          "date": 1706220000000
         },
         {
           "id": "1706279903693",
@@ -304,7 +263,7 @@
           "username": "Max",
           "comment": "this is link http://localhost:3000/posts for this post",
           "replies": [],
-          "date": "26.1.2024"
+          "date": 1706220000000
         },
         {
           "id": "1706276138542",
@@ -312,7 +271,7 @@
           "username": "Max",
           "comment": "this is link http://localhost:3000/posts/1706275500848 for this post",
           "replies": [],
-          "date": "26.1.2024"
+          "date": 1706220000000
         }
       ]
     },
@@ -322,6 +281,12 @@
       "title": "BMW",
       "body": "Lorem <b>ips<i>um </b>dolor</i> <b>sit <u>am</b>et consecuter&</u>nbsp;",
       "date": 1706997600000,
+      "likes": [
+        {
+          "email": "max@example.com",
+          "name": "Max"
+        }
+      ],
       "comments": [
         {
           "id": "1707046816877",
@@ -329,9 +294,64 @@
           "username": "Max",
           "comment": "nice BMW",
           "replies": [],
-          "date": "04.02.2024"
+          "date": 1707004800000
         }
       ]
+    },
+    {
+      "id": "1709129404195",
+      "image": "",
+      "title": "123123",
+      "body": "asdasd",
+      "likes": [
+        {
+          "email": "max@example.com",
+          "name": "Max"
+        }
+      ],
+      "comments": [],
+      "date": 1709129404195
+    },
+    {
+      "id": "1709311963621",
+      "image": "https://utfs.io/f/ad49fe18-ee02-4584-87be-41f3d505e224-ibcluw.jpg",
+      "title": "BMW M1",
+      "body": "<i>Lorem </i><b>ipsum </b>dolor <u>sit </u>amet",
+      "likes": [
+        {
+          "email": "max@example.com",
+          "name": "Max"
+        }
+      ],
+      "comments": [
+        {
+          "id": "1709312005078",
+          "userImage": "https://images.unsplash.com/photo-1639149888905-fb39731f2e6c?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTl8fHVzZXJ8ZW58MHx8MHx8fDA%3D",
+          "username": "Max",
+          "comment": "This is my new post !!!\r\n",
+          "replies": [
+            {
+              "id": "1709312026941",
+              "userImage": "https://images.unsplash.com/photo-1639149888905-fb39731f2e6c?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTl8fHVzZXJ8ZW58MHx8MHx8fDA%3D",
+              "username": "Max",
+              "replyToUser": "Max",
+              "reply": "I hope you'll enjoy :)",
+              "date": 1709312026941
+            }
+          ],
+          "date": 1709312005078
+        }
+      ],
+      "date": 1709311963621
+    },
+    {
+      "id": "1709912822274",
+      "image": "https://utfs.io/f/bf01aaab-26f5-4f00-9d7b-cf0ac586c37c-ibclwm.jpg",
+      "title": "hjbhjbhj",
+      "body": "bnhjbhjhjg",
+      "likes": [],
+      "comments": [],
+      "date": 1709912822274
     }
   ],
   "users": [
@@ -363,86 +383,42 @@
   ],
   "reportComments": [
     {
-      "id": "1706539587148",
-      "postId": "1705938654488",
-      "commentId": "1706174324349",
-      "reports": 1,
+      "id": "1709218103860",
+      "postId": "1",
+      "commentId": "1709217187370",
+      "replyId": null,
       "reporters": [
         {
           "name": "Max",
           "email": "max@example.com"
-        }
-      ]
-    },
-    {
-      "id": "1706542864091",
-      "postId": "1705938654488",
-      "commentId": "1706174360549",
-      "reports": 1,
-      "reporters": [
+        },
         {
-          "name": "Max",
-          "email": "max@example.com"
+          "name": "My name",
+          "email": "test@example.com"
         }
       ]
     },
     {
-      "id": "1706543670214",
-      "postId": "1705938654488",
-      "commentId": "1706174367372",
-      "reports": 1,
-      "reporters": [
-        {
-          "name": "Max",
-          "email": "max@example.com"
-        }
-      ]
-    },
-    {
-      "id": "1706543754886",
-      "postId": "1705938654488",
-      "commentId": "1706174363626",
-      "reports": 1,
-      "reporters": [
-        {
-          "name": "Max",
-          "email": "max@example.com"
-        }
-      ]
-    },
-    {
-      "id": "1706601370119",
+      "id": "1709222135505",
       "postId": "1701768145687",
-      "commentId": "1701787820896",
-      "reports": 1,
+      "commentId": "1708077231924",
+      "replyId": null,
       "reporters": [
         {
-          "name": "Max",
-          "email": "max@example.com"
+          "name": "My name",
+          "email": "test@example.com"
         }
       ]
     },
     {
-      "id": "1707046857363",
-      "postId": "1707044822005",
-      "commentId": "1707046816877",
-      "reports": 1,
+      "id": "1709222192302",
+      "postId": "1",
+      "commentId": "1709217408859",
+      "replyId": null,
       "reporters": [
         {
-          "name": "4iLeRmax",
-          "email": "max.zlatin@gmail.com"
-        }
-      ]
-    },
-    {
-      "id": "1707046916678",
-      "postId": "1707044822005",
-      "commentId": "1707046883118",
-      "reports": 1,
-      "reporters": [
-        {
-          "name": "Max",
-          "email": "max@example.com"
+          "name": "My name",
+          "email": "test@example.com"
         }
       ]
     }

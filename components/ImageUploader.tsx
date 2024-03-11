@@ -12,27 +12,6 @@ type ImageUploaderProps = {
 };
 
 export default function ImageUploader({ file, setFile }: ImageUploaderProps) {
-  const [containerWidth, setContainerWidth] = useState(0);
-
-  // const getContainerWidth = () => {
-  //   const container = document.getElementById('width');
-  //   if (container) {
-  //     return container.scrollWidth;
-  //   }
-  // };
-
-  // useEffect(() => {
-  //   const containerWidth = getContainerWidth();
-  //   if (containerWidth) {
-  //     window.addEventListener('resize', () => setContainerWidth(containerWidth));
-  //     return () => window.removeEventListener('resize', () => setContainerWidth(containerWidth));
-  //   }
-  // }, []);
-
-  // useEffect(() => {
-  //   const containerWidth = getContainerWidth();
-  //   if (containerWidth) setContainerWidth(containerWidth);
-  // }, []);
 
   return (
     <>
@@ -66,22 +45,16 @@ export default function ImageUploader({ file, setFile }: ImageUploaderProps) {
             )}
           </AnimatePresence>
         </div>
-        <div className='w-full'>
-          <UploadButton
-            endpoint='imageUploader'
-            className='w-full customUploadThingButton'
-            onClientUploadComplete={(res) => {
-              // Do something with the response
-              setFile(res[0].url);
-              console.log(file);
-              // alert('Upload Completed');
-            }}
-            onUploadError={(error: Error) => {
-              // Do something with the error.
-              alert(`ERROR! ${error.message}`);
-            }}
-          />
-        </div>
+        <UploadButton
+          endpoint='imageUploader'
+          className='customUploadThingButton'
+          onClientUploadComplete={(res) => {
+            setFile(res[0].url);
+          }}
+          onUploadError={(error: Error) => {
+            alert(`ERROR! ${error.message}`);
+          }}
+        />
       </div>
     </>
   );

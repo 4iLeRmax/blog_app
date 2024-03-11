@@ -7,7 +7,14 @@ import UsersList from '@/components/UsersList';
 import CreatePost from '@/components/CreatePost';
 import { getUsers } from '@/lib/getUsers';
 import { getGithubUsers } from '@/lib/GithubUsers';
-import { getReportComments } from '@/lib/getReportComments';
+import { getPosts } from '@/lib/getPosts';
+import ReportComments from '@/components/ReportComments';
+import { Metadata } from 'next';
+import TabsComponent from '@/components/TabsComponent';
+
+export const metadata: Metadata = {
+  title: 'Dashboard',
+};
 
 const breadcrumbsLinks: BrcsLinks = [
   {
@@ -24,36 +31,24 @@ export default async function DashboardPage() {
   const session: { user: SessionUser } | null = await getServerSession(authOptions);
   const users = (await getUsers()) as UserItem[];
   const githubUsers = (await getGithubUsers()) as UserItem[];
-  const reportComments = await getReportComments();
-
+  const posts = await getPosts();
   const commonUsers = users.concat(githubUsers);
 
   // const post
 
   if (session?.user.role !== 'admin') redirect('/');
+
+  const tabs = [
+    { title: 'Create Post', content: <CreatePost posts={posts} /> },
+    { title: 'Users', content: <UsersList commonUsers={commonUsers} /> },
+    { title: 'Reported comments', content: <ReportComments /> },
+  ];
   return (
     <>
       <div>
         <BreadCrumbs links={breadcrumbsLinks} />
         <div>
-          <CreatePost />
-          <div className='pt-10'>
-            <UsersList commonUsers={commonUsers} />
-          </div>
-
-          <div>
-            {reportComments.length > 0 ? (
-              <div>
-                {reportComments.map((el) => (
-                  <div key={el.id}>
-                    <div>{el.commentId}</div>
-                  </div>
-                ))}
-              </div>
-            ) : (
-              <div>No Reports</div>
-            )}
-          </div>
+          <TabsComponent tabs={tabs} />
         </div>
       </div>
     </>

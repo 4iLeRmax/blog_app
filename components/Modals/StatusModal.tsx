@@ -25,7 +25,7 @@ export default function StatusModal({ children, status, modalDuration }: StatusM
           'fixed z-40 bottom-0 right-0 pt-3 px-3 pb-1 rounded-ss-xl rounded-se-xl w-80',
           {
             'bg-[#669822]': status === 'success',
-            'bg-[#f0b9ae]': status === 'error',
+            'bg-[rgb(240,185,174)]': status === 'error',
             'bg-[#facf74]': status === 'warning',
           },
         )}

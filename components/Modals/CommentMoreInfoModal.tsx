@@ -27,6 +27,10 @@ const CommentMoreInfoModal = ({
     (el) => el.commentId === comment.id,
   );
 
+  // console.log(reportedCommentsFromCurrentSessionUser);
+  // console.log(commentIsReported);
+  
+
   const setNewFormAction = () => {
     localStorage.setItem(
       'action',

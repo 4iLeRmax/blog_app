@@ -1,14 +1,8 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
 
 @layer base {
-  .font-outline-2 {
-    -webkit-text-stroke: 2px black;
-  }
-  .font-outline-4 {
-    -webkit-text-stroke: 4px black;
-  }
   .glassEffect {
     @apply border-2 shadow-md text-black/40 border-gray-100/30 bg-blue-100/30 rounded-xl backdrop-blur-sm sm:rounded-3xl;
   }
@@ -20,10 +14,88 @@
     /* box-shadow: 3px 3px 6px #d9d9d9, -3px -3px 6px #ffffff; */
   }
 }
+:root {
+  --mainBg: #fff;
+  --skeletonFirstColor: #f3f4f6;
+  --skeletonSecondColor: #e5e7eb;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --mainBg: #282828;
+    --skeletonFirstColor: #4e4e4e;
+    --skeletonSecondColor: #747474;
+  }
+}
+body {
+  @apply bg-[--mainBg];
+}
+body.light {
+  --mainBg: #fff;
+  --skeletonFirstColor: #f3f4f6;
+  --skeletonSecondColor: #e5e7eb;
+}
+/* ========== HEADER SKELETON ========== */
+.headerSkeletonWrapper {
+  @apply fixed z-20 top-0 left-0 w-full py-3 px-[3%] sm:px-[5%] lg:px-[10%] xl:px-[15%];
+}
+.headerSkeleton {
+  @apply flex items-center justify-between w-full gap-3 px-4 py-2 bg-[--skeletonFirstColor] md:px-8 md:py-3 rounded-xl sm:rounded-3xl;
+}
+.headerSkeletonLinks {
+  @apply flex items-center gap-3;
+}
+.headerSkeletonLink {
+  @apply w-8 h-8 bg-[--skeletonSecondColor] rounded-md md:h-6 md:w-12;
+}
+.headerSkeletonLink:nth-child(2) {
+  @apply hidden md:flex;
+}
+.headerSkeletonLink:nth-child(3) {
+  @apply hidden md:flex;
+}
+.headerSkeletonAdds {
+  @apply flex items-center w-full gap-3 sm:w-auto sm:gap-5;
+}
+.headerSkeletonThemeSwitcher {
+  @apply hidden sm:flex h-6 bg-[--skeletonSecondColor] rounded-xl w-[50px];
+}
+.headerSkeletonSearch {
+  @apply w-full sm:w-[50vw] md:w-[30vw] lg:w-[25vw] h-8 rounded-md bg-[--skeletonSecondColor];
+}
+.headerSkeletonAvatar {
+  @apply w-8 h-8 bg-[--skeletonSecondColor] rounded-md;
+}
+/* ========== POSTS SKELETON ========== */
+.postsSkeletonTitle {
+  @apply h-8 bg-[--skeletonFirstColor] w-36 rounded-xl;
+}
+.postsSkeletonList {
+  @apply grid grid-cols-1 gap-3 pt-2 sm:grid-cols-2 md:grid-cols-3 2xl:grid-cols-4;
+}
+.postSkeleton {
+  @apply w-full bg-[--skeletonFirstColor] rounded-xl;
+}
+.postSkeletonImg {
+  @apply w-full bg-[--skeletonSecondColor] h-96 rounded-xl sm:h-60;
+}
+.postSkeletonTitle {
+  @apply w-3/4 h-8 mt-2 bg-[--skeletonSecondColor] rounded-xl ml-3 mr-3;
+}
+.postSkeletonAdds {
+  @apply flex items-center justify-between w-full p-3;
+}
+.postSkeletonAddInfo {
+  @apply w-10 h-6 bg-[--skeletonSecondColor] rounded-xl;
+}
 
-.customUploadThingButton > *[data-ut-element='button'] {
+div.customUploadThingButton {
+  /* @apply bg-red-500 w-full */
+}
+div.customUploadThingButton label {
   @apply w-full;
 }
-body.dark {
-  @apply bg-[#282828];
+
+.transparentToWhite::before {
+  background: rgb(255,255,255);
+  background: linear-gradient(274deg, rgba(255,255,255,1) 20%, rgba(255,255,255,0.03125) 100%);
 }

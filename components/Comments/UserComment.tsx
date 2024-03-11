@@ -20,15 +20,22 @@ export default async function UserComment({ comment, postId }: UserCommentProps)
   const session = await getServerSession(authOptions);
   const reportComments = await getReportComments();
 
+  // const reportedCommentsFromCurrentSessionUser = reportComments
+  //   .filter((repComm) => repComm.postId === postId)
+  //   .filter((repComment) =>
+  //     repComment.reporters.filter(
+  //       (reporter) =>
+  //         reporter.name === session?.user?.name && reporter.email === session?.user?.email,
+  //     ),
+  //   );
   const reportedCommentsFromCurrentSessionUser = reportComments
     .filter((repComm) => repComm.postId === postId)
     .filter((repComment) =>
-      repComment.reporters.filter(
+      repComment.reporters.some(
         (reporter) =>
           reporter.name === session?.user?.name && reporter.email === session?.user?.email,
       ),
     );
-  const isUserOwnComment = session?.user ? comment.username === session?.user.name : false;
 
   const linkChecker = (text: string) => {
     return (
@@ -68,7 +75,9 @@ export default async function UserComment({ comment, postId }: UserCommentProps)
             <div>{comment.username}</div>
           </div>
 
-          <h1 title={getCurrentDate(comment.date)} className={session?.user ? 'mr-10' : ''}>{formatTimeAgo(comment.date)}</h1>
+          <h1 title={getCurrentDate(comment.date)} className={session?.user ? 'mr-10' : ''}>
+            {formatTimeAgo(comment.date)}
+          </h1>
           {session?.user ? (
             <CommentMoreInfo
               sessionUser={session.user}
@@ -86,6 +95,7 @@ export default async function UserComment({ comment, postId }: UserCommentProps)
           comment={comment}
           isAdmin={isAdmin}
           sessionUsername={session?.user?.name}
+          reportedCommentsFromCurrentSessionUser={reportedCommentsFromCurrentSessionUser}
         />
       </div>
     </>

@@ -11,6 +11,7 @@ type CommentRepliesProps = {
   comment: Comm;
   isAdmin: boolean;
   sessionUsername: string | null | undefined;
+  reportedCommentsFromCurrentSessionUser:ReportComment[]
 };
 
 export default function CommentReplies({
@@ -18,6 +19,7 @@ export default function CommentReplies({
   postId,
   isAdmin,
   sessionUsername,
+  reportedCommentsFromCurrentSessionUser
 }: CommentRepliesProps) {
   const [showReplies, setShowReplies] = useState(false);
   return (
@@ -41,6 +43,7 @@ export default function CommentReplies({
                   reply={el}
                   isAdmin={isAdmin}
                   sessionUsername={sessionUsername}
+                  reportedCommentsFromCurrentSessionUser={reportedCommentsFromCurrentSessionUser}
                 />
               ))}
             </div>

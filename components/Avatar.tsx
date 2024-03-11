@@ -2,7 +2,7 @@
 
 import { AnimatePresence } from 'framer-motion';
 import Image from 'next/image';
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import UserInfoModal from './Modals/UserInfoModal';
 
 type AvatarProps = {
@@ -11,16 +11,14 @@ type AvatarProps = {
 
 export default function Avatar({ user }: AvatarProps) {
   const [isOpen, setIsOpen] = useState(false);
+
   return (
     <>
       {user ? (
-        <div className='relative'>
-          <div
-            onMouseEnter={() => {
-              setIsOpen(true);
-            }}
-            onMouseLeave={() => setIsOpen(false)}
-            className='flex items-center gap-1 cursor-pointer'
+        <div className='relative h-8 select-none'>
+          <button
+            onClick={() => setIsOpen((p) => !p)}
+            className='cursor-pointer '
           >
             {user.image ? (
               <div className='w-8 h-8 overflow-hidden border shadow-md border-gray-100/30 rounded-xl'>
@@ -31,10 +29,9 @@ export default function Avatar({ user }: AvatarProps) {
                 ?
               </div>
             )}
-            <h1 className='hidden sm:flex'>{user.name}</h1>
-          </div>
+          </button>
           <AnimatePresence>
-            {isOpen ? <UserInfoModal email={user.email as string} setIsOpen={setIsOpen} /> : null}
+            {isOpen ? <UserInfoModal user={user} setIsOpen={setIsOpen} /> : null}
           </AnimatePresence>
         </div>
       ) : null}

@@ -5,7 +5,7 @@ import { createPortal } from 'react-dom';
 
 const ModalsPortal = ({ children }: { children: React.ReactNode }) => {
   const container = document?.getElementById('modals');
-  console.log(document);
+  // console.log(document);
   
 
   return container ? createPortal(children, container) : null;

@@ -2,6 +2,7 @@ import { formatTimeAgo } from '@/lib/formatTimeAgo';
 import { getCurrentDate } from '@/lib/getCurrentDate';
 import Image from 'next/image';
 import Link from 'next/link';
+import { IoMdHeart } from 'react-icons/io';
 import { MdOutlineInsertComment } from 'react-icons/md';
 
 type PostItemProps = {
@@ -9,6 +10,8 @@ type PostItemProps = {
 };
 
 export default function PostItem({ post }: PostItemProps) {
+  console.log(post.likes);
+  
   return (
     <div>
       {post ? (
@@ -26,9 +29,16 @@ export default function PostItem({ post }: PostItemProps) {
           <h1 className='px-3 pt-2 text-2xl'>{post.title}</h1>
 
           <div className='flex items-center justify-between p-3'>
-            <div className='flex items-center gap-1'>
-              <MdOutlineInsertComment size={20} /> <span>{post.comments?.length}</span>
+            <div className='flex items-center gap-3'>
+              <div className='flex items-center gap-1'>
+                <IoMdHeart size={20} />
+                <span>{post.likes.length}</span>
+              </div>
+              <div className='flex items-center gap-1'>
+                <MdOutlineInsertComment size={20} /> <span>{post.comments?.length}</span>
+              </div>
             </div>
+
             <h1 title={getCurrentDate(post.date)}>{formatTimeAgo(post.date)}</h1>
           </div>
         </Link>

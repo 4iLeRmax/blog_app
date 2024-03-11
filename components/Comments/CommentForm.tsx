@@ -1,8 +1,11 @@
 'use client';
 
 import { createComment, createReply } from '@/lib/actions';
-import React, { useRef, useState } from 'react';
+import clsx from 'clsx';
+import { motion, AnimatePresence } from 'framer-motion';
+import React, { useEffect, useRef, useState } from 'react';
 import { IoMdSend } from 'react-icons/io';
+import { IoClose } from 'react-icons/io5';
 
 type CommentFormProps = {
   post: Post;
@@ -11,7 +14,19 @@ type CommentFormProps = {
 export default function CommentForm({ post }: CommentFormProps) {
   const formRef = useRef<HTMLFormElement>(null);
   const [inputValue, setInputValue] = useState('');
+  const [isReply, setIsReply] = useState(false);
+  const [replyToUser, setReplyToUser] = useState('');
   const CHAR_LIMIT = 200;
+
+  const checkIfReply = () => {
+    const actionData = localStorage.getItem('action');
+
+    if (actionData) {
+      setIsReply(true);
+      const data = JSON.parse(actionData);
+      setReplyToUser(data.createReply.replyToUser);
+    }
+  };
 
   const onSubmit = async (formData: FormData) => {
     if (inputValue !== '') {
@@ -22,6 +37,8 @@ export default function CommentForm({ post }: CommentFormProps) {
         const data = JSON.parse(actionData);
         createReply(data.createReply, formData);
         localStorage.removeItem('action');
+        setIsReply(false);
+        setReplyToUser('');
       } else if (!actionData) {
         createComment(post, formData);
       }
@@ -36,13 +53,53 @@ export default function CommentForm({ post }: CommentFormProps) {
     }
   };
 
+  const cancelReply = () => {
+    localStorage.removeItem('action');
+    setIsReply(false);
+    setReplyToUser('');
+  };
+
   return (
-    <>
-      <form className='flex flex-col' ref={formRef} action={onSubmit}>
+    <div className='relative'>
+      <AnimatePresence>
+        {isReply ? (
+          <motion.div
+            initial={{ x: 100, opacity: 0 }}
+            animate={{ x: 0, opacity: 1 }}
+            exit={{ x: 100, opacity: 0 }}
+            className='flex justify-start'
+          >
+            <div
+              className={clsx(
+                'flex items-center w-auto gap-1 p-1 bg-blue-100 rounded-ss-xl rounded-se-xl',
+                {
+                  'rounded-es-xl rounded-ee-xl': !isReply,
+                },
+              )}
+            >
+              <div>Reply to @{replyToUser}</div>
+              <button onClick={cancelReply}>
+                <IoClose />
+              </button>
+            </div>
+          </motion.div>
+        ) : null}
+      </AnimatePresence>
+      <form
+        className='flex flex-col overflow-hidden'
+        ref={formRef}
+        action={onSubmit}
+        onFocus={checkIfReply}
+      >
         <textarea
           name='comment'
           placeholder='Add a comment...'
-          className='w-full h-32 p-2 text-black bg-blue-100 outline-none resize-none rounded-ss-xl rounded-se-xl'
+          className={clsx(
+            'w-full h-32 p-2 text-black bg-blue-100 outline-none resize-none rounded-se-xl',
+            {
+              'rounded-ss-xl': !isReply,
+            },
+          )}
           value={inputValue}
           onChange={handleChange}
         />
@@ -56,6 +113,6 @@ export default function CommentForm({ post }: CommentFormProps) {
           </button>
         </div>
       </form>
-    </>
+    </div>
   );
 }
