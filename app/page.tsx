@@ -15,12 +15,6 @@ export default function Home() {
       <div>
         <BreadCrumbs links={breadCrumbsLinks} />
         <TE />
-        <div className='w-[300px] border-2'>
-          <div className='indent-[150px] break-words'>
-            1111111111111111111111111111111111111111111111111111111111111111111111111111 sdfsdfs d
-            sdfsdfs 11111111111111111111111111111111111111111111
-          </div>
-        </div>
       </div>
     </>
   );

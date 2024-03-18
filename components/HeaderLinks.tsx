@@ -31,11 +31,9 @@ export default function HeaderLinks({ sessionUser }: HeaderLinksProps) {
 
   return (
     <>
-      <div className='items-center hidden gap-3 md:flex'>
+      <div className='items-center hidden gap-3 md:flex text-primary-color'>
         <Link href={'/'}>Home</Link>
         <Link href={'/posts'}>Posts</Link>
-
-        {sessionUser ? <Link href={'/profile'}>Profile</Link> : null}
         {sessionUser?.role === 'admin' ? <Link href={'/dashboard'}>Dashboard</Link> : null}
       </div>
       <AnimatePresence>
@@ -57,9 +55,9 @@ export default function HeaderLinks({ sessionUser }: HeaderLinksProps) {
               >
                 {sessionUser ? (
                   <div className='flex items-center gap-5 pl-5'>
-                    <div className='flex items-center gap-2'>
+                    <div className='flex items-center gap-2 text-primary-color'>
                       {sessionUser.image ? (
-                        <div className='relative object-cover w-10 h-10 overflow-hidden rounded-md'>
+                        <div className='relative object-cover w-10 h-10 overflow-hidden rounded-md bg-[var(--skeletonFirstColor)]'>
                           <Image src={sessionUser.image} fill alt='' />
                         </div>
                       ) : null}
@@ -87,30 +85,30 @@ export default function HeaderLinks({ sessionUser }: HeaderLinksProps) {
                 )}
 
                 <div className='flex flex-col gap-3 px-5 pt-8'>
-                  <button onClick={() => handleClick('/')} className='flex items-center gap-1'>
+                  <button
+                    onClick={() => handleClick('/')}
+                    className='flex items-center gap-1 text-primary-color'
+                  >
                     <IoHomeOutline /> Home
                   </button>
-                  <button onClick={() => handleClick('/posts')} className='flex items-center gap-1'>
+                  <button
+                    onClick={() => handleClick('/posts')}
+                    className='flex items-center gap-1 text-primary-color'
+                  >
                     <BsFileEarmarkPost /> Posts
                   </button>
-
-                  {sessionUser ? (
-                    <button
-                      onClick={() => handleClick('/profile')}
-                      className='flex items-center gap-1'
-                    >
-                      <CiUser /> Profile
-                    </button>
-                  ) : null}
 
                   {sessionUser?.role === 'admin' ? (
                     <button
                       onClick={() => handleClick('/dashboard')}
-                      className='flex items-center gap-1'
+                      className='flex items-center gap-1 text-primary-color'
                     >
                       <LuLayoutDashboard /> Dashboard
                     </button>
                   ) : null}
+                </div>
+                <div className='absolute right-0 flex justify-end px-5 bottom-5 sm:hidden'>
+                  <ThemeSwitcher />
                 </div>
               </motion.div>
             </>

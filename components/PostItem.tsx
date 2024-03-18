@@ -11,18 +11,18 @@ type PostItemProps = {
 
 export default function PostItem({ post }: PostItemProps) {
   console.log(post.likes);
-  
+
   return (
     <div>
       {post ? (
         // <Link href={`/posts/${post.id}`} className='border-0 glassEffect rounded-xl'>
-        <Link href={`/posts/${post.id}`}>
+        <Link href={`/posts/${post.id}`} className='text-primary-color'>
           {post.image ? (
             <div className='relative w-full overflow-hidden h-96 rounded-xl sm:h-60'>
               <Image src={post.image} alt='' fill className={'object-cover'} />
             </div>
           ) : (
-            <div className='flex items-center justify-center overflow-hidden text-3xl bg-blue-100 w-ful h-96 sm:h-60 rounded-xl text-black/40'>
+            <div className='flex items-center justify-center overflow-hidden text-3xl bg-modal-bg w-ful h-96 sm:h-60 rounded-xl text-black/40'>
               ?
             </div>
           )}

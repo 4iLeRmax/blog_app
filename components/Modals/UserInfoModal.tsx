@@ -19,9 +19,9 @@ export default function UserInfoModal({ user, setIsOpen }: UserInfoModal) {
         exit={{ y: -50, opacity: 0 }}
         className='fixed top-[58px] right-0 w-full flex justify-end'
       >
-        <div className='relative w-full overflow-hidden bg-white shadow-xl xs:w-64 rounded-xl'>
+        <div className='relative w-full overflow-hidden shadow-xl bg-modal-bg xs:w-64 rounded-xl'>
           <button
-            className='absolute p-0.5 bg-white rounded-md top-2 right-2'
+            className='absolute p-0.5 bg-modal-bg rounded-md top-2 right-2 text-primary-color'
             onClick={() => setIsOpen(false)}
           >
             <IoClose size={20} />
@@ -38,11 +38,11 @@ export default function UserInfoModal({ user, setIsOpen }: UserInfoModal) {
               </div>
             )}
           </div>
-          <div className='flex flex-col items-center justify-center mt-2'>
+          <div className='flex flex-col items-center justify-center mt-2 text-primary-color'>
             <div className='text-xl text-bold'>{user.name}</div>
             <div>{user.email}</div>
           </div>
-          <div className='flex justify-center py-2 mt-2 transition-colors border-t-2 cursor-pointer hover:bg-gray-200'>
+          <div className='flex justify-center py-2 mt-2 transition-colors border-t-2 cursor-pointer hover:bg-hover-modal-bg border-hover-modal-bg text-primary-color'>
             <Button sign='SignOut'>
               <CiLogout /> Log Out
             </Button>

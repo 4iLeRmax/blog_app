@@ -10,6 +10,7 @@ import Search from './Search/Search';
 import { getPosts } from '@/lib/getPosts';
 import HeaderLinks from './HeaderLinks';
 import ThemeSwitcher from '@/UI/ThemeSwitcher';
+import { getUser } from '@/lib/getUser';
 
 export default async function Header() {
   const session: { user: SessionUser } | null = await getServerSession(authOptions);

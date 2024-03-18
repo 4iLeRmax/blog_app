@@ -117,7 +117,12 @@
       "title": "My summer holidays !!!",
       "body": "During my summer holidays, I did many fun things. First, I went to the beach with my family. We built sandcastles and played in the water. I also learned how to swim better. After that, we went camping in the mountains. I helped set up the tent and gather sticks for the campfire. At night, we roasted marshmallows and told spooky stories.\r\n\r\nI visited my grandparents too. We went to the park and had a picnic. My grandma made delicious cookies, and we ate them together. One day, we went to the zoo. I saw lions, elephants, and even a funny monkey. It was so exciting!\r\n\r\nI also had a birthday party during the holidays. My friends came over, and we played games and ate cake.\r\n\r\nI liked everything about my summer holidays, but my favorite part was when we went to an amusement park. I went on a big roller coaster, and it was really fast.\r\n\r\nI will always remember my summer holidays and all the amazing things I did.",
       "date": 1700784000000,
-      "likes": [],
+      "likes": [
+        {
+          "email": "max@example.com",
+          "name": "Max"
+        }
+      ],
       "comments": [
         {
           "id": "1701680841662",
@@ -133,7 +138,7 @@
       "id": "1701768145687",
       "image": "https://utfs.io/f/917d9b95-c0df-4c45-920d-71024a4910cc-g4xqi9.avif",
       "title": "TEST post title",
-      "body": "sdfsdf sdfsdf sdfsdf s gdfgdf dfgdfg dfgdfg dfgdfg dfgffffffffffff dfgdf dfgdfgd dfgdfg dfg",
+      "body": "sdfsdf <b>sdfsdf</b> sdfsdf s <i>gdfgdf </i>dfgdfg dfgdfg dfgdfg <u>dfgffffffffffff </u>dfgdf dfgdfgd dfgdfg dfg",
       "date": 1701727200000,
       "likes": [
         {
@@ -142,6 +147,23 @@
         }
       ],
       "comments": [
+        {
+          "id": "1710151436582",
+          "userImage": "https://images.unsplash.com/photo-1639149888905-fb39731f2e6c?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTl8fHVzZXJ8ZW58MHx8MHx8fDA%3D",
+          "username": "Max",
+          "comment": "2222222222222",
+          "replies": [
+            {
+              "id": "1710151442927",
+              "userImage": "https://images.unsplash.com/photo-1639149888905-fb39731f2e6c?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTl8fHVzZXJ8ZW58MHx8MHx8fDA%3D",
+              "username": "Max",
+              "replyToUser": "Max",
+              "reply": "333333",
+              "date": 1710151442927
+            }
+          ],
+          "date": 1710151436582
+        },
         {
           "id": "1709715371968",
           "userImage": "https://images.unsplash.com/photo-1639149888905-fb39731f2e6c?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTl8fHVzZXJ8ZW58MHx8MHx8fDA%3D",
@@ -155,6 +177,14 @@
               "replyToUser": "Max",
               "reply": "222222",
               "date": 1709721927245
+            },
+            {
+              "id": "1710407390287",
+              "userImage": "https://images.unsplash.com/photo-1639149888905-fb39731f2e6c?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTl8fHVzZXJ8ZW58MHx8MHx8fDA%3D",
+              "username": "Max",
+              "replyToUser": "Max",
+              "reply": "sdfusydgfuysgduf",
+              "date": 1710407390287
             }
           ],
           "date": 1709715371968
@@ -422,5 +452,36 @@
         }
       ]
     }
-  ]
+  ],
+  "contactInfo": {
+    "address": "Odesa",
+    "number": "+380999999999",
+    "contactMail": "contactmail@gmail.com",
+    "socialMediaLinks": [
+      {
+        "label": "instagram",
+        "link": "https://instagram.com"
+      },
+      {
+        "label": "github",
+        "link": "https://github.com"
+      },
+      {
+        "label": "facebook",
+        "link": "http://dfgbf.com"
+      },
+      {
+        "label": "twitch",
+        "link": "http://twitch.com"
+      },
+      {
+        "label": "twitter",
+        "link": "http://twitter.com"
+      },
+      {
+        "label": "telegram",
+        "link": "https://twlegram.com"
+      }
+    ]
+  }
 }

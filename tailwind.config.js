@@ -26,7 +26,14 @@ import { withUt } from 'uploadthing/tw';
 export default withUt({
   content: ['./app/**/*.{js,ts,jsx,tsx,mdx}', './components/**/*.{js,ts,jsx,tsx,mdx}'],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        'main-bg': 'var(--main-bg)',
+        'modal-bg': 'var(--modal-bg)',
+        'hover-modal-bg': 'var(--hover-modal-bg)',
+        'primary-color': 'var(--primary-color)',
+      },
+    },
     screens: {
       xs: '400px',
       sm: '640px',

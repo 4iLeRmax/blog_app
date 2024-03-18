@@ -16,10 +16,7 @@ export default function Avatar({ user }: AvatarProps) {
     <>
       {user ? (
         <div className='relative h-8 select-none'>
-          <button
-            onClick={() => setIsOpen((p) => !p)}
-            className='cursor-pointer '
-          >
+          <button onClick={() => setIsOpen((p) => !p)} className='cursor-pointer '>
             {user.image ? (
               <div className='w-8 h-8 overflow-hidden border shadow-md border-gray-100/30 rounded-xl'>
                 <Image src={user.image} alt='' width={30} height={30} />

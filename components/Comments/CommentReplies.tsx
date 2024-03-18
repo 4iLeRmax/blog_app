@@ -1,25 +1,26 @@
 'use client';
 
-import { motion, AnimatePresence } from 'framer-motion';
-import Image from 'next/image';
 import React, { useState } from 'react';
 import { IoAddOutline, IoRemoveOutline } from 'react-icons/io5';
 import ReplyItem from './ReplyItem';
+import { Session } from 'next-auth';
 
 type CommentRepliesProps = {
   postId: string;
   comment: Comm;
+  session: Session | null;
   isAdmin: boolean;
   sessionUsername: string | null | undefined;
-  reportedCommentsFromCurrentSessionUser:ReportComment[]
+  reportedCommentsFromCurrentSessionUser: ReportComment[];
 };
 
 export default function CommentReplies({
   comment,
   postId,
+  session,
   isAdmin,
   sessionUsername,
-  reportedCommentsFromCurrentSessionUser
+  reportedCommentsFromCurrentSessionUser,
 }: CommentRepliesProps) {
   const [showReplies, setShowReplies] = useState(false);
   return (
@@ -41,6 +42,7 @@ export default function CommentReplies({
                   postId={postId}
                   commentId={comment.id}
                   reply={el}
+                  session={session}
                   isAdmin={isAdmin}
                   sessionUsername={sessionUsername}
                   reportedCommentsFromCurrentSessionUser={reportedCommentsFromCurrentSessionUser}

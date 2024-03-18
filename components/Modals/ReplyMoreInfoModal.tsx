@@ -76,7 +76,7 @@ export default function ReplyMoreInfoModal({
               >
                 <button className='flex items-center w-full gap-1 px-2 py-1 rounded-md cursor-pointer hover:bg-gray-200'>
                   <MdOutlineReportProblem />
-                  Report
+                  Report 
                 </button>
               </form>
             ) : (

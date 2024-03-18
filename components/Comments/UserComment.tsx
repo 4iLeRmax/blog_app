@@ -20,14 +20,6 @@ export default async function UserComment({ comment, postId }: UserCommentProps)
   const session = await getServerSession(authOptions);
   const reportComments = await getReportComments();
 
-  // const reportedCommentsFromCurrentSessionUser = reportComments
-  //   .filter((repComm) => repComm.postId === postId)
-  //   .filter((repComment) =>
-  //     repComment.reporters.filter(
-  //       (reporter) =>
-  //         reporter.name === session?.user?.name && reporter.email === session?.user?.email,
-  //     ),
-  //   );
   const reportedCommentsFromCurrentSessionUser = reportComments
     .filter((repComm) => repComm.postId === postId)
     .filter((repComment) =>
@@ -93,6 +85,7 @@ export default async function UserComment({ comment, postId }: UserCommentProps)
         <CommentReplies
           postId={postId}
           comment={comment}
+          session={session}
           isAdmin={isAdmin}
           sessionUsername={session?.user?.name}
           reportedCommentsFromCurrentSessionUser={reportedCommentsFromCurrentSessionUser}

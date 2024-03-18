@@ -6,23 +6,26 @@ import MoreInfo from '../MoreInfo';
 import ReplyMoreInfoModal from '../Modals/ReplyMoreInfoModal';
 import { getCurrentDate } from '@/lib/getCurrentDate';
 import { formatTimeAgo } from '@/lib/formatTimeAgo';
+import { Session } from 'next-auth';
 
 type ReplyItemProps = {
   postId: string;
   commentId: string;
   reply: Reply;
+  session: Session | null;
   isAdmin: boolean;
   sessionUsername: string | null | undefined;
-  reportedCommentsFromCurrentSessionUser:ReportComment[]
+  reportedCommentsFromCurrentSessionUser: ReportComment[];
 };
 
 export default function ReplyItem({
   postId,
   commentId,
   reply,
+  session,
   isAdmin,
   sessionUsername,
-  reportedCommentsFromCurrentSessionUser
+  reportedCommentsFromCurrentSessionUser,
 }: ReplyItemProps) {
   return (
     <>
@@ -40,21 +43,23 @@ export default function ReplyItem({
               to
               <div className='font-bold'>@{reply.replyToUser}</div>
             </div>
-            <MoreInfo>
-              <ReplyMoreInfoModal
-                postId={postId}
-                commentId={commentId}
-                reply={reply}
-                isAdmin={isAdmin}
-                sessionUsername={sessionUsername}
-                reportedCommentsFromCurrentSessionUser={reportedCommentsFromCurrentSessionUser}
-              />
-            </MoreInfo>
+            {session?.user ? (
+              <MoreInfo>
+                <ReplyMoreInfoModal
+                  postId={postId}
+                  commentId={commentId}
+                  reply={reply}
+                  isAdmin={isAdmin}
+                  sessionUsername={sessionUsername}
+                  reportedCommentsFromCurrentSessionUser={reportedCommentsFromCurrentSessionUser}
+                />
+              </MoreInfo>
+            ) : null}
           </div>
 
-          <div className='relative w-full pl-10 break-words'>
+          <div className='relative w-full pl-10 mt-2 break-words'>
             <h1
-              className='absolute w-8 flex items-center justify-center top-0 left-0'
+              className='absolute top-0 left-0 flex items-center justify-center w-8'
               title={getCurrentDate(reply.date)}
             >
               {formatTimeAgo(reply.date)}

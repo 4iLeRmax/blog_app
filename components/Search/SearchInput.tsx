@@ -113,7 +113,7 @@ export default function SearchInput() {
   return (
     <>
       <div className='relative flex items-center'>
-        <div className='absolute top-0 left-0 flex items-center justify-center w-10 h-8'>
+        <div className='absolute top-0 left-0 flex items-center justify-center w-10 h-8 text-secondary-color'>
           <IoSearch size={25} />
         </div>
         <input
@@ -127,9 +127,9 @@ export default function SearchInput() {
           //   },
           // )}
           className={clsx(
-            'w-full py-1 text-black outline-none rounded-xl px-10 bg-blue-100/60 transition-all duration-300',
+            'w-full py-1 outline-none rounded-xl px-10 bg-blue-100/60 transition-all duration-300 placeholder:text-[#282828aa] text-primary-color',
             {
-              'rounded-es-none rounded-ee-none bg-white ':
+              'rounded-es-none rounded-ee-none bg-modal-bg ':
                 (searchParams?.get('search') || '').length > 0,
             },
           )}
@@ -144,7 +144,7 @@ export default function SearchInput() {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               onClick={clearSearch}
-              className='absolute top-0 right-0 flex items-center justify-center w-10 h-8'
+              className='absolute top-0 right-0 flex items-center justify-center w-10 h-8 text-secondary-color'
             >
               <IoClose size={25} />
             </motion.button>

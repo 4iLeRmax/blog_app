@@ -15,22 +15,34 @@
   }
 }
 :root {
-  --mainBg: #fff;
+  --main-bg: #fff;
+  --modal-bg: #fff;
+  --hover-modal-bg: #e6e6e6;
+  --primary-color: #282828;
+  --secondary-color: #282828;
   --skeletonFirstColor: #f3f4f6;
   --skeletonSecondColor: #e5e7eb;
 }
 @media (prefers-color-scheme: dark) {
   :root {
-    --mainBg: #282828;
+    --main-bg: #282828;
+    --modal-bg: #4e4e4e;
+    --hover-modal-bg: #999999;
+    --primary-color: #fff;
+    --secondary-color: #747474;
     --skeletonFirstColor: #4e4e4e;
     --skeletonSecondColor: #747474;
   }
 }
 body {
-  @apply bg-[--mainBg];
+  @apply bg-main-bg;
 }
 body.light {
-  --mainBg: #fff;
+  --main-bg: #fff;
+  --modal-bg: #fff;
+  --hover-modal-bg: #e6e6e6;
+  --primary-color: #282828;
+  --secondary-color: #282828;
   --skeletonFirstColor: #f3f4f6;
   --skeletonSecondColor: #e5e7eb;
 }
@@ -96,6 +108,10 @@ div.customUploadThingButton label {
 }
 
 .transparentToWhite::before {
-  background: rgb(255,255,255);
-  background: linear-gradient(274deg, rgba(255,255,255,1) 20%, rgba(255,255,255,0.03125) 100%);
+  background: rgb(255, 255, 255);
+  background: linear-gradient(
+    274deg,
+    rgba(255, 255, 255, 1) 20%,
+    rgba(255, 255, 255, 0.03125) 100%
+  );
 }

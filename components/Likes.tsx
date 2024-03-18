@@ -16,7 +16,7 @@ export default async function Likes({ postId, likes }: LikesProps) {
   const sessionUserAlreadyLiked = await sessionUserAlreadyLikedPost(postId);
   return (
     <>
-      <div className='flex items-center gap-1'>
+      <div className='flex items-center gap-1 text-primary-color'>
         {session?.user ? (
           <form action={likePost.bind(null, postId)}>
             <button>

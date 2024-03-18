@@ -8,6 +8,46 @@ import { redirect } from 'next/navigation';
 import { getPost } from './getPost';
 import { getReportComments } from './getReportComments';
 import { sessionUserAlreadyLikedPost } from './sessionUserAlreadyLikedPost';
+import { getUser } from './getUser';
+import { getContactInfo } from './getContactInfo';
+
+export const updateContactInfo = async (
+  formData: FormData,
+  socialMedia?: {
+    label: string;
+    link: string;
+  }[],
+) => {
+  const session = await getServerSession(authOptions);
+  const contactInfo = await getContactInfo();
+  const { location, phone, contactMail } = Object.fromEntries(formData.entries());
+
+  let updatedContactInfo = {};
+
+  if ((session?.user as SessionUser).role === 'admin') {
+    updatedContactInfo =
+      socialMedia === undefined
+        ? {
+            ...contactInfo,
+            address: location,
+            number: phone,
+            contactMail,
+          }
+        : {
+            ...contactInfo,
+            socialMediaLinks: socialMedia,
+          };
+    const res = await fetch(`http://localhost:4200/contactInfo`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(updatedContactInfo),
+    });
+    await res.json();
+  }
+  revalidatePath('/profile');
+};
 
 export const createPost = async (image: string, formData: FormData) => {
   const data = Object.fromEntries(formData.entries());

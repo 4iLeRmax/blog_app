@@ -109,7 +109,7 @@ export default function SearchModal({ filteredPosts, selectedPost }: SearchModal
   return (
     <>
       {params.length > 0 ? (
-        <div className='absolute left-0 z-20 flex flex-col w-full py-3 bg-white shadow-md top-8 rounded-es-xl rounded-ee-xl text-black/40'>
+        <div className='absolute left-0 z-20 flex flex-col w-full py-3 shadow-md bg-modal-bg top-8 rounded-es-xl rounded-ee-xl text-secondary-color'>
           {filteredPosts.length > 0 ? (
             filteredPosts.map((post, i) => (
               <Link
@@ -117,10 +117,10 @@ export default function SearchModal({ filteredPosts, selectedPost }: SearchModal
                 key={post.id}
                 className={clsx(
                   'relative flex items-center justify-between px-5',
-                  'before:content-[""] before:absolute before:top-0 before:left-0 before:w-1 before:h-full before:rounded-se-md before:rounded-ee-md py-1',
-                  'hover:bg-gray-100',
+                  'before:content-[""] before:absolute before:top-0 before:left-0 before:w-1 before:h-full before:rounded-se-md before:rounded-ee-md py-1 text-primary-color',
+                  'hover:bg-hover-modal-bg',
                   {
-                    'bg-gray-100 before:bg-blue-500': i === selectedPost,
+                    'bg-hover-modal-bg before:bg-blue-500': i === selectedPost,
                   },
                 )}
               >

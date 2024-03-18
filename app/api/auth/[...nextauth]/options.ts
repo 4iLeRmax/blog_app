@@ -20,10 +20,7 @@ export const authOptions: AuthOptions = {
           (user) => user.email === credentials?.email && user.password === credentials?.password,
         );
 
-        if (currentUser) {
-          return currentUser;
-        }
-
+        if (currentUser) return currentUser;
         return null;
       },
     }),
@@ -69,12 +66,14 @@ export const authOptions: AuthOptions = {
     async jwt({ token, account, user }) {
       if (user) {
         token.role = (user as User).role;
+        token.id = (user as User).id;
       }
       return token;
     },
     async session({ session, token, user }) {
       if (token) {
         (session.user as any).role = token.role;
+        (session.user as any).id = token.id;
       }
       return session;
     },

@@ -11,6 +11,8 @@ import { getPosts } from '@/lib/getPosts';
 import ReportComments from '@/components/ReportComments';
 import { Metadata } from 'next';
 import TabsComponent from '@/components/TabsComponent';
+import EditContactInfo from '@/components/EditContactInfo';
+import { getContactInfo } from '@/lib/getContactInfo';
 
 export const metadata: Metadata = {
   title: 'Dashboard',
@@ -33,13 +35,14 @@ export default async function DashboardPage() {
   const githubUsers = (await getGithubUsers()) as UserItem[];
   const posts = await getPosts();
   const commonUsers = users.concat(githubUsers);
-
+  const contactInfo = await getContactInfo();
   // const post
 
   if (session?.user.role !== 'admin') redirect('/');
 
   const tabs = [
     { title: 'Create Post', content: <CreatePost posts={posts} /> },
+    { title: 'Contact info', content: <EditContactInfo contactInfo={contactInfo} /> },
     { title: 'Users', content: <UsersList commonUsers={commonUsers} /> },
     { title: 'Reported comments', content: <ReportComments /> },
   ];

@@ -7,16 +7,24 @@ type User = {
   role: 'admin' | 'user';
 };
 
+type ContactInfo = {
+  address?: string;
+  number?: string;
+  contactMail?: string;
+  socialMediaLinks?: { label: string; link: string }[];
+};
+
 type UserItem = {
   id: string;
   email: string;
   name: string;
   image?: string;
   password?: string;
+  contactInfo?: ContactInfo;
   role: 'admin' | 'user';
 };
 
-type SessionUser = Omit<User, 'id'> & Omit<User, 'password'>;
+type SessionUser = Omit<User, 'password'>;
 
 type GithubUser = {
   id: string;
