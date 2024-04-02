@@ -1,14 +1,24 @@
+'use client';
+
 import { updateContactInfo } from '@/lib/actions';
-import React from 'react';
+import { ContactInfo } from '@/types';
+import React, { useState } from 'react';
 import { FaPhoneAlt } from 'react-icons/fa';
 import { FaLocationDot } from 'react-icons/fa6';
 import { IoMail } from 'react-icons/io5';
 
 type ContactInfoFormProps = {
-  contactInfo: ContactInfo;
+  contactInfo: ContactInfo | undefined;
 };
 
 export default function ContactInfoForm({ contactInfo }: ContactInfoFormProps) {
+  // const [formValue, setFormValue] = useState({
+  //   address: '',
+  //   number: '',
+  //   contactMail: '',
+  // });
+  // console.log(contactInfo);
+
   return (
     <>
       <form action={updateContactInfo}>
@@ -22,7 +32,7 @@ export default function ContactInfoForm({ contactInfo }: ContactInfoFormProps) {
             <input
               type='text'
               placeholder='Location...'
-              name='location'
+              name='address'
               defaultValue={contactInfo?.address || ''}
               className='w-full py-2 transition-transform bg-transparent outline-none text-primary-color'
             />
@@ -37,7 +47,7 @@ export default function ContactInfoForm({ contactInfo }: ContactInfoFormProps) {
             <input
               type='text'
               placeholder='Phone number...'
-              name='phone'
+              name='number'
               defaultValue={contactInfo?.number || ''}
               className='w-full py-2 transition-transform bg-transparent outline-none text-primary-color'
             />

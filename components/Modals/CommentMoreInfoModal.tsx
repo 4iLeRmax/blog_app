@@ -6,6 +6,7 @@ import { MdDeleteOutline, MdOutlineReportProblem, MdReportProblem } from 'react-
 import { deleteComment, reportComment } from '@/lib/actions';
 import { LuReply } from 'react-icons/lu';
 import ConfirmationModal from './ConfirmationModal';
+import { Comm, ReportComment } from '@/types';
 
 type CommentMoreInfoModalProps = {
   isAdmin: boolean;

@@ -1,65 +1,35 @@
-type User = {
-  id: string;
-  email?: string;
-  name?: string;
-  image?: string;
-  password: string;
-  role: 'admin' | 'user';
-};
+import { Prisma } from '@prisma/client';
 
-type ContactInfo = {
-  address?: string;
-  number?: string;
-  contactMail?: string;
-  socialMediaLinks?: { label: string; link: string }[];
-};
+type User = Prisma.UsersGetPayload<{}>;
 
-type UserItem = {
-  id: string;
-  email: string;
-  name: string;
-  image?: string;
-  password?: string;
-  contactInfo?: ContactInfo;
-  role: 'admin' | 'user';
-};
+type ContactInfo = Prisma.ContactInfoGetPayload<{
+  include: {
+    SocialMediaLinks: true;
+  };
+}>;
+
+type SocialMediaLinks = Prisma.SocialMediaLinkGetPayload<{}>;
 
 type SessionUser = Omit<User, 'password'>;
 
-type GithubUser = {
-  id: string;
-  email: string | null;
-  name: string;
-  image: string;
-  role: 'admin' | 'user';
-};
+type TPost = Prisma.PostsGetPayload<{
+  include: {
+    Likes: true;
+    Comments: {
+      include: {
+        Replies: true;
+      };
+    };
+  };
+}>;
 
-type Post = {
-  id: string;
-  image?: string;
-  title: string;
-  body: string;
-  likes: { email: string; name: string }[];
-  comments: Comm[];
-  date: number;
-};
+type Comm = Prisma.CommentsGetPayload<{
+  include: {
+    Replies: true;
+  };
+}>;
 
-type Reply = {
-  id: string;
-  userImage: string;
-  username: string;
-  replyToUser: string;
-  reply: string;
-  date: number;
-};
-type Comm = {
-  id: string;
-  userImage: string;
-  username: string;
-  comment: string;
-  replies: Reply[];
-  date: number;
-};
+type Reply = Prisma.RepliesGetPayload<{}>;
 
 type BrcsLinks = { value: string; link: string }[];
 
@@ -70,16 +40,11 @@ type SelectedText = {
   seIndexes: [number, number];
 };
 
-type ReportComment = {
-  id: string;
-  postId: string;
-  commentId: string;
-  replyId: string;
-  reporters: {
-    name: string;
-    email: string;
-  }[];
-};
+type ReportComment = Prisma.ReportCommentGetPayload<{
+  include: {
+    Reporters: true;
+  };
+}>;
 
 type RepCommUI = {
   id: string;
@@ -95,5 +60,5 @@ type RepCommUI = {
     name: string;
     email: string;
   }[];
-  date: number;
+  date: Date;
 };

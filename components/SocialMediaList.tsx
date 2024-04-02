@@ -54,58 +54,60 @@ export default function SocialMediaList({
 
   return (
     <>
-      <div className='flex flex-wrap items-center gap-2 mt-5'>
-        {socialMedia.length > 0
-          ? socialMedia.map((el, i) =>
-              el.link !== '' ? (
-                <div
-                  title={el.link}
-                  key={i}
-                  className='flex items-center gap-2 px-2 py-1 text-white rounded-xl'
-                  style={{
-                    color: socialMediaColors[el.label].text as string,
-                    background: socialMediaColors[el.label].bg as string,
-                  }}
+      {socialMedia.length > 0 ? (
+        <div className='flex flex-wrap items-center gap-2 mt-5'>
+          {socialMedia.map((el, i) =>
+            el.link !== '' ? (
+              <div
+                title={el.link}
+                key={i}
+                className='flex items-center gap-2 px-2 py-1 text-white rounded-xl'
+                style={{
+                  color: socialMediaColors[el.label].text as string,
+                  background: socialMediaColors[el.label].bg as string,
+                }}
+              >
+                <Link href={el.link} target='_blank'>
+                  {el.label}
+                </Link>
+                <button type='button' onClick={() => removeLink(el.label)}>
+                  <IoClose />
+                </button>
+              </div>
+            ) : (
+              <div className='flex items-center sm:w-[380px] w-full relative'>
+                <input
+                  className='w-3/5 px-5 py-1 outline-none sm:w-auto rounded-ss-xl rounded-es-xl'
+                  type='text'
+                  placeholder={`${el.label} link account ...`}
+                  value={tempLink}
+                  onChange={(e) => setTempLink(e.target.value)}
+                />
+                <button
+                  className='flex items-center justify-center w-2/5 sm:w-[120px] h-8 text-white transition-colors bg-blue-500  rounded-se-xl rounded-ee-xl hover:bg-blue-400'
+                  onClick={() => addSocialMediaLink(el.label)}
                 >
-                  <Link href={el.link} target='_blank'>
-                    {el.label}
-                  </Link>
-                  <button type='button' onClick={() => removeLink(el.label)}>
-                    <IoClose />
-                  </button>
-                </div>
-              ) : (
-                <div className='flex items-center sm:w-[380px] w-full relative'>
-                  <input
-                    className='w-3/5 px-5 py-1 outline-none sm:w-auto rounded-ss-xl rounded-es-xl'
-                    type='text'
-                    placeholder={`${el.label} link account ...`}
-                    value={tempLink}
-                    onChange={(e) => setTempLink(e.target.value)}
-                  />
-                  <button
-                    className='flex items-center justify-center w-2/5 sm:w-[120px] h-8 text-white transition-colors bg-blue-500  rounded-se-xl rounded-ee-xl hover:bg-blue-400'
-                    onClick={() => addSocialMediaLink(el.label)}
-                  >
-                    Save Link
-                  </button>
-                  <AnimatePresence>
-                    {isError ? (
-                      <motion.div
-                        initial={{ x: -100, opacity: 0 }}
-                        animate={{ x: 0, opacity: 1 }}
-                        exit={{ x: 100, opacity: 0 }}
-                        className='absolute left-0 text-red-500 text-semibold top-full'
-                      >
-                        Incorrect url ! Try https://example.com
-                      </motion.div>
-                    ) : null}
-                  </AnimatePresence>
-                </div>
-              ),
-            )
-          : null}
-      </div>
+                  Save Link
+                </button>
+                <AnimatePresence>
+                  {isError ? (
+                    <motion.div
+                      initial={{ x: -100, opacity: 0 }}
+                      animate={{ x: 0, opacity: 1 }}
+                      exit={{ x: 100, opacity: 0 }}
+                      className='absolute left-0 text-red-500 text-semibold top-full'
+                    >
+                      Incorrect url ! Try https://example.com
+                    </motion.div>
+                  ) : null}
+                </AnimatePresence>
+              </div>
+            ),
+          )}
+        </div>
+      ) : (
+        <div>Your social media links will be displayed here ...</div>
+      )}
     </>
   );
 }

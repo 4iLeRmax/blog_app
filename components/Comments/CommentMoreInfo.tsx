@@ -3,6 +3,7 @@
 import React, { useEffect } from 'react';
 import MoreInfo from '../MoreInfo';
 import CommentMoreInfoModal from '../Modals/CommentMoreInfoModal';
+import { Comm, ReportComment } from '@/types';
 
 type CommentMoreInfoProps = {
   sessionUser: {

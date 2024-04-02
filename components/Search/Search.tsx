@@ -4,13 +4,14 @@ import React, { useEffect, useRef, useState } from 'react';
 import SearchInput from './SearchInput';
 import SearchModal from './SearchModal';
 import { useRouter, useSearchParams } from 'next/navigation';
+import { TPost } from '@/types';
 
 type SearchProps = {
-  posts: Post[];
+  posts: TPost[] | undefined;
 };
 
 export default function Search({ posts }: SearchProps) {
-  const [filteredPosts, setFilteredPosts] = useState<Post[]>([]);
+  const [filteredPosts, setFilteredPosts] = useState<TPost[]>([]);
   const [selectedPost, setSelectedPost] = useState(0);
 
   const router = useRouter();
@@ -19,10 +20,12 @@ export default function Search({ posts }: SearchProps) {
 
   useEffect(() => {
     // console.log('upd');
-    setFilteredPosts(
-      posts.filter((post) => post.title.toLowerCase().includes(params.toLowerCase())),
-    );
-    setSelectedPost(0);
+    if (posts !== undefined) {
+      setFilteredPosts(
+        posts.filter((post) => post.title.toLowerCase().includes(params.toLowerCase())),
+      );
+      setSelectedPost(0);
+    }
   }, [params]);
 
   const handlePress: React.KeyboardEventHandler<HTMLDivElement> = (e) => {

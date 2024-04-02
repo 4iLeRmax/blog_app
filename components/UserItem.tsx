@@ -1,9 +1,10 @@
+import { User } from '@/types';
 import clsx from 'clsx';
 import Image from 'next/image';
 import React from 'react';
 
 type UserItemProps = {
-  user: UserItem;
+  user: User;
 };
 
 export default function UserItem({ user }: UserItemProps) {
@@ -16,7 +17,7 @@ export default function UserItem({ user }: UserItemProps) {
               <Image src={user.image} alt='' fill className='object-cover' />
             </div>
           ) : (
-            <div className='flex items-center justify-center w-10 h-10 text-white shadow-md bg-blue-200/80 rounded-xl'>
+            <div className='flex items-center justify-center w-12 h-12 text-white bg-gray-800 shadow-md rounded-xl'>
               ?
             </div>
           )}
@@ -28,8 +29,8 @@ export default function UserItem({ user }: UserItemProps) {
 
         <div
           className={clsx('text-xl ', {
-            'text-red-600': user.role === 'admin',
-            'text-green-600': user.role === 'user',
+            'text-red-600': user.role === 'ADMIN',
+            'text-green-600': user.role === 'USER',
           })}
         >
           {user.role}

@@ -5,9 +5,10 @@ import TextEditor from './TextEditor';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import SubmitButton from '@/UI/SubmitButton';
+import { TPost } from '@/types';
 
 type PostFormProps = {
-  post?: Post;
+  post?: TPost;
   action: any;
   submitButtonVariants: {
     default: string;

@@ -1,5 +1,6 @@
 import { PostsListSkeleton } from '@/UI/skeletons';
 import BreadCrumbs from '@/components/BreadCrumbs';
+import { BrcsLinks } from '@/types';
 import { Metadata } from 'next';
 import dynamic from 'next/dynamic';
 

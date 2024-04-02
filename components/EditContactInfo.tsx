@@ -3,24 +3,25 @@
 import React, { useState } from 'react';
 import SocialMediaSelect from '@/components/SocialMediaSelect';
 import SocialMediaList from '@/components/SocialMediaList';
-import { updateContactInfo } from '@/lib/actions';
+import { updateSocialMediaLinks } from '@/lib/actions';
 import ContactInfoForm from '@/components/ContactInfoForm';
 import { options, socialMediaColors } from '@/data';
+import { ContactInfo } from '@/types';
 
 type EditContactInfoProps = {
-  contactInfo: ContactInfo;
+  contactInfo: ContactInfo | undefined;
 };
 
 export default function EditContactInfo({ contactInfo }: EditContactInfoProps) {
   // const [file, setFile] = useState(user.image || '');
   const [socialMedia, setSocialMedia] = useState<{ label: string; link: string }[]>(
-    contactInfo?.socialMediaLinks || [],
+    contactInfo?.SocialMediaLinks || [],
   );
   const [tempLink, setTempLink] = useState('');
 
   const onSubmit = (formData: FormData) => {
     const filteredSocialMedia = socialMedia.filter((el) => el.link !== '');
-    updateContactInfo(formData, filteredSocialMedia);
+    updateSocialMediaLinks(formData, filteredSocialMedia);
   };
 
   return (

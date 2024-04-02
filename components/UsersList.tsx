@@ -3,17 +3,19 @@
 import React, { useState } from 'react';
 import UserItem from './UserItem';
 import UserSearch from './UserSearch';
+import { User } from '@/types';
 
 type UsersListProps = {
-  commonUsers: UserItem[];
+  users: User[] | null;
 };
 
-export default function UsersList({ commonUsers }: UsersListProps) {
+export default function UsersList({ users }: UsersListProps) {
   const [searchValue, setSearchValue] = useState('');
 
-  const filteredUsers = commonUsers.filter((user) =>
-    user.name.toLowerCase().includes(searchValue.toLowerCase()),
-  );
+  const filteredUsers =
+    users !== null
+      ? users.filter((user) => user.name.toLowerCase().includes(searchValue.toLowerCase()))
+      : [];
   return (
     <div>
       {/* <div className='flex w-full gap-5 pt-3'> */}

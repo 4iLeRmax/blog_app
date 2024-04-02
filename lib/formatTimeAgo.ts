@@ -1,4 +1,5 @@
-export const formatTimeAgo = (timestamp: number) => {
+export const formatTimeAgo = (date: Date) => {
+  const timestamp = new Date(date).getTime();
   const currentTime = Date.now();
   const timeDifference = currentTime - timestamp;
 

@@ -1,18 +1,20 @@
-import { getServerSession } from 'next-auth';
 import React from 'react';
-import { authOptions } from '../api/auth/[...nextauth]/options';
 import { redirect } from 'next/navigation';
+import { Metadata } from 'next';
+
+import { BrcsLinks } from '@/types';
+
+import { getUsers } from '@/lib/getUsers';
+import { getPosts } from '@/lib/getPosts';
+import { userIsAdmin } from '@/lib/userIsAdmin';
+import { getContactInfo } from '@/lib/getContactInfo';
+
 import BreadCrumbs from '@/components/BreadCrumbs';
 import UsersList from '@/components/UsersList';
 import CreatePost from '@/components/CreatePost';
-import { getUsers } from '@/lib/getUsers';
-import { getGithubUsers } from '@/lib/GithubUsers';
-import { getPosts } from '@/lib/getPosts';
 import ReportComments from '@/components/ReportComments';
-import { Metadata } from 'next';
 import TabsComponent from '@/components/TabsComponent';
 import EditContactInfo from '@/components/EditContactInfo';
-import { getContactInfo } from '@/lib/getContactInfo';
 
 export const metadata: Metadata = {
   title: 'Dashboard',
@@ -30,20 +32,18 @@ const breadcrumbsLinks: BrcsLinks = [
 ];
 
 export default async function DashboardPage() {
-  const session: { user: SessionUser } | null = await getServerSession(authOptions);
-  const users = (await getUsers()) as UserItem[];
-  const githubUsers = (await getGithubUsers()) as UserItem[];
+  const users = await getUsers();
   const posts = await getPosts();
-  const commonUsers = users.concat(githubUsers);
   const contactInfo = await getContactInfo();
+  const isAdmin = await userIsAdmin();
   // const post
 
-  if (session?.user.role !== 'admin') redirect('/');
+  if (!isAdmin) redirect('/');
 
   const tabs = [
     { title: 'Create Post', content: <CreatePost posts={posts} /> },
     { title: 'Contact info', content: <EditContactInfo contactInfo={contactInfo} /> },
-    { title: 'Users', content: <UsersList commonUsers={commonUsers} /> },
+    { title: 'Users', content: <UsersList users={users} /> },
     { title: 'Reported comments', content: <ReportComments /> },
   ];
   return (

@@ -2,7 +2,6 @@ import Button from '@/UI/Button';
 import { authOptions } from '@/app/api/auth/[...nextauth]/options';
 import { getServerSession } from 'next-auth/next';
 import clsx from 'clsx';
-import Link from 'next/link';
 import React from 'react';
 import { CiLogin } from 'react-icons/ci';
 import Avatar from './Avatar';
@@ -10,11 +9,13 @@ import Search from './Search/Search';
 import { getPosts } from '@/lib/getPosts';
 import HeaderLinks from './HeaderLinks';
 import ThemeSwitcher from '@/UI/ThemeSwitcher';
-import { getUser } from '@/lib/getUser';
+import { SessionUser } from '@/types';
+import { userIsAdmin } from '@/lib/userIsAdmin';
 
 export default async function Header() {
   const session: { user: SessionUser } | null = await getServerSession(authOptions);
   const posts = await getPosts();
+  const isAdmin = await userIsAdmin();
 
   return (
     <>
@@ -27,7 +28,7 @@ export default async function Header() {
         )}
       >
         <div className='relative flex items-center justify-between w-full gap-3 px-4 py-2 font-semibold md:px-8 md:py-3 glassEffect'>
-          <HeaderLinks sessionUser={session?.user} />
+          <HeaderLinks sessionUser={session?.user} isAdmin={isAdmin} />
 
           <div className='flex items-center justify-center w-full gap-3 sm:gap-5 sm:w-auto '>
             <div className='hidden sm:flex'>

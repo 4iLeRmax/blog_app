@@ -5,6 +5,7 @@ import React, { useState } from 'react';
 import ConfirmationModal from './ConfirmationModal';
 import { MdDeleteOutline, MdOutlineReportProblem, MdReportProblem } from 'react-icons/md';
 import { deleteReply, reportComment } from '@/lib/actions';
+import { Reply, ReportComment } from '@/types';
 
 type ReplyMoreInfoModalProps = {
   postId: string;

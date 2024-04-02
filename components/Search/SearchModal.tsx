@@ -87,13 +87,14 @@
 'use client';
 
 import { formatTimeAgo } from '@/lib/formatTimeAgo';
+import { TPost } from '@/types';
 import clsx from 'clsx';
 import Link from 'next/link';
 import { useRouter, useSearchParams } from 'next/navigation';
 import React, { useState, useEffect } from 'react';
 
 type SearchModalProps = {
-  filteredPosts: Post[];
+  filteredPosts: TPost[];
   selectedPost: number;
 };
 

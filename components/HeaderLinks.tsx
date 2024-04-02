@@ -15,12 +15,14 @@ import { LuLayoutDashboard } from 'react-icons/lu';
 import { useRouter } from 'next/navigation';
 import ThemeSwitcher from '@/UI/ThemeSwitcher';
 import { CiUser } from 'react-icons/ci';
+import { SessionUser } from '@/types';
 
 type HeaderLinksProps = {
   sessionUser: SessionUser | undefined;
+  isAdmin: boolean;
 };
 
-export default function HeaderLinks({ sessionUser }: HeaderLinksProps) {
+export default function HeaderLinks({ sessionUser, isAdmin }: HeaderLinksProps) {
   const [menuIsOpen, setMenuIsOpen] = useState(false);
   const router = useRouter();
 
@@ -34,7 +36,7 @@ export default function HeaderLinks({ sessionUser }: HeaderLinksProps) {
       <div className='items-center hidden gap-3 md:flex text-primary-color'>
         <Link href={'/'}>Home</Link>
         <Link href={'/posts'}>Posts</Link>
-        {sessionUser?.role === 'admin' ? <Link href={'/dashboard'}>Dashboard</Link> : null}
+        {isAdmin ? <Link href={'/dashboard'}>Dashboard</Link> : null}
       </div>
       <AnimatePresence>
         {menuIsOpen ? (
@@ -98,7 +100,7 @@ export default function HeaderLinks({ sessionUser }: HeaderLinksProps) {
                     <BsFileEarmarkPost /> Posts
                   </button>
 
-                  {sessionUser?.role === 'admin' ? (
+                  {isAdmin ? (
                     <button
                       onClick={() => handleClick('/dashboard')}
                       className='flex items-center gap-1 text-primary-color'

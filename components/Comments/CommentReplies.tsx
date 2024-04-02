@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import { IoAddOutline, IoRemoveOutline } from 'react-icons/io5';
 import ReplyItem from './ReplyItem';
 import { Session } from 'next-auth';
+import { Comm, ReportComment } from '@/types';
 
 type CommentRepliesProps = {
   postId: string;
@@ -25,18 +26,18 @@ export default function CommentReplies({
   const [showReplies, setShowReplies] = useState(false);
   return (
     <>
-      {comment.replies.length > 0 ? (
+      {comment.Replies.length > 0 ? (
         <div className='pt-1 pl-8 '>
           <button
             className='flex items-center gap-1 -ml-8'
             onClick={() => setShowReplies((p) => !p)}
           >
             {showReplies ? <IoRemoveOutline size={20} /> : <IoAddOutline size={20} />}
-            {showReplies ? 'Hide replies' : 'View replies'} ({comment.replies.length})
+            {showReplies ? 'Hide replies' : 'View replies'} ({comment.Replies.length})
           </button>
           {showReplies ? (
             <div className='flex flex-col gap-2 pt-3 mt-2 border-t-2'>
-              {comment.replies.map((el) => (
+              {comment.Replies.map((el) => (
                 <ReplyItem
                   key={el.id}
                   postId={postId}

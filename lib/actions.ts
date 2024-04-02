@@ -8,145 +8,203 @@ import { redirect } from 'next/navigation';
 import { getPost } from './getPost';
 import { getReportComments } from './getReportComments';
 import { sessionUserAlreadyLikedPost } from './sessionUserAlreadyLikedPost';
-import { getUser } from './getUser';
 import { getContactInfo } from './getContactInfo';
+import { userIsAdmin } from './userIsAdmin';
+import prisma from './prisma';
 
-export const updateContactInfo = async (
+export const updateSocialMediaLinks = async (
   formData: FormData,
-  socialMedia?: {
+  socialMedia: {
     label: string;
     link: string;
   }[],
 ) => {
-  const session = await getServerSession(authOptions);
+  const isAdmin = await userIsAdmin();
   const contactInfo = await getContactInfo();
-  const { location, phone, contactMail } = Object.fromEntries(formData.entries());
+  const socialMediaLinksExist = contactInfo?.SocialMediaLinks !== undefined;
 
-  let updatedContactInfo = {};
-
-  if ((session?.user as SessionUser).role === 'admin') {
-    updatedContactInfo =
-      socialMedia === undefined
-        ? {
-            ...contactInfo,
-            address: location,
-            number: phone,
-            contactMail,
-          }
-        : {
-            ...contactInfo,
-            socialMediaLinks: socialMedia,
-          };
-    const res = await fetch(`http://localhost:4200/contactInfo`, {
-      method: 'PUT',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(updatedContactInfo),
-    });
-    await res.json();
+  if (isAdmin) {
+    if (socialMediaLinksExist) {
+      //UPDATE
+      console.log('UPDATE');
+      await prisma.socialMediaLink.deleteMany();
+      const res = await prisma.contactInfo.update({
+        where: {
+          id: contactInfo.id,
+        },
+        data: {
+          SocialMediaLinks: {
+            createMany: {
+              data: socialMedia,
+            },
+          },
+        },
+      });
+      console.log(res);
+    } else {
+      //CREATE
+      console.log('CREATE');
+      const res = await prisma.contactInfo.create({
+        data: {
+          SocialMediaLinks: {
+            createMany: {
+              data: socialMedia,
+            },
+          },
+        },
+      });
+    }
   }
-  revalidatePath('/profile');
+  revalidatePath('/dashboard');
+};
+export const updateContactInfo = async (formData: FormData) => {
+  type ContactInfoForm = {
+    address: string | null;
+    number: string | null;
+    contactMail: string | null;
+  };
+  const { address, number, contactMail } = Object.fromEntries(
+    formData.entries(),
+  ) as ContactInfoForm;
+
+  const isAdmin = await userIsAdmin();
+
+  const contactInfo = await getContactInfo();
+  const contactInfoExist = contactInfo !== undefined;
+
+  const updatedContactInfo: ContactInfoForm = {
+    address: address !== '' ? address : null,
+    number: number !== '' ? number : null,
+    contactMail: contactMail !== '' ? contactMail : null,
+  };
+
+  if (isAdmin) {
+    if (contactInfoExist) {
+      // UPDATE
+      const res = await prisma.contactInfo.update({
+        where: {
+          id: contactInfo.id,
+        },
+        data: {
+          ...updatedContactInfo,
+        },
+      });
+    } else {
+      //CREATE
+      const res = await prisma.contactInfo.create({
+        data: {
+          ...updatedContactInfo,
+        },
+      });
+    }
+  }
+
+  revalidatePath('/dashboard');
 };
 
 export const createPost = async (image: string, formData: FormData) => {
-  const data = Object.fromEntries(formData.entries());
-
-  const newPost = {
-    id: Date.now().toString(),
-    image,
-    title: data.title,
-    body: data.body,
-    likes: [],
-    comments: [],
-    date: Date.now(),
+  type TForm = {
+    title: string;
+    body: string;
   };
-
+  const { title, body } = Object.fromEntries(formData.entries()) as TForm;
   const posts = await getPosts();
+  const postExist = posts !== undefined ? posts.some((post) => post.title === title) : false;
 
-  const postExist = posts.some((post) => post.title === newPost.title);
-  // console.log(postExist);
   if (!postExist) {
     try {
-      const res = await fetch('http://localhost:4200/posts', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
+      const res = await prisma.posts.create({
+        data: {
+          image,
+          title,
+          body,
         },
-        body: JSON.stringify(newPost),
       });
-      await res.json();
-
-      if (res.ok) {
-        revalidatePath('/posts');
-        redirect('/posts');
-      }
-      return { title: 'good' };
-    } catch (err) {
-      return { title: 'Error' };
+    } catch {
+      console.error('Create Post');
     }
   }
+  revalidatePath('/posts');
+  redirect('/posts');
 };
 export const deletePost = async (postId: string, formData: FormData) => {
-  const res = await fetch(`http://localhost:4200/posts/${postId}`, {
-    method: 'DELETE',
-  });
+  const res = await prisma.posts.delete({ where: { id: postId } });
 
-  if (res.ok) {
-    revalidatePath('/posts');
-    redirect('/posts');
-  }
+  revalidatePath('/posts');
+  redirect('/posts');
 };
 export const updatePost = async (postId: string, formData: FormData) => {
-  const form = Object.fromEntries(formData.entries());
-
-  const post = {
-    title: form.title,
-    body: form.body,
+  const { title, body } = Object.fromEntries(formData.entries()) as {
+    title: string;
+    body: string;
   };
-  // console.log(post);
 
-  const res = await fetch(`http://localhost:4200/posts/${postId}`, {
-    method: 'PATCH',
-    headers: {
-      'Content-Type': 'application/json',
+  const res = await prisma.posts.update({
+    where: {
+      id: postId,
     },
-    body: JSON.stringify(post),
+    data: {
+      title,
+      body,
+    },
   });
-
-  await res.json();
 
   revalidatePath('/posts');
   revalidatePath(`/posts/${postId}`);
   redirect(`/posts/${postId}`);
+
+  // const form = Object.fromEntries(formData.entries());
+
+  // const post = {
+  //   title: form.title,
+  //   body: form.body,
+  // };
+  // // console.log(post);
+
+  // const res = await fetch(`http://localhost:4200/posts/${postId}`, {
+  //   method: 'PATCH',
+  //   headers: {
+  //     'Content-Type': 'application/json',
+  //   },
+  //   body: JSON.stringify(post),
+  // });
+
+  // await res.json();
+
+  // revalidatePath('/posts');
+  // revalidatePath(`/posts/${postId}`);
+  // redirect(`/posts/${postId}`);
 };
 export const likePost = async (postId: string, formData: FormData) => {
   const session = await getServerSession(authOptions);
-  const post = await getPost(postId);
   const sessionUserAlreadyLiked = await sessionUserAlreadyLikedPost(postId);
 
-  // console.log(sessionUserAlreadyLiked);
   if (!sessionUserAlreadyLiked) {
-    const updatedPost = {
-      ...post,
-      likes: [...post.likes, { email: session?.user?.email, name: session?.user?.name }],
-    };
-    const res = await fetch(`http://localhost:4200/posts/${postId}`, {
-      method: 'PATCH',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(updatedPost),
+    const res = await prisma.posts.update({
+      where: {
+        id: postId,
+      },
+      data: {
+        Likes: {
+          create: {
+            email: session?.user?.email as string,
+            name: session?.user?.name as string,
+          },
+        },
+      },
     });
   } else {
-    const updatedPost = {
-      ...post,
-      likes: post.likes.filter(
-        (el) => el.email !== session?.user?.email && el.name !== session?.user?.name,
-      ),
-    };
-    const res = await fetch(`http://localhost:4200/posts/${postId}`, {
-      method: 'PATCH',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(updatedPost),
+    const res = await prisma.posts.update({
+      where: {
+        id: postId,
+      },
+      data: {
+        Likes: {
+          delete: {
+            email: session?.user?.email as string,
+          },
+        },
+      },
     });
   }
 
@@ -154,64 +212,114 @@ export const likePost = async (postId: string, formData: FormData) => {
   revalidatePath(`posts${postId}`);
 };
 
-export const createComment = async (post: Post, formData: FormData) => {
+export const createComment = async (postId: string, formData: FormData) => {
   const session = await getServerSession(authOptions);
-  const data = Object.fromEntries(formData.entries());
+  const comment = Object.fromEntries(formData.entries()).comment as string;
 
-  const comment = {
-    id: Date.now().toString(),
-    userImage: session?.user?.image,
-    username: session?.user?.name,
-    comment: data.comment,
-    replies: [],
-    date: Date.now(),
-  };
-  // console.log(comment);
-
-  const updatedPost = { ...post, comments: [comment, ...post.comments] };
-
-  // console.log(updatedPost);
-
-  const res = await fetch(`http://localhost:4200/posts/${post.id}`, {
-    method: 'PUT',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(updatedPost),
+  const res = await prisma.posts.update({
+    where: { id: postId },
+    data: {
+      Comments: {
+        create: {
+          userImage: session?.user?.image as string,
+          username: session?.user?.name as string,
+          comment,
+        },
+      },
+    },
   });
 
-  if (res.ok) revalidatePath(`/posts/${post.id}`);
+  revalidatePath(`/posts/${postId}`);
 };
 export const deleteComment = async (
   obj: { postId: string; commentId: string },
   formData: FormData,
 ) => {
   const { postId, commentId } = obj;
-
-  const post = await getPost(postId);
-  const filteredComments = post.comments.filter((comment) => comment.id !== commentId);
   const reportComments = await getReportComments();
 
-  const deletedCommentHasReport = reportComments.find((el) => el.commentId === commentId);
+  const currentCommentWithReport = reportComments?.find((el) => el.commentId === commentId);
 
-  if (deletedCommentHasReport) {
-    const res = await fetch(`http://localhost:4200/reportComments/${deletedCommentHasReport.id}`, {
-      method: 'DELETE',
+  console.log(currentCommentWithReport);
+
+  if (currentCommentWithReport) {
+    // console.log('DELETE Reports');
+    const res = await prisma.reportComment.delete({
+      where: {
+        id: currentCommentWithReport.id,
+      },
+    });
+  }
+  const res = await prisma.comments.delete({ where: { id: commentId } });
+  // console.log('DELETE comment');
+
+  revalidatePath('/posts');
+  revalidatePath(`/posts/${postId}`);
+  revalidatePath('/dashboard');
+};
+
+export const createReply = async (
+  obj: { postId: string; commentId: string; replyToUser: string },
+  formData: FormData,
+) => {
+  const session = await getServerSession(authOptions);
+  const reply = Object.fromEntries(formData.entries()).comment as string;
+
+  const { postId, commentId, replyToUser } = obj;
+
+  if (session?.user) {
+    const res = await prisma.posts.update({
+      where: {
+        id: postId,
+      },
+      data: {
+        Comments: {
+          update: {
+            where: { id: commentId },
+            data: {
+              Replies: {
+                create: {
+                  userImage: session.user.image as string,
+                  username: session.user.name as string,
+                  replyToUser,
+                  reply,
+                },
+              },
+            },
+          },
+        },
+      },
+    });
+  }
+  revalidatePath(`/posts/${postId}`);
+};
+// ================================================ //
+export const deleteReply = async (
+  obj: { postId: string; commentId: string; replyId: string },
+  formData: FormData,
+) => {
+  const { postId, commentId, replyId } = obj;
+  const reportComments = await getReportComments();
+
+  const currentReplyWithReport = reportComments?.find((el) => el.replyId === replyId);
+
+  if (currentReplyWithReport) {
+    const res = await prisma.reportComment.delete({
+      where: {
+        id: currentReplyWithReport.id,
+      },
     });
   }
 
-  const res = await fetch(`http://localhost:4200/posts/${postId}`, {
-    method: 'PATCH',
-    headers: {
-      'Content-Type': 'application/json',
+  const res = await prisma.replies.delete({
+    where: {
+      id: replyId,
     },
-    body: JSON.stringify({ comments: filteredComments }),
   });
-
-  if (res.ok) {
-    revalidatePath('/posts');
-    revalidatePath(`/posts/${obj.postId}`);
-    revalidatePath('/dashboard');
-  }
+  revalidatePath(`/posts/${postId}`);
+  revalidatePath('/dashboard');
 };
+
 export const reportComment = async (
   obj: { postId: string; commentId: string; replyId?: string },
   formData: FormData,
@@ -222,126 +330,55 @@ export const reportComment = async (
   const sessionUserInfo = {
     name: session?.user?.name,
     email: session?.user?.email,
-  };
+  } as { name: string; email: string };
 
   const reportComments = await getReportComments();
-  const repCommExist = reportComments.find(
-    (repComm) => repComm.commentId === commentId && repComm.postId === postId,
+  const repCommExist = reportComments?.find(
+    (el) => el.commentId === commentId && el.postId === postId,
   );
-  const alreadyReported = repCommExist?.reporters.some(
+  const isReportedBySessionUser = repCommExist?.Reporters.some(
     (reporter) =>
       reporter.name === sessionUserInfo.name && reporter.email === sessionUserInfo.email,
   );
 
   if (!repCommExist) {
-    const reportComment = {
-      id: Date.now().toString(),
-      postId,
-      commentId,
-      replyId: replyId !== undefined ? replyId : null,
-      reporters: [sessionUserInfo],
-    };
-
-    const res = await fetch('http://localhost:4200/reportComments', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
+    console.log('CREATE');
+    const res = await prisma.reportComment.create({
+      data: {
+        postId,
+        commentId,
+        replyId: replyId ?? null,
+        Reporters: {
+          create: {
+            ...sessionUserInfo,
+          },
+        },
       },
-      body: JSON.stringify(reportComment),
     });
   } else if (repCommExist) {
-    if (!alreadyReported) {
-      const res = await fetch(`http://localhost:4200/reportComments/${repCommExist.id}`, {
-        method: 'PATCH',
-        headers: {
-          'Content-Type': 'application/json',
+    if (!isReportedBySessionUser) {
+      console.log('UPDATE');
+
+      const res = await prisma.reportComment.update({
+        where: {
+          id: repCommExist.id,
         },
-        body: JSON.stringify({
-          reporters: [...repCommExist.reporters, sessionUserInfo],
-        }),
+        data: {
+          Reporters: {
+            create: {
+              ...sessionUserInfo,
+            },
+          },
+        },
       });
     }
   }
   revalidatePath(`/posts/${postId}`);
 };
 export const deleteReportComment = async (repCommId: string, formData: FormData) => {
-  const res = await fetch(`http://localhost:4200/reportComments/${repCommId}`, {
-    method: 'DELETE',
+  const res = await prisma.reportComment.delete({
+    where: { id: repCommId },
   });
 
-  await res.json();
-  if (res.ok) revalidatePath('/dashboard');
-};
-
-export const createReply = async (
-  obj: { postId: string; commentId: string; replyToUser: string },
-  formData: FormData,
-) => {
-  const session = await getServerSession(authOptions);
-  const data = Object.fromEntries(formData.entries());
-
-  const { postId, commentId, replyToUser } = obj;
-  const post = await getPost(postId);
-  const newReply = {
-    id: Date.now().toString(),
-    userImage: session?.user?.image,
-    username: session?.user?.name,
-    replyToUser,
-    reply: data.comment,
-    date: Date.now(),
-  };
-
-  const updatedComments = post.comments.map((comment) => {
-    if (comment.id === commentId) {
-      return { ...comment, replies: [...comment.replies, newReply] };
-    } else return comment;
-  });
-
-  const updatedPost = { ...post, comments: updatedComments };
-
-  const res = await fetch(`http://localhost:4200/posts/${postId}`, {
-    method: 'PUT',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(updatedPost),
-  });
-
-  await res.json();
-  if (res.ok) revalidatePath(`/posts/${postId}`);
-};
-export const deleteReply = async (
-  obj: { postId: string; commentId: string; replyId: string },
-  formData: FormData,
-) => {
-  const { postId, commentId, replyId } = obj;
-  const post = await getPost(postId);
-  const reportComments = await getReportComments();
-
-  const deletedReplyHasReport = reportComments.find((el) => el.replyId === replyId);
-
-  if (deletedReplyHasReport) {
-    const res = await fetch(`http://localhost:4200/reportComments/${deletedReplyHasReport.id}`, {
-      method: 'DELETE',
-    });
-  }
-
-  const updatedComments = post.comments.map((comment) => {
-    if (comment.id === commentId) {
-      return { ...comment, replies: comment.replies.filter((reply) => reply.id !== replyId) };
-    } else return comment;
-  });
-
-  const updatedPost = { ...post, comments: updatedComments };
-
-  const res = await fetch(`http://localhost:4200/posts/${postId}`, {
-    method: 'PUT',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(updatedPost),
-  });
-
-  await res.json();
-
-  if (res.ok) revalidatePath(`/posts/${postId}`);
   revalidatePath('/dashboard');
 };

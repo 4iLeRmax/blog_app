@@ -1,17 +1,16 @@
 import { formatTimeAgo } from '@/lib/formatTimeAgo';
 import { getCurrentDate } from '@/lib/getCurrentDate';
+import { TPost } from '@/types';
 import Image from 'next/image';
 import Link from 'next/link';
 import { IoMdHeart } from 'react-icons/io';
 import { MdOutlineInsertComment } from 'react-icons/md';
 
 type PostItemProps = {
-  post: Post;
+  post: TPost;
 };
 
 export default function PostItem({ post }: PostItemProps) {
-  console.log(post.likes);
-
   return (
     <div>
       {post ? (
@@ -32,10 +31,10 @@ export default function PostItem({ post }: PostItemProps) {
             <div className='flex items-center gap-3'>
               <div className='flex items-center gap-1'>
                 <IoMdHeart size={20} />
-                <span>{post.likes.length}</span>
+                <span>{post.Likes.length}</span>
               </div>
               <div className='flex items-center gap-1'>
-                <MdOutlineInsertComment size={20} /> <span>{post.comments?.length}</span>
+                <MdOutlineInsertComment size={20} /> <span>{post.Comments?.length}</span>
               </div>
             </div>
 

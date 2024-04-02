@@ -1,4 +1,3 @@
-import TE from '@/components/1/TE';
 import BreadCrumbs from '@/components/BreadCrumbs';
 import React from 'react';
 
@@ -14,7 +13,6 @@ export default function Home() {
     <>
       <div>
         <BreadCrumbs links={breadCrumbsLinks} />
-        <TE />
       </div>
     </>
   );

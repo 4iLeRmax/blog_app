@@ -4,18 +4,18 @@ import { getPost } from '@/lib/getPost';
 import { getReportComments } from '@/lib/getReportComments';
 import Image from 'next/image';
 import React from 'react';
-import LinkChecker from './Comments/LinkChecker';
 import MoreInfo from './MoreInfo';
 import ReportedCommentMoreInfoModal from './Modals/ReportedCommentMoreInfoModal';
 import ReportersList from './ReportersList';
+import { RepCommUI, ReportComment } from '@/types';
 
 export default async function ReportComments() {
-  const reportComments = await getReportComments();
+  const reportComments = (await getReportComments()) as unknown as ReportComment[];
 
   const reportedComments = await Promise.all(
     reportComments.map(async (el) => {
       const post = await getPost(el.postId);
-      const comment = post.comments.find((comm) => comm.id === el.commentId);
+      const comment = post?.Comments.find((comm) => comm.id === el.commentId);
 
       let reportedComment: RepCommUI = {
         id: '',
@@ -33,12 +33,12 @@ export default async function ReportComments() {
             email: '',
           },
         ],
-        date: 0,
+        date: new Date(),
       };
 
       if (comment !== undefined) {
         if (el.replyId !== null) {
-          const reply = comment?.replies.find((reply) => reply.id === el.replyId);
+          const reply = comment?.Replies.find((reply) => reply.id === el.replyId);
           if (reply !== undefined) {
             reportedComment = {
               id: el.id,
@@ -50,7 +50,7 @@ export default async function ReportComments() {
               userImage: reply?.userImage,
               username: reply?.username,
               comment: reply?.reply,
-              reporters: el.reporters,
+              reporters: el.Reporters,
               date: reply?.date,
             };
           }
@@ -65,7 +65,7 @@ export default async function ReportComments() {
             userImage: comment?.userImage,
             username: comment?.username,
             comment: comment?.comment,
-            reporters: el.reporters,
+            reporters: el.Reporters,
             date: comment?.date,
           };
         }

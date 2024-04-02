@@ -504,6 +504,7 @@
 
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import clsx from 'clsx';
+import { SelectedText } from '@/types';
 
 type TextEditor = {
   text: string;

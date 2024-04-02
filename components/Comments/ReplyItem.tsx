@@ -7,6 +7,7 @@ import ReplyMoreInfoModal from '../Modals/ReplyMoreInfoModal';
 import { getCurrentDate } from '@/lib/getCurrentDate';
 import { formatTimeAgo } from '@/lib/formatTimeAgo';
 import { Session } from 'next-auth';
+import { Reply, ReportComment } from '@/types';
 
 type ReplyItemProps = {
   postId: string;

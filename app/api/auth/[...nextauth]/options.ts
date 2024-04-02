@@ -3,7 +3,8 @@ import GithubProvider from 'next-auth/providers/github';
 import CredentialsProvider from 'next-auth/providers/credentials';
 import { getUsers } from '@/lib/getUsers';
 import { GithubProfile } from 'next-auth/providers/github';
-import { createGithubUser, getGithubUsers } from '@/lib/GithubUsers';
+import { createUser } from '@/lib/createUser';
+import { User } from '@/types';
 
 export const authOptions: AuthOptions = {
   providers: [
@@ -16,7 +17,7 @@ export const authOptions: AuthOptions = {
       async authorize(credentials) {
         const users = await getUsers();
 
-        const currentUser = users.find(
+        const currentUser = users?.find(
           (user) => user.email === credentials?.email && user.password === credentials?.password,
         );
 
@@ -34,22 +35,26 @@ export const authOptions: AuthOptions = {
           email: profile.email,
           name: profile.login,
           image: profile.avatar_url,
+          password: null,
           role: profile.role ?? 'user',
         };
         // console.log(githubProfile);
 
-        const users = await getGithubUsers();
+        const users = await getUsers();
 
-        const existGithubUser = users.some(
-          (user) =>
-            user.email?.toLowerCase() === githubProfile.email?.toLowerCase() &&
-            user.name.toLowerCase() === githubProfile.name.toLowerCase(),
-        );
+        const existGithubUser =
+          users !== null
+            ? users.some(
+                (user) =>
+                  user.email?.toLowerCase() === githubProfile.email?.toLowerCase() &&
+                  user.name.toLowerCase() === githubProfile.name.toLowerCase(),
+              )
+            : false;
         // console.log(existGithubUser);
 
         if (!existGithubUser) {
           // console.log("don't exist");
-          createGithubUser(githubProfile);
+          createUser(githubProfile);
         }
 
         return {

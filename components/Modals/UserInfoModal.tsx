@@ -4,6 +4,7 @@ import React from 'react';
 import { CiLogout } from 'react-icons/ci';
 import Image from 'next/image';
 import { IoClose } from 'react-icons/io5';
+import { SessionUser } from '@/types';
 
 type UserInfoModal = {
   user: SessionUser;

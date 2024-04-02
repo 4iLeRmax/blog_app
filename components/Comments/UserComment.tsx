@@ -9,6 +9,7 @@ import { getReportComments } from '@/lib/getReportComments';
 import CommentReplies from './CommentReplies';
 import { formatTimeAgo } from '@/lib/formatTimeAgo';
 import { getCurrentDate } from '@/lib/getCurrentDate';
+import { Comm, ReportComment } from '@/types';
 
 type UserCommentProps = {
   comment: Comm;
@@ -21,13 +22,13 @@ export default async function UserComment({ comment, postId }: UserCommentProps)
   const reportComments = await getReportComments();
 
   const reportedCommentsFromCurrentSessionUser = reportComments
-    .filter((repComm) => repComm.postId === postId)
+    ?.filter((repComm) => repComm.postId === postId)
     .filter((repComment) =>
-      repComment.reporters.some(
+      repComment.Reporters.some(
         (reporter) =>
           reporter.name === session?.user?.name && reporter.email === session?.user?.email,
       ),
-    );
+    ) as ReportComment[]
 
   const linkChecker = (text: string) => {
     return (

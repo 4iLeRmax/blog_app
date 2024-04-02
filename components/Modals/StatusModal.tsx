@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import clsx from 'clsx';
 import ModalsPortal from '@/layouts/ModalsPortal';
+import { Status } from '@/types';
 
 type StatusModalProps = {
   children: React.ReactNode;
@@ -12,8 +13,6 @@ type StatusModalProps = {
 };
 
 export default function StatusModal({ children, status, modalDuration }: StatusModalProps) {
-  console.log('1');
-
   return (
     <ModalsPortal>
       <motion.div

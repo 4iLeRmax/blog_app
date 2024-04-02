@@ -12,7 +12,6 @@ type ImageUploaderProps = {
 };
 
 export default function ImageUploader({ file, setFile }: ImageUploaderProps) {
-
   return (
     <>
       {/* <div className='flex flex-col gap-5 w-[144px]'> */}

@@ -1,6 +1,7 @@
 'use client';
 
 import { createComment, createReply } from '@/lib/actions';
+import { TPost } from '@/types';
 import clsx from 'clsx';
 import { motion, AnimatePresence } from 'framer-motion';
 import React, { useEffect, useRef, useState } from 'react';
@@ -8,7 +9,7 @@ import { IoMdSend } from 'react-icons/io';
 import { IoClose } from 'react-icons/io5';
 
 type CommentFormProps = {
-  post: Post;
+  post: TPost;
 };
 
 export default function CommentForm({ post }: CommentFormProps) {
@@ -40,7 +41,7 @@ export default function CommentForm({ post }: CommentFormProps) {
         setIsReply(false);
         setReplyToUser('');
       } else if (!actionData) {
-        createComment(post, formData);
+        createComment(post.id, formData);
       }
       if (formRef.current) formRef.current.reset();
       setInputValue('');

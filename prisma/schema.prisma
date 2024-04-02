@@ -1,0 +1,93 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Users {
+  id       String  @id @default(uuid())
+  email    String? @unique
+  name     String
+  image    String
+  password String?
+  role     Role    @default(USER)
+}
+
+model Posts {
+  id       String     @id @default(uuid())
+  image    String
+  title    String     @unique
+  body     String
+  date     DateTime   @default(now())
+  Comments Comments[]
+  Likes    Likes[]
+}
+
+model Comments {
+  id        String    @id @default(uuid())
+  userImage String
+  username  String
+  comment   String
+  date      DateTime  @default(now())
+  postsId   String?
+  Posts     Posts?    @relation(fields: [postsId], references: [id], onDelete: Cascade)
+  Replies   Replies[]
+}
+
+model Replies {
+  id          String    @id @default(uuid())
+  userImage   String
+  username    String
+  replyToUser String
+  reply       String
+  date        DateTime  @default(now())
+  commentsId  String?
+  Comments    Comments? @relation(fields: [commentsId], references: [id], onDelete: Cascade)
+}
+
+model Likes {
+  email   String  @unique
+  name    String
+  postsId String?
+  Posts   Posts?  @relation(fields: [postsId], references: [id], onDelete: Cascade)
+}
+
+enum Role {
+  USER
+  ADMIN
+}
+
+model ReportComment {
+  id        String      @id @default(uuid())
+  postId    String
+  commentId String
+  replyId   String?
+  Reporters Reporters[]
+}
+
+model Reporters {
+  id              String         @id @default(uuid())
+  name            String
+  email           String
+  ReportComment   ReportComment? @relation(fields: [reportCommentId], references: [id], onDelete: Cascade)
+  reportCommentId String?
+}
+
+model ContactInfo {
+  id               String            @id @default(uuid())
+  address          String?
+  number           String?
+  contactMail      String?
+  SocialMediaLinks SocialMediaLink[]
+}
+
+model SocialMediaLink {
+  id            String       @id @default(uuid())
+  label         String
+  link          String
+  ContactInfo   ContactInfo? @relation(fields: [contactInfoId], references: [id], onDelete: Cascade)
+  contactInfoId String?
+}

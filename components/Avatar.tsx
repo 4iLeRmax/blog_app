@@ -4,6 +4,7 @@ import { AnimatePresence } from 'framer-motion';
 import Image from 'next/image';
 import { useRef, useState } from 'react';
 import UserInfoModal from './Modals/UserInfoModal';
+import { SessionUser } from '@/types';
 
 type AvatarProps = {
   user: SessionUser;

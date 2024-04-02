@@ -9,6 +9,7 @@ import { deleteComment, deleteReply, deleteReportComment } from '@/lib/actions';
 import { MdDeleteOutline } from 'react-icons/md';
 import { AiTwotoneSafetyCertificate } from 'react-icons/ai';
 import { GrOverview } from 'react-icons/gr';
+import { RepCommUI } from '@/types';
 
 type ReportedCommentMoreInfoModalProps = {
   reportedComment: RepCommUI;

@@ -3,16 +3,16 @@ import UserComment from './UserComment';
 import CommentForm from './CommentForm';
 import { getServerSession } from 'next-auth';
 import { authOptions } from '@/app/api/auth/[...nextauth]/options';
+import { TPost } from '@/types';
 
 type CommentsProps = {
-  post: Post;
+  post: TPost;
 };
 
 export default async function Comments({ post }: CommentsProps) {
   const session = await getServerSession(authOptions);
 
   // console.log(post.comments[0].replies);
-  
 
   return (
     <>
@@ -25,8 +25,8 @@ export default async function Comments({ post }: CommentsProps) {
           </div>
         )}
         <div className='flex flex-col w-full gap-2'>
-          {post.comments.length > 0 ? (
-            post.comments.map((comment) => (
+          {post.Comments.length > 0 ? (
+            post.Comments.map((comment) => (
               <UserComment key={comment.id} comment={comment} postId={post.id} />
             ))
           ) : (

@@ -2,6 +2,7 @@ import { authOptions } from '@/app/api/auth/[...nextauth]/options';
 import BreadCrumbs from '@/components/BreadCrumbs';
 import Comments from '@/components/Comments/Comments';
 import { getPost } from '@/lib/getPost';
+import { BrcsLinks, TPost } from '@/types';
 import { Metadata } from 'next';
 import { getServerSession } from 'next-auth';
 import React from 'react';
@@ -15,19 +16,12 @@ export async function generateMetadata({ params: { id } }: PostLayoutProps): Pro
   const post = await getPost(id);
 
   return {
-    title: post.title,
+    title: post ? post.title : 'Post',
   };
 }
 
 export default async function PostLayout({ children, params: { id } }: PostLayoutProps) {
-  const post: Post = await getPost(id);
-  const session = await getServerSession(authOptions);
-
-  const isAdmin = session?.user
-    ? (session?.user as SessionUser).role === 'admin'
-      ? true
-      : false
-    : false;
+  const post = (await getPost(id)) as TPost;
 
   const breadcrumbsLinks: BrcsLinks = [
     {

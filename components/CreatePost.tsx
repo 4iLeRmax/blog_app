@@ -6,9 +6,10 @@ import React, { useEffect, useRef, useState, useTransition } from 'react';
 import StatusModal from './Modals/StatusModal';
 import ImageUploader from './ImageUploader';
 import PostForm from './PostForm';
+import { TPost, Status } from '@/types';
 
 type CreatePostProps = {
-  posts: Post[];
+  posts: TPost[] | undefined;
 };
 
 export default function CreatePost({ posts }: CreatePostProps) {
@@ -44,7 +45,7 @@ export default function CreatePost({ posts }: CreatePostProps) {
     const form = Object.fromEntries(formData.entries());
 
     if (form.title !== '' && form.body !== '') {
-      const postWithThisTitleExist = posts.some((post) => post.title === form.title);
+      const postWithThisTitleExist = posts?.some((post) => post.title === form.title);
       if (!postWithThisTitleExist) {
         startTransition(() => {
           createPost(file, formData);
@@ -60,33 +61,30 @@ export default function CreatePost({ posts }: CreatePostProps) {
     }
   };
 
-  // const statuses = {
-  //   success: 'The post was successfully created',
-  //   pending: '',
-  //   error: 'One ore more inputs are empty.',
-  //   warning: 'The post was created without an image.',
-  // };
-
   return (
     <>
-      <AnimatePresence>
-        {status !== '' ? (
-          <StatusModal status={status} modalDuration={modalDuration}>
-            {statusText}
-          </StatusModal>
-        ) : null}
-      </AnimatePresence>
-      {/* <div className='flex items-start gap-5'> */}
-      <div className='flex flex-col-reverse items-start gap-5 p-2 sm:flex-row glassEffect'>
-        <div className='w-full sm:w-[calc(100%_-_144px_-20px)] xl:w-[calc(100%_-_200px_-20px)] 2xl:w-[calc(100%_-_400px_-20px)]'>
-          <PostForm
-            action={onSubmit}
-            submitButtonVariants={{ default: 'Create', pending: 'Creating...' }}
-            withCancelButton={false}
-          />
-        </div>
-        <ImageUploader file={file} setFile={setFile} />
-      </div>
+      {posts ? (
+        <>
+          <AnimatePresence>
+            {status !== '' ? (
+              <StatusModal status={status} modalDuration={modalDuration}>
+                {statusText}
+              </StatusModal>
+            ) : null}
+          </AnimatePresence>
+          {/* <div className='flex items-start gap-5'> */}
+          <div className='flex flex-col-reverse items-start gap-5 p-2 sm:flex-row glassEffect'>
+            <div className='w-full sm:w-[calc(100%_-_144px_-20px)] xl:w-[calc(100%_-_200px_-20px)] 2xl:w-[calc(100%_-_400px_-20px)]'>
+              <PostForm
+                action={onSubmit}
+                submitButtonVariants={{ default: 'Create', pending: 'Creating...' }}
+                withCancelButton={false}
+              />
+            </div>
+            <ImageUploader file={file} setFile={setFile} />
+          </div>
+        </>
+      ) : null}
     </>
   );
 }
