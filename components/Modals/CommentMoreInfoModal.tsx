@@ -7,6 +7,7 @@ import { deleteComment, reportComment } from '@/lib/actions';
 import { LuReply } from 'react-icons/lu';
 import ConfirmationModal from './ConfirmationModal';
 import { Comm, ReportComment } from '@/types';
+import ButtonWithLoader from '@/UI/ButtonWithLoader';
 
 type CommentMoreInfoModalProps = {
   isAdmin: boolean;
@@ -30,7 +31,6 @@ const CommentMoreInfoModal = ({
 
   // console.log(reportedCommentsFromCurrentSessionUser);
   // console.log(commentIsReported);
-  
 
   const setNewFormAction = () => {
     localStorage.setItem(
@@ -84,10 +84,14 @@ const CommentMoreInfoModal = ({
                 action={reportComment.bind(null, { postId, commentId: comment.id })}
                 className='w-full'
               >
-                <button className='flex items-center w-full gap-1 px-2 py-1 rounded-md cursor-pointer hover:bg-gray-200'>
+                {/* <button className='flex items-center w-full gap-1 px-2 py-1 rounded-md cursor-pointer hover:bg-gray-200'>
                   <MdOutlineReportProblem />
                   Report
-                </button>
+                </button> */}
+                <ButtonWithLoader buttonClassName='flex items-center w-full gap-1 px-2 py-1 rounded-md cursor-pointer hover:bg-gray-200'>
+                  <MdOutlineReportProblem />
+                  Report
+                </ButtonWithLoader>
               </form>
             ) : (
               <div className='flex items-center w-full gap-1 px-2 py-1 bg-gray-200 rounded-md cursor-default'>

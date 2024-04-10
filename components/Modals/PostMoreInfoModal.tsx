@@ -22,10 +22,6 @@ export default function PostMoreInfoModal({ isAdmin, postId }: PostMoreInfoModal
   const pathname = usePathname();
   const [confirmationModalOpen, setConfirmationModalOpen] = useState(false);
   const [copied, setCopied] = useState(false);
-  const [isPending, startTransition] = useTransition();
-  // const { pending } = useFormStatus();
-  // console.log(postId);
-  // console.log(pending);
   const modalDuration = 3000;
 
   useEffect(() => {

@@ -16,11 +16,7 @@ export default function ImageUploader({ file, setFile }: ImageUploaderProps) {
     <>
       {/* <div className='flex flex-col gap-5 w-[144px]'> */}
       <div className='flex flex-col w-full gap-5 sm:w-[144px] xl:w-[200px] 2xl:w-[400px]'>
-        <div
-          className='h-[400px] sm:h-[144px] xl:h-[200px] 2xl:h-[400px]'
-          // style={{ height: containerWidth}}
-          id='width'
-        >
+        <div className='h-[400px] sm:h-[144px] xl:h-[200px] 2xl:h-[400px]' id='width'>
           <AnimatePresence>
             {file ? (
               <motion.div

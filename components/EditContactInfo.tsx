@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import SocialMediaSelect from '@/components/SocialMediaSelect';
 import SocialMediaList from '@/components/SocialMediaList';
 import { updateSocialMediaLinks } from '@/lib/actions';
@@ -13,16 +13,23 @@ type EditContactInfoProps = {
 };
 
 export default function EditContactInfo({ contactInfo }: EditContactInfoProps) {
-  // const [file, setFile] = useState(user.image || '');
-  const [socialMedia, setSocialMedia] = useState<{ label: string; link: string }[]>(
-    contactInfo?.SocialMediaLinks || [],
-  );
+  const [socialMedia, setSocialMedia] = useState<{ label: string; link: string }[]>([]);
   const [tempLink, setTempLink] = useState('');
+
+  useEffect(() => {
+    setSocialMedia(
+      (contactInfo as ContactInfo).SocialMediaLinks.map(({ label, link }) => ({
+        label,
+        link,
+      })),
+    );
+  }, []);
 
   const onSubmit = (formData: FormData) => {
     const filteredSocialMedia = socialMedia.filter((el) => el.link !== '');
     updateSocialMediaLinks(formData, filteredSocialMedia);
   };
+  console.log(socialMedia);
 
   return (
     <>

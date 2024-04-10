@@ -1,4 +1,5 @@
 import BreadCrumbs from '@/components/BreadCrumbs';
+import LastPosts from '@/components/LastPosts';
 import React from 'react';
 
 const breadCrumbsLinks = [
@@ -13,6 +14,9 @@ export default function Home() {
     <>
       <div>
         <BreadCrumbs links={breadCrumbsLinks} />
+        <div>
+          <LastPosts count={3} />
+        </div>
       </div>
     </>
   );

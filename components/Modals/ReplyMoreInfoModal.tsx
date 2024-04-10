@@ -6,6 +6,7 @@ import ConfirmationModal from './ConfirmationModal';
 import { MdDeleteOutline, MdOutlineReportProblem, MdReportProblem } from 'react-icons/md';
 import { deleteReply, reportComment } from '@/lib/actions';
 import { Reply, ReportComment } from '@/types';
+import ButtonWithLoader from '@/UI/ButtonWithLoader';
 
 type ReplyMoreInfoModalProps = {
   postId: string;
@@ -75,10 +76,10 @@ export default function ReplyMoreInfoModal({
                 })}
                 className='w-full'
               >
-                <button className='flex items-center w-full gap-1 px-2 py-1 rounded-md cursor-pointer hover:bg-gray-200'>
+                <ButtonWithLoader buttonClassName='flex items-center w-full gap-1 px-2 py-1 rounded-md cursor-pointer hover:bg-gray-200'>
                   <MdOutlineReportProblem />
-                  Report 
-                </button>
+                  Report
+                </ButtonWithLoader>
               </form>
             ) : (
               <div className='flex items-center w-full gap-1 px-2 py-1 bg-gray-200 rounded-md cursor-default'>

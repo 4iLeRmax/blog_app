@@ -75,7 +75,7 @@ export default function SocialMediaList({
                 </button>
               </div>
             ) : (
-              <div className='flex items-center sm:w-[380px] w-full relative'>
+              <div className='flex items-center sm:w-[380px] w-full relative' key={i}>
                 <input
                   className='w-3/5 px-5 py-1 outline-none sm:w-auto rounded-ss-xl rounded-es-xl'
                   type='text'

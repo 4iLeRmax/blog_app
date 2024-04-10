@@ -36,7 +36,6 @@ export default async function DashboardPage() {
   const posts = await getPosts();
   const contactInfo = await getContactInfo();
   const isAdmin = await userIsAdmin();
-  // const post
 
   if (!isAdmin) redirect('/');
 

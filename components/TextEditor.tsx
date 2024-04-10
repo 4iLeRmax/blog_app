@@ -755,40 +755,6 @@ export default function TextEditor({ text, updatedText, setUpdatedText }: TextEd
     if (underlinedText.length > 0)
       if (isSpecText([selStart, selEnd], 'underlined')) setUnderlined(true);
   }, [divRef]);
-  // const selectTextWithKeyBoard: React.KeyboardEventHandler<HTMLDivElement> = (e) => {
-  //   // if((e.shiftKey && e.key === 'ArrowLeft') || (e.shiftKey && e.key === 'ArrowRight'))
-  //   console.log((e.shiftKey && e.key === 'ArrowLeft') || (e.shiftKey && e.key === 'ArrowRight'));
-
-  //   // if (e.shiftKey && e.key === 'ArrowLeft') return -1;
-  //   // if (e.shiftKey && e.key === 'ArrowRight') return -1;
-  //   setBolded(false);
-  //   const div = divRef.current;
-  //   if (!div) return -1;
-
-  //   const selection = window.getSelection() as Selection;
-  //   if (selection.rangeCount === 0) return -1;
-  //   if (selection.toString() === '') return -1;
-  //   console.log(selection.toString());
-
-  //   const range = selection.getRangeAt(0);
-  //   const preSelectionRange = range.cloneRange();
-  //   preSelectionRange.selectNodeContents(div);
-  //   preSelectionRange.setEnd(range.startContainer, range.startOffset);
-
-  //   const selStart = preSelectionRange.toString().length;
-  //   const selEnd = selStart + selection.toString().length;
-
-  //   // console.log({ text: selection.toString() }, selStart, selEnd);
-  //   setSelectedText({ text: selection.toString(), seIndexes: [selStart, selEnd] });
-
-  //   if (boldText.length > 0) {
-  //     // console.log(isBolded([selStart, selEnd]));
-
-  //     if (isBolded([selStart, selEnd])) {
-  //       setBolded(true);
-  //     }
-  //   }
-  // };
 
   const overlapCheck = (specText: SpecText) => {
     // console.log({ overlapCheckBoldText: boldText });
@@ -886,7 +852,7 @@ export default function TextEditor({ text, updatedText, setUpdatedText }: TextEd
     // console.log({ content });
     // console.log({ boldText });
     if (currentTag !== '') {
-      console.log('replace');
+      // console.log('replace');
       replaceWithSpecText(content);
     }
     // }
@@ -896,7 +862,7 @@ export default function TextEditor({ text, updatedText, setUpdatedText }: TextEd
     // console.log({ status });
     if (status) {
       if (currentTag !== '') {
-        console.log('overlap');
+        // console.log('overlap');
         // console.log({ updatedBoldText: boldText });
         overlapCheck(currentTag);
       }
@@ -1005,7 +971,7 @@ export default function TextEditor({ text, updatedText, setUpdatedText }: TextEd
       }
     }
 
-    console.log(arr);
+    // console.log(arr);
     // Check if some specText have the same text and if so than create multi tag like <u><i>text...</i></u>
     // for (let i = 0; i < arr.length; i++) {
     //   for (let j = 0; j < arr.length; j++) {
@@ -1064,7 +1030,7 @@ export default function TextEditor({ text, updatedText, setUpdatedText }: TextEd
 
     setUpdatedText(result);
 
-    console.log(result);
+    // console.log(result);
     // console.log(updatedText);
   };
   // replaceWithSpecText(content);
@@ -1115,10 +1081,10 @@ export default function TextEditor({ text, updatedText, setUpdatedText }: TextEd
 
   // console.log({ content });
   // console.log({ updatedText });
-  console.log({ boldText });
-  console.log({ italicText });
-  console.log({ underlinedText });
-  console.log('=================================');
+  // console.log({ boldText });
+  // console.log({ italicText });
+  // console.log({ underlinedText });
+  // console.log('=================================');
   // console.log('updated');
 
   // copy/paste text must have " " but not &nbsp;

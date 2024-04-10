@@ -1,10 +1,12 @@
-import { formatTimeAgo } from '@/lib/formatTimeAgo';
-import { getCurrentDate } from '@/lib/getCurrentDate';
-import { TPost } from '@/types';
 import Image from 'next/image';
 import Link from 'next/link';
 import { IoMdHeart } from 'react-icons/io';
 import { MdOutlineInsertComment } from 'react-icons/md';
+
+import { formatTimeAgo } from '@/lib/formatTimeAgo';
+import { getCurrentDate } from '@/lib/getCurrentDate';
+
+import { TPost } from '@/types';
 
 type PostItemProps = {
   post: TPost;
@@ -14,7 +16,6 @@ export default function PostItem({ post }: PostItemProps) {
   return (
     <div>
       {post ? (
-        // <Link href={`/posts/${post.id}`} className='border-0 glassEffect rounded-xl'>
         <Link href={`/posts/${post.id}`} className='text-primary-color'>
           {post.image ? (
             <div className='relative w-full overflow-hidden h-96 rounded-xl sm:h-60'>
@@ -25,7 +26,9 @@ export default function PostItem({ post }: PostItemProps) {
               ?
             </div>
           )}
-          <h1 className='px-3 pt-2 text-2xl'>{post.title}</h1>
+          <div className='px-3 pt-2 text-2xl'>
+            <h1 className='overflow-hidden'>{post.title}</h1>
+          </div>
 
           <div className='flex items-center justify-between p-3'>
             <div className='flex items-center gap-3'>

@@ -12,13 +12,6 @@ type ContactInfoFormProps = {
 };
 
 export default function ContactInfoForm({ contactInfo }: ContactInfoFormProps) {
-  // const [formValue, setFormValue] = useState({
-  //   address: '',
-  //   number: '',
-  //   contactMail: '',
-  // });
-  // console.log(contactInfo);
-
   return (
     <>
       <form action={updateContactInfo}>

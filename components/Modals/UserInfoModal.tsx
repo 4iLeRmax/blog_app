@@ -43,8 +43,11 @@ export default function UserInfoModal({ user, setIsOpen }: UserInfoModal) {
             <div className='text-xl text-bold'>{user.name}</div>
             <div>{user.email}</div>
           </div>
-          <div className='flex justify-center py-2 mt-2 transition-colors border-t-2 cursor-pointer hover:bg-hover-modal-bg border-hover-modal-bg text-primary-color'>
-            <Button sign='SignOut'>
+          <div className='w-full'>
+            <Button
+              sign='SignOut'
+              className='flex justify-center w-full py-2 mt-2 transition-colors border-t-2 cursor-pointer hover:bg-hover-modal-bg border-hover-modal-bg text-primary-color'
+            >
               <CiLogout /> Log Out
             </Button>
           </div>

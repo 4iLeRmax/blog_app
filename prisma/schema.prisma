@@ -49,7 +49,8 @@ model Replies {
 }
 
 model Likes {
-  email   String  @unique
+  id      String  @id @default(uuid())
+  email   String
   name    String
   postsId String?
   Posts   Posts?  @relation(fields: [postsId], references: [id], onDelete: Cascade)
@@ -88,6 +89,6 @@ model SocialMediaLink {
   id            String       @id @default(uuid())
   label         String
   link          String
-  ContactInfo   ContactInfo? @relation(fields: [contactInfoId], references: [id], onDelete: Cascade)
+  ContactInfo   ContactInfo? @relation(fields: [contactInfoId], references: [id])
   contactInfoId String?
 }

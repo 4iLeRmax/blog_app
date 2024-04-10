@@ -4,6 +4,7 @@ import { sessionUserAlreadyLikedPost } from '@/lib/sessionUserAlreadyLikedPost';
 import { getServerSession } from 'next-auth';
 import React from 'react';
 import { IoMdHeart, IoMdHeartEmpty } from 'react-icons/io';
+import LikeButton from './LikeButton';
 
 type LikesProps = {
   postId: string;
@@ -18,11 +19,12 @@ export default async function Likes({ postId, likes }: LikesProps) {
     <>
       <div className='flex items-center gap-1 text-primary-color'>
         {session?.user ? (
-          <form action={likePost.bind(null, postId)}>
-            <button>
-              {sessionUserAlreadyLiked ? <IoMdHeart size={30} /> : <IoMdHeartEmpty size={30} />}
-            </button>
-          </form>
+          // <form action={likePost.bind(null, postId)}>
+          //   <button>
+          //     {sessionUserAlreadyLiked ? <IoMdHeart size={30} /> : <IoMdHeartEmpty size={30} />}
+          //   </button>
+          // </form>
+          <LikeButton postId={postId} sessionUserAlreadyLiked={sessionUserAlreadyLiked} />
         ) : (
           <div>
             <IoMdHeart size={30} />

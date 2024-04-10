@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -46,7 +46,7 @@ export default function HeaderLinks({ sessionUser, isAdmin }: HeaderLinksProps) 
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
-                className='fixed top-0 left-0 z-20 w-full h-full bg-black/80'
+                className='fixed top-0 left-0 z-20 flex w-full h-full bg-black/80 md:hidden'
               ></motion.div>
               <motion.div
                 className='fixed top-0 left-0 z-30 flex flex-col h-full gap-3 py-5 rounded-ss-none rounded-es-none items-enter glassEffect backdrop-blur-lg md:hidden'

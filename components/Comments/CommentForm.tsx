@@ -1,5 +1,6 @@
 'use client';
 
+import ButtonWithLoader from '@/UI/ButtonWithLoader';
 import { createComment, createReply } from '@/lib/actions';
 import { TPost } from '@/types';
 import clsx from 'clsx';
@@ -109,9 +110,9 @@ export default function CommentForm({ post }: CommentFormProps) {
           <div className='text-sm'>
             {inputValue.length}/{CHAR_LIMIT}
           </div>
-          <button className='flex items-center justify-center w-8 h-8 text-white bg-blue-500 rounded-full '>
+          <ButtonWithLoader buttonClassName='flex items-center justify-center w-10 h-10 text-white bg-blue-500 rounded-full md:w-8 md:h-8'>
             <IoMdSend />
-          </button>
+          </ButtonWithLoader>
         </div>
       </form>
     </div>

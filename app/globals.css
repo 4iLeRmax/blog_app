@@ -99,6 +99,49 @@ body.light {
 .postSkeletonAddInfo {
   @apply w-10 h-6 bg-[--skeletonSecondColor] rounded-xl;
 }
+.dashboardSkeleton {
+}
+.dashboardSkeletonBreadCrumbs {
+  @apply h-9 rounded-xl bg-[--skeletonFirstColor] my-5 flex items-center gap-2 py-1 px-5 w-[208px];
+}
+.dashboardSkeletonCrumb {
+  @apply w-[80px] rounded-md h-6 bg-[--skeletonSecondColor];
+}
+.dashboardSkeletonButtons {
+  @apply grid grid-cols-1 gap-1 px-5 py-2 md:gap-3 sm:grid-cols-2 lg:grid-cols-4 bg-[--skeletonFirstColor] rounded-3xl;
+}
+.dashboardSkeletonButton {
+  @apply w-full rounded-md bg-[--skeletonSecondColor] h-[44px];
+}
+.dashboardSkeletonEditor {
+  @apply h-[512px] mt-8 rounded-3xl bg-[--skeletonFirstColor] flex items-center justify-center;
+}
+.dashboardSkeletonLoader {
+  @apply w-20 h-20 rounded-full border-8 border-[--skeletonSecondColor] border-t-blue-500 animate-spin;
+}
+
+.imageUploaderSkeleton-wrapper {
+  @apply flex flex-col w-full gap-5 sm:w-[144px] xl:w-[200px] 2xl:w-[400px];
+}
+.imageUploaderSkeleton-image {
+  @apply border-2 border-blue-100 border-dashed h-[400px] sm:h-[144px] xl:h-[200px] 2xl:h-[400px] rounded-xl flex items-center justify-center;
+}
+.imageUploaderSkeleton-info {
+  @apply flex flex-col gap-1;
+}
+.imageUploaderSkeleton-button {
+  @apply w-full bg-[--skeletonFirstColor] h-10 rounded-md flex items-center justify-center;
+}
+.imageUploaderSkeleton-title {
+  @apply w-20 h-5 rounded-md bg-[--skeletonFirstColor] mx-auto;
+}
+
+.smallLoader-w-6 {
+  @apply w-6 h-6 rounded-full border-4 border-[--skeletonSecondColor] border-t-blue-500 animate-spin;
+}
+.smallLoader-w-8 {
+  @apply w-8 h-8 rounded-full border-4 border-[--skeletonSecondColor] border-t-blue-500 animate-spin;
+}
 
 div.customUploadThingButton {
   /* @apply bg-red-500 w-full */

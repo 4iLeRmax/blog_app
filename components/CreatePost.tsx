@@ -1,11 +1,15 @@
 'use client';
 
-import { createPost } from '@/lib/actions';
-import { AnimatePresence } from 'framer-motion';
 import React, { useEffect, useRef, useState, useTransition } from 'react';
-import StatusModal from './Modals/StatusModal';
-import ImageUploader from './ImageUploader';
+import { AnimatePresence } from 'framer-motion';
+import dynamic from 'next/dynamic';
+
 import PostForm from './PostForm';
+import ImageUploader from './ImageUploader';
+import StatusModal from './Modals/StatusModal';
+
+import { createPost } from '@/lib/actions';
+
 import { TPost, Status } from '@/types';
 
 type CreatePostProps = {

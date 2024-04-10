@@ -10,6 +10,7 @@ import { MdDeleteOutline } from 'react-icons/md';
 import { AiTwotoneSafetyCertificate } from 'react-icons/ai';
 import { GrOverview } from 'react-icons/gr';
 import { RepCommUI } from '@/types';
+import ButtonWithLoader from '@/UI/ButtonWithLoader';
 
 type ReportedCommentMoreInfoModalProps = {
   reportedComment: RepCommUI;
@@ -48,16 +49,16 @@ export default function ReportedCommentMoreInfoModal({
       >
         <div className='flex flex-col bg-white rounded-md shadow-xl w-36'>
           <form action={deleteReportComment.bind(null, reportedComment.id)} className='w-full'>
-            <button className='flex items-center w-full gap-1 px-2 py-1 rounded-md cursor-pointer hover:bg-gray-200'>
+            <ButtonWithLoader buttonClassName='flex items-center w-full gap-1 px-2 py-1 rounded-md cursor-pointer hover:bg-gray-200'>
               <AiTwotoneSafetyCertificate />
               Acquit
-            </button>
+            </ButtonWithLoader>
           </form>
           <form action={determineAction} className='w-full'>
-            <button className='flex items-center w-full gap-1 px-2 py-1 rounded-md cursor-pointer hover:bg-gray-200'>
+            <ButtonWithLoader buttonClassName='flex items-center w-full gap-1 px-2 py-1 rounded-md cursor-pointer hover:bg-gray-200'>
               <MdDeleteOutline />
               Delete
-            </button>
+            </ButtonWithLoader>
           </form>
           <Link
             href={`/posts/${reportedComment.pathId.postId}`}

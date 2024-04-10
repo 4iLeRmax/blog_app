@@ -118,7 +118,7 @@ export default async function ReportComments() {
           ))}
         </div>
       ) : (
-        <div>No Reports </div>
+        <div className='flex items-center justify-center mt-20 text-primary-color'>No Reports</div>
       )}
     </>
   );

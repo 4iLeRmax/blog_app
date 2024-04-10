@@ -21,7 +21,7 @@ export default function StatusModal({ children, status, modalDuration }: StatusM
         animate={{ y: 0 }}
         exit={{ y: 200 }}
         className={clsx(
-          'fixed z-40 bottom-0 right-0 pt-3 px-3 pb-1 rounded-ss-xl rounded-se-xl w-80',
+          'fixed z-40 bottom-0 right-0 pt-3 px-3 pb-1 rounded-ss-xl rounded-se-xl w-full xs:w-80',
           {
             'bg-[#669822]': status === 'success',
             'bg-[rgb(240,185,174)]': status === 'error',

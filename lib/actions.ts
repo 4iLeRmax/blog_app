@@ -27,8 +27,10 @@ export const updateSocialMediaLinks = async (
     if (socialMediaLinksExist) {
       //UPDATE
       console.log('UPDATE');
-      await prisma.socialMediaLink.deleteMany();
-      const res = await prisma.contactInfo.update({
+      console.log(socialMedia);
+
+      const res1 = await prisma.socialMediaLink.deleteMany();
+      const res2 = await prisma.contactInfo.update({
         where: {
           id: contactInfo.id,
         },
@@ -40,7 +42,7 @@ export const updateSocialMediaLinks = async (
           },
         },
       });
-      console.log(res);
+      // console.log(res);
     } else {
       //CREATE
       console.log('CREATE');
@@ -128,6 +130,18 @@ export const createPost = async (image: string, formData: FormData) => {
   redirect('/posts');
 };
 export const deletePost = async (postId: string, formData: FormData) => {
+  const reportComment = await getReportComments();
+  const relatedReportComments = reportComment?.filter((el) => el.postId === postId);
+
+  if (relatedReportComments && relatedReportComments.length > 0) {
+    const res = await prisma.reportComment.deleteMany({
+      where: {
+        id: {
+          in: [...relatedReportComments.map((el) => el.id)],
+        },
+      },
+    });
+  }
   const res = await prisma.posts.delete({ where: { id: postId } });
 
   revalidatePath('/posts');
@@ -175,9 +189,10 @@ export const updatePost = async (postId: string, formData: FormData) => {
   // revalidatePath(`/posts/${postId}`);
   // redirect(`/posts/${postId}`);
 };
-export const likePost = async (postId: string, formData: FormData) => {
+export const likePost = async (postId: string, formData?: FormData) => {
   const session = await getServerSession(authOptions);
   const sessionUserAlreadyLiked = await sessionUserAlreadyLikedPost(postId);
+  const post = await getPost(postId);
 
   if (!sessionUserAlreadyLiked) {
     const res = await prisma.posts.update({
@@ -194,18 +209,21 @@ export const likePost = async (postId: string, formData: FormData) => {
       },
     });
   } else {
-    const res = await prisma.posts.update({
-      where: {
-        id: postId,
-      },
-      data: {
-        Likes: {
-          delete: {
-            email: session?.user?.email as string,
+    const likesToBeDeleted = post?.Likes.find((like) => like.email === session?.user?.email);
+    if (likesToBeDeleted) {
+      const res = await prisma.posts.update({
+        where: {
+          id: postId,
+        },
+        data: {
+          Likes: {
+            delete: {
+              id: likesToBeDeleted.id,
+            },
           },
         },
-      },
-    });
+      });
+    }
   }
 
   revalidatePath('posts');
@@ -293,7 +311,6 @@ export const createReply = async (
   }
   revalidatePath(`/posts/${postId}`);
 };
-// ================================================ //
 export const deleteReply = async (
   obj: { postId: string; commentId: string; replyId: string },
   formData: FormData,
