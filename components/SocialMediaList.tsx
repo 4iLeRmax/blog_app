@@ -55,7 +55,7 @@ export default function SocialMediaList({
   return (
     <>
       {socialMedia.length > 0 ? (
-        <div className='flex flex-wrap items-center gap-2 mt-5'>
+        <div className='flex flex-wrap items-center gap-2'>
           {socialMedia.map((el, i) =>
             el.link !== '' ? (
               <div

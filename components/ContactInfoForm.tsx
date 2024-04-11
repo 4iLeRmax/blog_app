@@ -1,5 +1,6 @@
 'use client';
 
+import SubmitButton from '@/UI/SubmitButton';
 import { updateContactInfo } from '@/lib/actions';
 import { ContactInfo } from '@/types';
 import React, { useState } from 'react';
@@ -14,7 +15,7 @@ type ContactInfoFormProps = {
 export default function ContactInfoForm({ contactInfo }: ContactInfoFormProps) {
   return (
     <>
-      <form action={updateContactInfo}>
+      <form action={updateContactInfo} className='flex flex-col gap-5'>
         <div className='grid grid-cols-1 gap-3 sm:grid-cols-2 xl:grid-cols-3'>
           <div className='flex items-center gap-2 border-b-2 border-blue-500'>
             <div>
@@ -61,9 +62,19 @@ export default function ContactInfoForm({ contactInfo }: ContactInfoFormProps) {
             />
           </div>
         </div>
-        <button className='flex items-center justify-center w-full h-8 mt-5 text-white bg-blue-500 rounded-xl'>
+        {/* <button className='flex items-center justify-center w-full h-8 mt-5 text-white bg-blue-500 rounded-xl'>
           Update Data
-        </button>
+        </button> */}
+        <SubmitButton
+          variants={{
+            default: 'Update Data',
+            pending: (
+              <div className='flex items-center justify-center'>
+                <div className='smallLoader-w-6'></div>
+              </div>
+            ),
+          }}
+        />
       </form>
     </>
   );

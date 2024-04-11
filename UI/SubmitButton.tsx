@@ -7,7 +7,7 @@ import { useFormStatus } from 'react-dom';
 type SubmitButtonProps = {
   variants: {
     default: string;
-    pending: string;
+    pending: string | React.ReactNode;
   };
 };
 

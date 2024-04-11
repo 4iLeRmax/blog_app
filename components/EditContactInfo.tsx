@@ -7,6 +7,7 @@ import { updateSocialMediaLinks } from '@/lib/actions';
 import ContactInfoForm from '@/components/ContactInfoForm';
 import { options, socialMediaColors } from '@/data';
 import { ContactInfo } from '@/types';
+import SubmitButton from '@/UI/SubmitButton';
 
 type EditContactInfoProps = {
   contactInfo: ContactInfo | undefined;
@@ -36,7 +37,7 @@ export default function EditContactInfo({ contactInfo }: EditContactInfoProps) {
       <div className='flex flex-col w-full gap-10 px-3 py-5 xs:px-5 glassEffect'>
         <ContactInfoForm contactInfo={contactInfo} />
         <form action={onSubmit} className='w-full'>
-          <div className='flex flex-col gap-2'>
+          <div className='flex flex-col gap-5'>
             <SocialMediaSelect
               socialMedia={socialMedia}
               setSocialMedia={setSocialMedia}
@@ -49,9 +50,16 @@ export default function EditContactInfo({ contactInfo }: EditContactInfoProps) {
               setTempLink={setTempLink}
               socialMediaColors={socialMediaColors}
             />
-            <button className='flex items-center justify-center w-full h-8 mt-5 text-white bg-blue-500 rounded-xl'>
-              Update Links
-            </button>
+            <SubmitButton
+              variants={{
+                default: 'Update Links',
+                pending: (
+                  <div className='flex items-center justify-center'>
+                    <div className='smallLoader-w-6'></div>
+                  </div>
+                ),
+              }}
+            />
           </div>
         </form>
       </div>
