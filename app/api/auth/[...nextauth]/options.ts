@@ -37,7 +37,7 @@ export const authOptions: AuthOptions = {
           image: profile.avatar_url,
           password: null,
           role: profile.role ?? 'user',
-        };
+        } as User;
         // console.log(githubProfile);
 
         const users = await getUsers();

@@ -10,9 +10,9 @@ type Params = {
 
 export default function PostPage({ params: { id } }: Params) {
   return (
-    <div className='flex flex-col gap-5'>
-      <Post postId={id} />
-    </div>
+    // <div className='flex flex-col gap-5'>
+    <Post postId={id} />
+    // </div>
   );
 }
 

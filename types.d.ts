@@ -10,7 +10,7 @@ type ContactInfo = Prisma.ContactInfoGetPayload<{
 
 type SocialMediaLinks = Prisma.SocialMediaLinkGetPayload<{}>;
 
-type SessionUser = Omit<User, 'password'>;
+type SessionUser = Omit<Omit<User, 'password'>, 'favorites'>;
 
 type TPost = Prisma.PostsGetPayload<{
   include: {

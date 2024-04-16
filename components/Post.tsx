@@ -21,7 +21,7 @@ export default async function Post({ postId }: PostProps) {
   return (
     <>
       {post ? (
-        <div className='relative w-full p-3 glassEffect'>
+        <div className='relative p-3 glassEffect'>
           <div className='absolute z-10 top-5 right-5'>
             <MoreInfo>
               <PostMoreInfoModal isAdmin={isAdmin} postId={postId} />
@@ -29,10 +29,13 @@ export default async function Post({ postId }: PostProps) {
           </div>
           <PostImage image={post.image} />
           <div>
-            <h1 className='pt-1 pb-2 pr-12 text-3xl break-words text-primary-color'>
+            <h1 className='pt-1 pb-2 pr-12 overflow-hidden text-3xl text-primary-color text-ellipsis'>
               {post.title}
             </h1>
-            <p dangerouslySetInnerHTML={{ __html: post.body }} className='text-primary-color' />
+            <p
+              dangerouslySetInnerHTML={{ __html: post.body }}
+              className='break-words text-primary-color'
+            />
             <div className='flex justify-between pt-5'>
               <Likes postId={post.id} likes={post.Likes} />
               <h1 title={getCurrentDate(post.date)} className='text-primary-color'>

@@ -11,6 +11,7 @@ export const HeaderSkeleton = () => {
             <div className='headerSkeletonLink' />
             <div className='headerSkeletonLink' />
             <div className='headerSkeletonLink' />
+            <div className='headerSkeletonLink' />
           </div>
 
           <div className='headerSkeletonAdds'>

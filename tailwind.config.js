@@ -44,4 +44,7 @@ export default withUt({
     },
   },
   plugins: [],
+  future: {
+    hoverOnlyWhenSupported: true,
+  },
 });

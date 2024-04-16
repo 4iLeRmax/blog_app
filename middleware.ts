@@ -1,27 +1,26 @@
-import { NextResponse, type NextRequest } from 'next/server';
+// export { default } from 'next-auth/middleware';
 
-export const middleware = (req: NextRequest) => {
-  // const currentPath = req.nextUrl.pathname;
-  // const res = NextResponse.next();
-  // if (currentPath.includes('/posts/')) {
-  //   console.log(req.url);
-  //   console.log(currentPath);
-  //   const visitedPosts = req.cookies.get('visitedPosts');
-  //   console.log(visitedPosts);
-  //   if (visitedPosts) {
-  //     if (!JSON.parse(visitedPosts.value).includes(currentPath)) {
-  //       res.cookies.set(
-  //         'visitedPosts',
-  //         JSON.stringify([...JSON.parse(visitedPosts.value), currentPath]),
-  //       );
-  //     }
-  //   } else {
-  //     res.cookies.set('visitedPosts', JSON.stringify([currentPath]));
-  //   }
-  // }
-  // return res;
-};
+import { withAuth, type NextRequestWithAuth } from 'next-auth/middleware';
+import { NextResponse } from 'next/server';
 
-// export const config = {
-//   matcher: '/profile',
-// };
+export default withAuth(
+  function middleware(req: NextRequestWithAuth) {
+    if (req.nextUrl.pathname.startsWith('/favorites')) {
+      if (req.nextauth.token === null) {
+        return NextResponse.redirect(new URL('/', req.url));
+      }
+    }
+    if (req.nextUrl.pathname.startsWith('/dashboard')) {
+      if (req.nextauth.token?.role !== 'ADMIN') {
+        return NextResponse.redirect(new URL('/', req.url));
+      }
+    }
+  },
+  {
+    callbacks: {
+      authorized: ({ token }) => !!token,
+    },
+  },
+);
+
+export const config = { matcher: ['/favorites', '/dashboard'] };

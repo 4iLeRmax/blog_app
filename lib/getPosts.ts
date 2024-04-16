@@ -12,6 +12,9 @@ import prisma from './prisma';
 export const getPosts = async (): Promise<TPost[] | undefined> => {
   try {
     const posts = await prisma.posts.findMany({
+      orderBy: {
+        date: 'asc',
+      },
       include: {
         Likes: true,
         Comments: {

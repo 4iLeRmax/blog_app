@@ -16,6 +16,7 @@ import { useRouter } from 'next/navigation';
 import ThemeSwitcher from '@/UI/ThemeSwitcher';
 import { CiUser } from 'react-icons/ci';
 import { SessionUser } from '@/types';
+import { MdOutlineFavoriteBorder } from 'react-icons/md';
 
 type HeaderLinksProps = {
   sessionUser: SessionUser | undefined;
@@ -36,6 +37,7 @@ export default function HeaderLinks({ sessionUser, isAdmin }: HeaderLinksProps) 
       <div className='items-center hidden gap-3 md:flex text-primary-color'>
         <Link href={'/'}>Home</Link>
         <Link href={'/posts'}>Posts</Link>
+        {sessionUser ? <Link href={'/favorites'}>Favorites</Link> : null}
         {isAdmin ? <Link href={'/dashboard'}>Dashboard</Link> : null}
       </div>
       <AnimatePresence>
@@ -99,6 +101,16 @@ export default function HeaderLinks({ sessionUser, isAdmin }: HeaderLinksProps) 
                   >
                     <BsFileEarmarkPost /> Posts
                   </button>
+
+                  {sessionUser ? (
+                    <button
+                      onClick={() => handleClick('/favorites')}
+                      className='flex items-center gap-1 text-primary-color'
+                    >
+                      <MdOutlineFavoriteBorder />
+                      Favorites
+                    </button>
+                  ) : null}
 
                   {isAdmin ? (
                     <button

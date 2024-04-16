@@ -27,7 +27,7 @@ export default function PostItem({ post }: PostItemProps) {
             </div>
           )}
           <div className='px-3 pt-2 text-2xl'>
-            <h1 className='overflow-hidden'>{post.title}</h1>
+            <h1 className='overflow-hidden text-ellipsis'>{post.title}</h1>
           </div>
 
           <div className='flex items-center justify-between p-3'>

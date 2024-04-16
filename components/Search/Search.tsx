@@ -21,10 +21,12 @@ export default function Search({ posts }: SearchProps) {
   useEffect(() => {
     // console.log('upd');
     if (posts !== undefined) {
-      setFilteredPosts(
-        posts.filter((post) => post.title.toLowerCase().includes(params.toLowerCase())),
-      );
-      setSelectedPost(0);
+      if (params !== '') {
+        setFilteredPosts(
+          posts.filter((post) => post.title.toLowerCase().includes(params.toLowerCase())),
+        );
+        setSelectedPost(0);
+      }
     }
   }, [params]);
 
@@ -51,7 +53,7 @@ export default function Search({ posts }: SearchProps) {
     <>
       <div className='relative w-full sm:w-[50vw] md:w-full' onKeyDown={handlePress}>
         <SearchInput />
-        <SearchModal filteredPosts={filteredPosts} selectedPost={selectedPost} />
+        <SearchModal filteredPosts={filteredPosts} selectedPost={selectedPost} params={params} />
       </div>
     </>
   );

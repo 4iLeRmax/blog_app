@@ -26,19 +26,17 @@ export default function PostImage({ image }: PostImageProps) {
       <AnimatePresence>
         {isOpen ? (
           <Modal>
-            <>
+            <div>
               <button
                 className='absolute top-0 right-0 z-20 p-1 bg-white rounded-md'
                 onClick={() => setIsOpen(false)}
               >
                 <IoClose size={30} />
               </button>
-              {image ? (
-                <div className='relative w-full'>
-                  <Image src={image} alt='' width={1000} height={1000} className='object-contain' />
-                </div>
-              ) : null}
-            </>
+              <div className='fixed top-0 left-0 w-full h-full overflow-hidden'>
+                {image ? <Image src={image} alt='' fill className='object-contain' /> : null}
+              </div>
+            </div>
           </Modal>
         ) : null}
       </AnimatePresence>

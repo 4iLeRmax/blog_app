@@ -11,6 +11,9 @@ import { sessionUserAlreadyLikedPost } from './sessionUserAlreadyLikedPost';
 import { getContactInfo } from './getContactInfo';
 import { userIsAdmin } from './userIsAdmin';
 import prisma from './prisma';
+import { SessionUser, User } from '@/types';
+import { getUserByEmail } from './getUserByEmail';
+import { getUserById } from './getUserById';
 
 export const updateSocialMediaLinks = async (
   formData: FormData,
@@ -193,9 +196,10 @@ export const likePost = async (postId: string, formData?: FormData) => {
   const session = await getServerSession(authOptions);
   const sessionUserAlreadyLiked = await sessionUserAlreadyLikedPost(postId);
   const post = await getPost(postId);
+  const user = (await getUserById((session?.user as SessionUser).id)) as User;
 
   if (!sessionUserAlreadyLiked) {
-    const res = await prisma.posts.update({
+    await prisma.posts.update({
       where: {
         id: postId,
       },
@@ -208,10 +212,20 @@ export const likePost = async (postId: string, formData?: FormData) => {
         },
       },
     });
+    await prisma.users.update({
+      where: {
+        id: user.id,
+      },
+      data: {
+        favorites: {
+          push: postId,
+        },
+      },
+    });
   } else {
     const likesToBeDeleted = post?.Likes.find((like) => like.email === session?.user?.email);
     if (likesToBeDeleted) {
-      const res = await prisma.posts.update({
+      await prisma.posts.update({
         where: {
           id: postId,
         },
@@ -221,6 +235,15 @@ export const likePost = async (postId: string, formData?: FormData) => {
               id: likesToBeDeleted.id,
             },
           },
+        },
+      });
+
+      await prisma.users.update({
+        where: {
+          id: user.id,
+        },
+        data: {
+          favorites: user.favorites.filter((el) => el !== postId),
         },
       });
     }

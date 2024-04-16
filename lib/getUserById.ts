@@ -4,7 +4,7 @@
 import { User } from '@/types';
 import prisma from './prisma';
 
-export const getUser = async (id: string): Promise<User | null> => {
+export const getUserById = async (id: string): Promise<User | null> => {
   return await prisma.users.findUnique({
     where: {
       id,

@@ -110,7 +110,10 @@ export default function CommentForm({ post }: CommentFormProps) {
           <div className='text-sm'>
             {inputValue.length}/{CHAR_LIMIT}
           </div>
-          <ButtonWithLoader buttonClassName='flex items-center justify-center w-10 h-10 text-white bg-blue-500 rounded-full md:w-8 md:h-8'>
+          <ButtonWithLoader
+            buttonClassName='flex items-center justify-center w-10 h-10 text-white bg-blue-500 rounded-full md:w-8 md:h-8'
+            size='8'
+          >
             <IoMdSend />
           </ButtonWithLoader>
         </div>
