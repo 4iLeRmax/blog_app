@@ -21,7 +21,6 @@ const breadcrumbsLinks: BrcsLinks = [
 
 export default async function FavoritesPage() {
   const session = await getServerSession(authOptions);
-
   if (!session?.user) redirect('/');
 
   const favoritePosts = await getFavoritePosts((session?.user as SessionUser).id);

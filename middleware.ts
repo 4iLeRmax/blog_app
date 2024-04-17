@@ -5,11 +5,6 @@ import { NextResponse } from 'next/server';
 
 export default withAuth(
   function middleware(req: NextRequestWithAuth) {
-    if (req.nextUrl.pathname.startsWith('/favorites')) {
-      if (req.nextauth.token === null) {
-        return NextResponse.redirect(new URL('/', req.url));
-      }
-    }
     if (req.nextUrl.pathname.startsWith('/dashboard')) {
       if (req.nextauth.token?.role !== 'ADMIN') {
         return NextResponse.redirect(new URL('/', req.url));

@@ -32,11 +32,10 @@ const breadcrumbsLinks: BrcsLinks = [
 ];
 
 export default async function DashboardPage() {
-  const users = await getUsers();
   const isAdmin = await userIsAdmin();
-
   if (!isAdmin) redirect('/');
 
+  const users = await getUsers();
   const posts = await getPosts();
   const contactInfo = await getContactInfo();
 

@@ -7,10 +7,10 @@ import PostForm from '@/components/PostForm';
 import { userIsAdmin } from '@/lib/userIsAdmin';
 
 export default async function EditPost({ params: { id } }: any) {
-  const post = await getPost(id);
   const isAdmin = await userIsAdmin();
-
   if (!isAdmin) redirect(`/posts/${id}`);
+
+  const post = await getPost(id);
 
   return (
     <>
