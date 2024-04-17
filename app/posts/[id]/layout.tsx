@@ -16,7 +16,7 @@ export async function generateMetadata({ params: { id } }: PostLayoutProps): Pro
   const post = await getPost(id);
 
   return {
-    title: post ? post.title : 'Post',
+    title: post ? post.title : `Post ${id}`,
   };
 }
 
@@ -34,7 +34,7 @@ export default async function PostLayout({ children, params: { id } }: PostLayou
     },
     {
       link: `/posts/${id}`,
-      value: post.title,
+      value: post?.title,
     },
   ];
 
@@ -42,7 +42,6 @@ export default async function PostLayout({ children, params: { id } }: PostLayou
     <>
       <div>
         <BreadCrumbs links={breadcrumbsLinks} />
-        {/* <div className='flex items-start w-full gap-5'> */}
         <div className='flex flex-col items-start w-full gap-5 md:flex-row '>
           <div className='w-full md:w-[calc(100%_-_320px_-_20px)] xl:w-[calc(100%_-_400px_-_20px)]'>
             {children}

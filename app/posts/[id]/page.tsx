@@ -1,4 +1,5 @@
 import Post from '@/components/Post';
+import { getPost } from '@/lib/getPost';
 import { getPosts } from '@/lib/getPosts';
 import { TPost } from '@/types';
 
@@ -8,12 +9,9 @@ type Params = {
   };
 };
 
-export default function PostPage({ params: { id } }: Params) {
-  return (
-    // <div className='flex flex-col gap-5'>
-    <Post postId={id} />
-    // </div>
-  );
+export default async function PostPage({ params: { id } }: Params) {
+  const post = await getPost(id);
+  return <>{post ? <Post post={post} /> : null}</>;
 }
 
 export const generateStaticParams = async () => {

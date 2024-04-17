@@ -8,29 +8,28 @@ import { getPost } from '@/lib/getPost';
 import { userIsAdmin } from '@/lib/userIsAdmin';
 import Likes from './Likes';
 import PostImage from './PostImage';
+import { TPost } from '@/types';
 
 type PostProps = {
-  postId: string;
+  post: TPost;
 };
 
-export default async function Post({ postId }: PostProps) {
-  const post = await getPost(postId);
+export default async function Post({ post }: PostProps) {
   const isAdmin = await userIsAdmin();
 
-  // await new Promise((res) => setTimeout(res, 5000));
   return (
     <>
       {post ? (
         <div className='relative p-3 glassEffect'>
           <div className='absolute z-10 top-5 right-5'>
             <MoreInfo>
-              <PostMoreInfoModal isAdmin={isAdmin} postId={postId} />
+              <PostMoreInfoModal isAdmin={isAdmin} postId={post.id} />
             </MoreInfo>
           </div>
           <PostImage image={post.image} />
           <div>
             <h1 className='pt-1 pb-2 pr-12 overflow-hidden text-3xl text-primary-color text-ellipsis'>
-              {post.title}
+              {post?.title}
             </h1>
             <p
               dangerouslySetInnerHTML={{ __html: post.body }}
