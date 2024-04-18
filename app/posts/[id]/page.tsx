@@ -17,7 +17,7 @@ export default async function PostPage({ params: { id } }: Params) {
 export const generateStaticParams = async () => {
   const posts = (await getPosts()) as TPost[];
 
-  return posts.map((post) => ({
+  return posts?.map((post) => ({
     id: post.id,
   }));
 };

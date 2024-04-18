@@ -34,7 +34,7 @@ export default async function PostLayout({ children, params: { id } }: PostLayou
     },
     {
       link: `/posts/${id}`,
-      value: post?.title,
+      value: post ? post.title : `post ${id}`,
     },
   ];
 
