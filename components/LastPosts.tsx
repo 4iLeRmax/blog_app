@@ -38,7 +38,7 @@ export default async function LastPosts({ count }: LastPostsProps) {
       <div className='flex items-center justify-center mt-5'>
         <Link
           href={'/posts'}
-          className='flex items-center justify-center w-full py-2 transition-colors bg-blue-500 rounded-md xs:w-64 text-primary-color hover:bg-blue-400'
+          className='flex items-center justify-center w-full py-2 text-white transition-colors bg-blue-500 rounded-md xs:w-64 hover:bg-blue-400'
         >
           See More
         </Link>

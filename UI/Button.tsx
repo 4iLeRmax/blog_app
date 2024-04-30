@@ -2,7 +2,7 @@
 
 import clsx from 'clsx';
 import { signIn, signOut } from 'next-auth/react';
-import React, { FC, forwardRef } from 'react';
+import React, { FC } from 'react';
 
 type ButtonProps = {
   image?: React.ReactNode;

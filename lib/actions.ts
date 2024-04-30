@@ -15,6 +15,22 @@ import { SessionUser, User } from '@/types';
 import { getUserByEmail } from './getUserByEmail';
 import { getUserById } from './getUserById';
 
+export const createUser = async (
+  user: {
+    image: string;
+    email: string;
+    name: string;
+    password: string;
+  },
+  formData?: FormData,
+) => {
+  await prisma.users.create({
+    data: {
+      ...user,
+    },
+  });
+};
+
 export const updateSocialMediaLinks = async (
   formData: FormData,
   socialMedia: {

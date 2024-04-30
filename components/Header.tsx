@@ -11,6 +11,7 @@ import HeaderLinks from './HeaderLinks';
 import ThemeSwitcher from '@/UI/ThemeSwitcher';
 import { SessionUser } from '@/types';
 import { userIsAdmin } from '@/lib/userIsAdmin';
+import Auth from './auth/Auth';
 
 export default async function Header() {
   const session: { user: SessionUser } | null = await getServerSession(authOptions);
@@ -35,14 +36,15 @@ export default async function Header() {
               <ThemeSwitcher />
             </div>
             <Search posts={posts} />
-            {session?.user ? (
+            {/* {session?.user ? (
               <Avatar user={session.user} />
             ) : (
               <Button sign='SignIn'>
                 <CiLogin />
                 <div className='w-14'>Sign in</div>
               </Button>
-            )}
+            )} */}
+            {session?.user ? <Avatar user={session.user} /> : <Auth />}
           </div>
         </div>
       </div>

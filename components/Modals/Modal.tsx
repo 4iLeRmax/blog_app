@@ -3,10 +3,10 @@ import { motion } from 'framer-motion';
 import React from 'react';
 
 type ModalProps = {
-  children: React.ReactNode
-}
+  children: React.ReactNode;
+};
 
-const Modal = ({children}: ModalProps) => {
+const Modal = ({ children }: ModalProps) => {
   return (
     <>
       <ModalsPortal>
@@ -20,7 +20,7 @@ const Modal = ({children}: ModalProps) => {
             initial={{ scale: 0, opacity: 0, y: 200 }}
             animate={{ scale: 1, opacity: 1, y: 0 }}
             exit={{ scale: 0, opacity: 0, y: 200 }}
-            className='bg-white shadow-xl rounded-xl'
+            className='bg-white rounded-md shadow-xl sm:rounded-xl'
           >
             {children}
           </motion.div>

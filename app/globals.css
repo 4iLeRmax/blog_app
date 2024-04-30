@@ -143,11 +143,8 @@ body.light {
   @apply w-8 h-8 rounded-full border-4 border-[--skeletonSecondColor] border-t-blue-500 animate-spin;
 }
 
-div.customUploadThingButton {
-  /* @apply bg-red-500 w-full */
-}
 div.customUploadThingButton label {
-  @apply w-full;
+  @apply w-full bg-blue-500;
 }
 
 .transparentToWhite::before {
