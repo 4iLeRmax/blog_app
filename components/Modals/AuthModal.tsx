@@ -1,11 +1,6 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
-import Avatar from '../Avatar';
-import { Session } from 'next-auth';
-import { SessionUser } from '@/types';
-import Button from '@/UI/Button';
-import { CiLogin } from 'react-icons/ci';
 import Modal from './Modal';
 import SignInForm from '../auth/SignInForm';
 import SignUpForm from '../auth/SignUpForm';

@@ -9,6 +9,12 @@ const nextConfig = {
     ],
   },
   reactStrictMode: false,
+  env: {
+    baseURL:
+      process.env.NODE_ENV === 'production'
+        ? 'https://blog-app-seven-sigma.vercel.app/'
+        : 'http://localhost:3000',
+  },
 };
 
 module.exports = nextConfig;

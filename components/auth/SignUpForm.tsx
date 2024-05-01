@@ -4,12 +4,11 @@ import React, { useEffect, useRef, useState } from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { MdOutlineMail } from 'react-icons/md';
 import { RiLockPasswordLine } from 'react-icons/ri';
-import { IoClose, IoEyeOffOutline, IoEyeOutline } from 'react-icons/io5';
+import { IoEyeOffOutline, IoEyeOutline } from 'react-icons/io5';
 import { AiOutlineUser } from 'react-icons/ai';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { schema } from '@/lib/schemes/signUpFormSchema';
 import ImageFormUploader from './ImageFormUploader';
-import prisma from '@/lib/prisma';
 import { User } from '@/types';
 import { createUser } from '@/lib/actions';
 import Info from '@/UI/Info';
@@ -46,7 +45,7 @@ export default function SignUpForm() {
   });
 
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
-    const userEmailExist: User | null = await fetch('http://localhost:3000/api/users', {
+    const userEmailExist: User | null = await fetch(`${process.env.baseURL}/api/users`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -54,7 +53,7 @@ export default function SignUpForm() {
       body: JSON.stringify({ type: 'email', data: data.email }),
     }).then((res) => res.json());
 
-    const userNameExist: User | null = await fetch('http://localhost:3000/api/users', {
+    const userNameExist: User | null = await fetch(`${process.env.baseURL}/api/users`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

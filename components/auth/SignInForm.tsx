@@ -21,6 +21,8 @@ type Inputs = {
 };
 
 export default function SignInForm() {
+  console.log(process.env.baseURL);
+
   const [passwordHidden, setPasswordHidden] = useState(true);
   const { refresh } = useRouter();
   const {
@@ -32,7 +34,7 @@ export default function SignInForm() {
   } = useForm<Inputs>({ resolver: zodResolver(schema, { async: true }, { mode: 'async' }) });
 
   const onSubmit: SubmitHandler<Inputs> = async ({ email, password }) => {
-    const user: User | null = await fetch('http://localhost:3000/api/users', {
+    const user: User | null = await fetch(`${process.env.baseURL}/api/users`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
