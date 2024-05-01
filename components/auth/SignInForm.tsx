@@ -21,8 +21,6 @@ type Inputs = {
 };
 
 export default function SignInForm() {
-  console.log(process.env.baseURL);
-
   const [passwordHidden, setPasswordHidden] = useState(true);
   const { refresh } = useRouter();
   const {
